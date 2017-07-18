@@ -1,7 +1,7 @@
 import React from 'react';
 import './watch.scss';
 
-export default class HomeContainer extends React.Component {
+export default class Watch extends React.Component {
     render() {
         return (
           <div id='watch' className='watch'>
