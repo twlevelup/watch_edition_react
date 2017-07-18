@@ -1,6 +1,9 @@
 import React from 'react';
 import './watch.scss';
 import Button from "./Button/Button";
+import Home from "./Home/Home.jsx";
+import ContactList from "./ContactList/ContactList.jsx";
+import {Locations, Location} from 'react-router-component';
 
 export default class Watch extends React.Component {
 
@@ -23,7 +26,10 @@ export default class Watch extends React.Component {
             <Button id="button-bottom"
                     showOnClick={this.handleClick}/>
 
-
+            <Locations>
+              <Location path="/" handler={Home}/>
+              <Location path="/contacts" handler={Home}/>
+            </Locations>
           </div>
         </div>
         <div className='strap strap-bottom'/>
@@ -31,3 +37,5 @@ export default class Watch extends React.Component {
     );
   }
 }
+
+
