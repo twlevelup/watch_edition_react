@@ -1,15 +1,4 @@
 {
-  "env": {
-    "test": {
-      "plugins": [ "istanbul"]
-    }
-  },
-  "presets": [
-    "es2015"
-  ],
-  "plugins": [
-    "transform-object-rest-spread",
-    "syntax-class-properties",
-    "dynamic-import-webpack"
-  ]
+  "presets": ["es2015", "react"],
+  "plugins": ["transform-class-properties"]
 }
