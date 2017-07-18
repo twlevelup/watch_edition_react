@@ -1,0 +1,34 @@
+#home-container {
+
+  #left {
+    float: left;
+    width: 100%;
+    margin-left: 5%;
+    font-family: OpenSans, Helvetica, Arial, sans-serif;
+
+    h1 {
+      font-family: OpenSans-Light, Helvetica, Arial, sans-serif;
+      font-weight: normal;
+      font-size: 42pt;
+      color: #5e5e5e;
+    }
+
+    p {
+      font-size: 16pt;
+      color: #999999;
+    }
+
+    .notification-form {
+      label {
+        display: block;
+      }
+    }
+
+  }
+
+  #right {
+    float: right;
+    margin-right: 15%;
+  }
+
+}
