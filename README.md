@@ -1,4 +1,4 @@
-# LevelUp Watch Edition App Development Environment
+# LevelUp Watch Edition App Development Environment ★★
 
 [![Build Status](https://circleci.com/gh/twlevelup/watch_edition.png)](https://circleci.com/gh/twlevelup/watch_edition)
 
@@ -14,6 +14,18 @@ See the [Installation Instructions](https://github.com/twlevelup/watch_edition/w
 
 This project is continuously deployed to heroku by [Circle CI](https://circleci.com).
 You can view this app at [https://twlevelup-watch-edition.herokuapp.com/](https://twlevelup-watch-edition.herokuapp.com/)
+
+
+## Setup
+Tested with node 8.x
+
+```
+$ ./go start
+```
+
+Visit `http://localhost:8000/` from your browser of choice.
+Server is visible from the local network as well.
+
 
 ### Before you commit
 
@@ -36,3 +48,5 @@ Add the following XML config to CCTray or CCMenu on your dev machine
 	https://circleci.com/gh/twlevelup/watch_edition.cc.xml
 
 You can also access the CI server and view the status of the build here [Circle CI](https://circleci.com/gh/twlevelup/watch_edition)
+
+

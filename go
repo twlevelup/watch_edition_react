@@ -12,7 +12,7 @@ show_instructions () {
   echo "    test          runs all your unit tests"
   echo "    test:dev      runs all your unit tests in development mode"
   echo "    pre-commit    prepares your changes to be committed"
-  echo "    start         runs your local development server at http://localhost:8080"
+  echo "    start         runs your local development server at http://localhost:8000"
 }
 
 initial_setup () {
@@ -56,7 +56,7 @@ if [[ $1 ]]; then
   fi
 
   if [[ $1 == "start" ]]; then
-    npm -s start
+    npm run dev
   fi
 else
   show_instructions

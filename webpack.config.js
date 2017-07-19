@@ -1,77 +1,171 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
 
-module.exports = {
-  cache: true,
-  entry: {
-    main: './client/src/js/main.js',
-  },
-  output: {
-    path: path.join(__dirname, 'public/'),
-    filename: '[name].js',
-    chunkFilename: '[chunkhash].js',
-  },
-  devtool: '#inline-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loaders: [
-          'babel-loader',
-          'istanbul-instrumenter-loader',
-          'eslint-loader',
-        ],
-      },
-      {
-        test: /\.scss$/,
-        loaders: [
-          'style-loader',
-          'css-loader',
-          'sass-loader?sourceMap',
-        ],
-      },
-      {
-        test: /\.hbs/,
-        loader: 'handlebars-template-loader',
-      },
-      {
-        test: /\.ttf/,
-        loader: 'file-loader?name=[name].[ext]',
-      },
-      {
-        test: /\.png$/,
-        loader: 'file-loader',
-      }
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+
+const nodeEnv = process.env.NODE_ENV || 'development';
+const isProduction = nodeEnv === 'production';
+
+const buildPath = path.join(__dirname, './build');
+const imgPath = path.join(__dirname, './src');
+const sourcePath = path.join(__dirname, './src');
+
+
+// Common plugins
+const plugins = [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'vendor-[hash].js',
+    minChunks(module) {
+      const context = module.context;
+      return context && context.indexOf('node_modules') >= 0;
+    },
+  }),
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(nodeEnv),
+    },
+  }),
+  new webpack.NamedModulesPlugin(),
+  new HtmlWebpackPlugin({
+    template: path.join(sourcePath, 'index.html'),
+    path: buildPath,
+    filename: 'index.html',
+  }),
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      postcss: [
+        autoprefixer({
+          browsers: [
+            'last 3 version',
+            'ie >= 10',
+          ],
+        }),
+      ],
+      context: sourcePath,
+    },
+  }),
+];
+
+// Common rules
+const rules = [
+  {
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: [
+      'babel-loader',
     ],
   },
-  watchOptions: {
-    poll: true,
+  {
+    test: /\.(png|gif|jpg|svg)$/,
+    include: imgPath,
+    use: 'url-loader?limit=20480&name=assets/[name]-[hash].[ext]',
   },
-  target: 'web',
-  devServer: {
-    stats: 'minimal',
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      // FIXME this is lazy, do something better with backbone and underscore
-      // Automtically detect jQuery and $ as free var in modules
-      // and inject the jquery library
-      // This is required by many jquery plugins
-      jQuery: 'jquery',
-      $: 'jquery',
-      Backbone: 'backbone',
-      _: 'underscore',
-    }),
-    new HtmlWebpackPlugin({
-      template: './client/src/index.ejs',
-    }),
+];
+
+if (isProduction) {
+  // Production plugins
+  plugins.push(
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
       compress: {
         warnings: false,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true,
+      },
+      output: {
+        comments: false,
       },
     }),
-  ],
+    new ExtractTextPlugin('style-[hash].css')
+  );
+
+  // Production rules
+  rules.push(
+    {
+      test: /\.scss$/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader!postcss-loader!sass-loader',
+      }),
+    }
+  );
+} else {
+  // Development plugins
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new DashboardPlugin()
+  );
+
+  // Development rules
+  rules.push(
+    {
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      use: [
+        {loader: 'style-loader', options: {sourceMap: true}},
+        {loader: 'css-loader', options: {sourceMap: true}},
+        {loader: 'postcss-loader', options: {sourceMap: true}},
+        {loader: 'sass-loader', options: {sourceMap: true}}
+      ],
+    }
+  );
+}
+
+module.exports = {
+  devtool: 'source-map',
+  context: sourcePath,
+  entry: {
+    js: './index.js',
+  },
+  output: {
+    path: buildPath,
+    publicPath: '/',
+    filename: 'app-[hash][name].js',
+  },
+  module: {
+    rules,
+  },
+
+  resolve: {
+    extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
+    modules: [
+      path.resolve(__dirname, 'node_modules'),
+      sourcePath,
+    ],
+  },
+  plugins,
+  devServer: {
+    contentBase: isProduction ? buildPath : sourcePath,
+    historyApiFallback: true,
+    port: 8000,
+    compress: isProduction,
+    inline: !isProduction,
+    hot: !isProduction,
+    host: '0.0.0.0',
+    disableHostCheck: true,
+    stats: {
+      assets: true,
+      children: false,
+      chunks: false,
+      hash: false,
+      modules: false,
+      publicPath: false,
+      timings: true,
+      version: false,
+      warnings: true,
+      colors: {
+        green: '\u001b[32m',
+      },
+    },
+  },
 };
