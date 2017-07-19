@@ -13,7 +13,7 @@ export default class ScreenFactoryService {
     },
       {
         path: '/contacts',
-        component: this.buildScreenComponent(ContactListScreen, [{name: 'sinan'}])
+        component: this.buildScreenComponent(ContactListScreen, [{name: 'sinan'}]),
       },
       {
         path: '/notfound',
