@@ -1,6 +1,12 @@
 
 #watch {
-  @import 'starps';
+  @import 'straps';
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+
   .case{
     position:relative;
     z-index:2;
