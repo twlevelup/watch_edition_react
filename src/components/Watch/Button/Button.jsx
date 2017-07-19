@@ -20,7 +20,7 @@ export default class Button extends React.Component {
 
   render() {
     return (
-      <div id={this.state.id} className="button" onClick={ this.handleOnClick()}>
+      <div id={this.state.id} className='button' onClick={ this.handleOnClick()}>
 
       </div>
     );
