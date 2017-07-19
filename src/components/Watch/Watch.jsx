@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './watch.scss';
 import Button from "./Button/Button";
 import ViewRouter from './ViewRouter';

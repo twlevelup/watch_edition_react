@@ -1,9 +1,11 @@
 import React from 'react';
+import DateTimeDisplay from '../../DateTimeDisplay/DateTimeDisplay';
 
-export default class HomeScreenContent extends React.Component {
-  render() {
-    return (
+export default function HomeScreen(props) {
+  return (
     <div>
+      <DateTimeDisplay/>
+
       <img src="../../img/logo.png" alt=""/>
 
       <div>Hello, World!</div>
@@ -20,12 +22,13 @@ export default class HomeScreenContent extends React.Component {
         Fusce sit amet nunc ultrices, malesuada urna a, venenatis purus. Morbi hendrerit, magna ut tempus imperdiet,
         felis
         est vestibulum quam, nec suscipit ex risus ac eros. Mauris interdum, odio vel ultricies aliquet, erat eros
-        pulvinar leo, a ultrices Don't read this diam ante eu libero. Donec imperdiet non Don't risus vel fringilla. Cras vitae orci eu ligula
-        lobortis consectetur id et lacus. Morbi STAAAP ut mi in leo iaculis ullamcorper. Pellentesque elementum tortor eros,
+        pulvinar leo, a ultrices Don't read this diam ante eu libero. Donec imperdiet non Don't risus vel fringilla.
+        Cras vitae orci eu ligula
+        lobortis consectetur id et lacus. Morbi STAAAP ut mi in leo iaculis ullamcorper. Pellentesque elementum tortor
+        eros,
         non
         finibus felis varius consequat. Suspendisse potenti.
       </p>
     </div>
-    )
-  }
+  )
 }
