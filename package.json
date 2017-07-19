@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server",
-    "dev": "webpack-dashboard -t 'Marvin' -- webpack-dev-server",
+    "dev": "webpack-dashboard -t 'LevelUp - Development Server Dashboard' -- webpack-dev-server",
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
     "lint": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx || true",
     "preview": "rm -rf ./build && NODE_ENV=\"production\" webpack-dashboard -t 'Preview Mode - LevelUp' -- webpack-dev-server"
@@ -63,7 +63,6 @@
     "react-dom": "^15.6.1",
     "react-moment": "^0.6.0",
     "react-router": "^4.1.2",
-    "react-router-component": "^0.37.0",
     "react-router-dom": "^4.1.2"
   },
   "jest": {
