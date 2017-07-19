@@ -1,77 +1,52 @@
 # LevelUp Watch Edition App Development Environment ★★
 
+[![Build Status](https://circleci.com/gh/twlevelup/watch_edition.png)](https://circleci.com/gh/twlevelup/watch_edition)
+
+This git repo contains all the code you need to prototype apps for the Proto Watch.
+
+The [wiki](https://github.com/twlevelup/watch_edition/wiki) contains lots of useful documentation
+
+# Installation
+
+See the [Installation Instructions](https://github.com/twlevelup/watch_edition/wiki/Installation)
+
+## Continuous Integration
+
+This project is continuously deployed to heroku by [Circle CI](https://circleci.com).
+You can view this app at [https://twlevelup-watch-edition.herokuapp.com/](https://twlevelup-watch-edition.herokuapp.com/)
+
+
 ## Setup
 Tested with node 8.x
 
 ```
-$ npm install
+$ ./go start
 ```
 
-## Running in dev mode
-
-```
-$ npm start
-```
-
-Visit `http://localhost:3000/` from your browser of choice.
+Visit `http://localhost:8000/` from your browser of choice.
 Server is visible from the local network as well.
 
-### Running it with [webpack dashboard](https://github.com/FormidableLabs/webpack-dashboard)
 
-```
-$ npm run dev
-```
+### Before you commit
 
-**Note for Windows users:** webpack dashboard still have issues with Windows, so use `npm start` until those are resolved.
+1. Check the CI build, do not commit unless it's passing!
+2. Run ```git pull --rebase```
+3. Fix any merge conflicts
+4. Run
+```./go pre-commit``` (OS X)
+```npm -s run test``` (Windows)
+```docker-compose -f docker-compose.test.yml up``` (Docker)
+4. Fix any errors
+5. Run ```git push```
 
-![Running in the iTerm2](http://i.imgur.com/3oKTWrv.png)
+### Checking the build status
 
-**OS X Terminal.app users:** Make sure that **View → Allow Mouse Reporting** is enabled, otherwise scrolling through logs and modules won't work. If your version of Terminal.app doesn't have this feature, you may want to check out an alternative such as [iTerm2](https://www.iterm2.com/).
+To view the build status and get notifications about the build status:
 
-## Build (production)
+Add the following XML config to CCTray or CCMenu on your dev machine
 
-Build will be placed in the `build` folder.
+	https://circleci.com/gh/twlevelup/watch_edition.cc.xml
 
-```
-$ npm run build
-```
+You can also access the CI server and view the status of the build here [Circle CI](https://circleci.com/gh/twlevelup/watch_edition)
 
-If your app is not running on the server root you should change `publicPath` at two places.
-
-In `webpack.config.js` (ATM line 147):
-
-```
-output: {
-  path: buildPath,
-  publicPath: '/your-app/',
-  filename: 'app-[hash].js',
-},
-```
-
-and in `source/js/routes` (ATM line 9):
-
-```
-const publicPath = '/your-app/';
-```
-
-Don't forget the trailing slash (`/`). In development visit `http://localhost:3000/your-app/`.
-
-## Running in preview production mode
-
-This command will start webpack dev server, but with `NODE_ENV` set to `production`.
-Everything will be minified and served.
-Hot reload will not work, so you need to refresh the page manually after changing the code.
-
-```
-npm run preview
-```
-
-## Linting
-
-For linting I'm using [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb),
-but some options are overridden to my personal preferences.
-
-```
-$ npm run lint
-```
 
