@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from "./Home/Home.jsx";
+import HomeScreen from "./HomeScreen/HomeScreen.jsx";
 
 export default class ViewRouter extends React.Component {
   render() {
@@ -9,8 +9,8 @@ export default class ViewRouter extends React.Component {
         <div className='App'>
           <div className='Page'>
             <Switch>
-              <Route path='/' component={ Home } />
-              <Route path='*' component={ Home } />
+              <Route path='/' component={ HomeScreen } />
+              <Route path='*' component={ HomeScreen } />
             </Switch>
           </div>
         </div>
@@ -18,5 +18,3 @@ export default class ViewRouter extends React.Component {
     );
   }
 }
-
-
