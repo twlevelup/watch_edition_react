@@ -31,4 +31,27 @@
     margin-right: 15%;
   }
 
+  /* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+  @media only screen and (min-width: 68.75em) {
+    #left {
+      width: 45%;
+    }
+  }
+
+  @media only screen and (min-width: 35em) {
+    #left {
+      margin-left: 10%;
+    }
+  }
+
+  @media print,
+  (-o-min-device-pixel-ratio: 5/4),
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 120dpi) {
+
+  }
+
 }

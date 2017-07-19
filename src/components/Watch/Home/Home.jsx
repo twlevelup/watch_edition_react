@@ -1,13 +1,15 @@
 import React from 'react';
 import DateTimeDisplay from '../DateTimeDisplay/DateTimeDisplay';
+import HomeScreenContent from './HomeScreenContent';
+import './home.scss';
 
 export default class Home extends React.Component {
   render() {
     return (
-      <div>
+      <div id='home-view'>
         <DateTimeDisplay/>
 
-        <p>Just testing content blah blah </p>
+        <HomeScreenContent />
       </div>
     );
   }
