@@ -5,7 +5,7 @@ export default class WatchScreen extends React.Component {
   render() {
     return (
       <div id='watch-screen-view'>
-        {this.props.content()}
+        <this.props.content />
       </div>
     );
   }

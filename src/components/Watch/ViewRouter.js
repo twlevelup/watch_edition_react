@@ -16,7 +16,6 @@ export default class ViewRouter extends React.Component {
             <Switch>
               <Route exact path='/' component={ () => {return <WatchScreen content={ HomeScreen } />} } />
               <Route path='/contacts' component={ () => {return <WatchScreen content={ test } />} } />
-              <Route path='/test' component={ () =>  {return <div>test!!!</div>} } />
             </Switch>
           </div>
         </div>
