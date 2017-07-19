@@ -3,6 +3,9 @@ import ContactList from '../../ContactList/ContactList';
 
 export default function ContactListScreen(contacts) {
   return (
-    <ContactList contacts={contacts}/>
+    <div id='contact-screen'>
+      <h1>Contacts </h1>
+      <ContactList contacts={contacts}/>
+    </div>
   );
 }

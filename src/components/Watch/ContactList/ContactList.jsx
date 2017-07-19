@@ -21,7 +21,6 @@ export default class ContactList extends React.Component {
 
     return (
       <div id='contact-list'>
-        <h1>Contacts </h1>
         <ul className='contacts-container'>{contacts}</ul>
       </div>
     );

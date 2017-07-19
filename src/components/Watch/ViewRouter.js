@@ -1,24 +1,23 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import WatchScreen from './WatchScreen/WatchScreen';
-import HomeScreen from './WatchScreen/HomeScreen/HomeScreen';
-import ContactListScreen from './WatchScreen/ContactListScreen/ContactsScreen';
+import ScreenFactoryService from './ScreenFactoryService';
 
 export default class ViewRouter extends React.Component {
   render() {
-    let test = () => {
-      return ContactListScreen([{name:'sinan'}]);
-    }
+    const screenFactory = new ScreenFactoryService();
+    const buildRoute = (screenObj, index) => {
+      return (<Route
+        exact={ screenObj.isExactPath }
+        path={ screenObj.path } component={ screenObj.component }
+        key={index}
+      />);
+    };
+    const routes = screenFactory.screens.map(buildRoute);
     return (
       <BrowserRouter>
-        <div className='App'>
-          <div className='Page'>
-            <Switch>
-              <Route exact path='/' component={ () => {return <WatchScreen content={ HomeScreen } />} } />
-              <Route path='/contacts' component={ () => {return <WatchScreen content={ test } />} } />
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          {routes}
+        </Switch>
       </BrowserRouter>
     );
   }

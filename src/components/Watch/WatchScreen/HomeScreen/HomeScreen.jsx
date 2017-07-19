@@ -1,8 +1,7 @@
 import React from 'react';
 import DateTimeDisplay from "../../DateTimeDisplay/DateTimeDisplay";
 
-export default class HomeScreen extends React.Component {
-  render() {
+export default function HomeScreen(props) {
     return (
       <div>
         <DateTimeDisplay/>
@@ -30,5 +29,4 @@ export default class HomeScreen extends React.Component {
         </p>
       </div>
     )
-  }
 }
