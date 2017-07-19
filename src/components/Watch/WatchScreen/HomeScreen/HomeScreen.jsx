@@ -1,9 +1,12 @@
 import React from 'react';
+import DateTimeDisplay from "../../DateTimeDisplay/DateTimeDisplay";
 
 export default class HomeScreen extends React.Component {
   render() {
     return (
       <div>
+        <DateTimeDisplay/>
+
         <img src="../../img/logo.png" alt=""/>
 
         <div>Hello, World!</div>
