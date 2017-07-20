@@ -48,39 +48,43 @@
 
   .button:nth-child(1){
     position:absolute;
-    right:-1.4em;
-    top: 7.3em;
-    height:3.5em;
+    right:-2.3em;
+    top: 10.3em;
+    height:6.5em;
     width:0.8em;
+    border-left: 0px;
     background:#e4e4e4;
   }
 
   .button:nth-child(2){
     position:absolute;
-    left:-1.4em;
-    top: 7.3em;
-    height:3.5em;
+    left:-2.15em;
+    top: 10.3em;
+    height:6.5em;
     width:0.8em;
+    border-left: 0px;
     background:#e4e4e4;
     transform: rotateY(180deg);
   }
 
   .button:nth-child(3){
     position:absolute;
-    left: 8.8em;
-    bottom:-2.7em;
-    height:3.5em;
+    left: 12.8em;
+    bottom:-4.8em;
+    height:6.5em;
     width:0.8em;
+    border-left: 0px;
     background:#e4e4e4;
     transform: rotateZ(90deg);
   }
 
   .button:nth-child(4){
     position:absolute;
-    left: 8.8em;
-    top: -2.7em;
-    height:3.5em;
+    left: 12.8em;
+    top: -4.8em;
+    height:6.5em;
     width:0.8em;
+    border-left: 0px;
     background:#e4e4e4;
     transform: rotateZ(90deg) rotateY(180deg);
   }
