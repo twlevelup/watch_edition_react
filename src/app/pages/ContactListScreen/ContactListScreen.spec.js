@@ -8,12 +8,11 @@ describe('ContactListScreen component', () => {
   );
 
   test('it should have a title', () => {
-    expect(componentWrapper.find('#date-time-display').exists()).toBeTruthy();
+    expect(componentWrapper.find('.title').exists()).toBeTruthy();
   });
 
-  test('it should have some content', () => {
-    expect(componentWrapper.find('#home-page-content').exists()).toBeTruthy();
+  test('it should contain a GenericList component', () => {
+    expect(componentWrapper.find('GenericList').exists()).toBeTruthy();
   });
 
 });
-
