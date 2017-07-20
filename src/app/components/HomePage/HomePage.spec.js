@@ -1,20 +1,23 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import HomeContainer from './HomePage.jsx';
+import {shallow} from 'enzyme';
+import HomePage from './HomePage.jsx';
 
-describe('HomeContainer', () => {
-  const homeContainerWrapper = mount(
-    <HomeContainer />
+describe('HomePage', () => {
+  const homeContainerWrapper = shallow(
+    <HomePage />
   );
 
   test('it should display the Watch component', () => {
-    const result = homeContainerWrapper.find('#watch-container');
-    expect(result.exists()).toBeTruthy();
+    expect(homeContainerWrapper.find('Watch').exists()).toBeTruthy();
   });
 
   test('it should display the LevelUp title', () => {
     const result = homeContainerWrapper.find('h1');
     expect(result.text()).toBe('LevelUp Watch Edition');
+  });
+
+  xtest('it should display the NotifierForm', () => {
+    expect(homeContainerWrapper.find('NotifierForm').exists()).toBeTruthy();
   });
 });
 
