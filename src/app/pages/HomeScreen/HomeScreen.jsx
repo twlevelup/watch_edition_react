@@ -1,5 +1,5 @@
 import React from 'react';
-import DateTimeDisplay from "../../DateTimeDisplay/DateTimeDisplay";
+import DateTimeDisplay from "../../../framework/components/DateTimeDisplay/DateTimeDisplay";
 
 export default function HomeScreen(props) {
     return (

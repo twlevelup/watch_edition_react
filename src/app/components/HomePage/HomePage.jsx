@@ -1,6 +1,6 @@
 import React from 'react';
-import WatchContainer from '../Watch/WatchContainer.jsx';
-import './HomeContainer.scss';
+import Watch from '../Watch/Watch';
+import './HomePage.scss';
 
 export default class HomeContainer extends React.Component {
     render() {
@@ -11,7 +11,7 @@ export default class HomeContainer extends React.Component {
               <p>This is LevelUp Watch Edition sample app.</p>
             </div>
             <div id='right'>
-              <WatchContainer />
+              <Watch />
             </div>
           </div>
         );

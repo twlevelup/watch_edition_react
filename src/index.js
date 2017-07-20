@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import HomeContainer from 'containers/Home/HomeContainer.jsx';
+import HomePage from './app/components/HomePage/HomePage.jsx';
 
-ReactDOM.render(<HomeContainer />, document.getElementById('root'));
+ReactDOM.render(<HomePage />, document.getElementById('root'));
 

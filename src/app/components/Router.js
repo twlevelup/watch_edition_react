@@ -1,11 +1,11 @@
 import React from 'react';
 import {createBrowserHistory} from 'history';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import ScreenFactoryService from './ScreenFactoryService';
+import ScreenFactory from '../pages/ScreenFactory';
 
 export default class ViewRouter extends React.Component {
   render() {
-    const screenFactory = new ScreenFactoryService();
+    const screenFactory = new ScreenFactory();
 
     const browserHistory = createBrowserHistory();
     browserHistory.listen(location => {

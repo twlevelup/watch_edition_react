@@ -1,9 +1,9 @@
-import HomeScreen from './WatchScreen/HomeScreen/HomeScreen';
-import ContactListScreen from './WatchScreen/ContactListScreen/ContactsScreen';
-import WatchScreen from './WatchScreen/WatchScreen';
+import HomeScreen from './HomeScreen/HomeScreen';
+import ContactListScreen from './ContactListScreen/ContactsScreen';
+import WatchScreen from '../../framework/pages/BaseWatchScreen/WatchScreen';
 import React from 'react';
 
-export default class ScreenFactoryService {
+export default class ScreenFactory {
   //todo is there a better way to handle screen component? i.e. instead of function we pass a component
   constructor() {
     this.screens = [{

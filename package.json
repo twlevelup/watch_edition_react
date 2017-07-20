@@ -10,10 +10,8 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server",
-    "dev": "webpack-dashboard -t 'LevelUp - Development Server Dashboard' -- webpack-dev-server",
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
-    "lint": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx || true",
-    "preview": "rm -rf ./build && NODE_ENV=\"production\" webpack-dashboard -t 'Preview Mode - LevelUp' -- webpack-dev-server"
+    "lint": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx || true"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -49,16 +47,11 @@
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.3.0",
-    "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "es6-promise": "^4.1.1",
-    "immutable": "^3.8.1",
-    "isomorphic-fetch": "^2.2.1",
     "moment": "^2.18.1",
-    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-moment": "^0.6.0",

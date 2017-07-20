@@ -56,7 +56,7 @@ if [[ $1 ]]; then
   fi
 
   if [[ $1 == "start" ]]; then
-    npm run dev
+    npm run start
   fi
 else
   show_instructions
