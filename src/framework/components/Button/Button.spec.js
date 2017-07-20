@@ -9,7 +9,7 @@ describe('Button component', () => {
 
   const ButtonWrapper = mount(
     <Button id={button_id}
-            showOnClick={clickHandlerObj}/>
+            onClick={clickHandlerObj}/>
   );
 
   test('it should have id', () => {

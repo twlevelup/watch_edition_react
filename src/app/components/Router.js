@@ -1,37 +1,27 @@
 import React from 'react';
-import {createBrowserHistory} from 'history';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import history from './browserHistory';
+import {Router, Route, Switch} from 'react-router-dom';
 import ScreenFactory from '../pages/ScreenFactory';
 
 export default class ViewRouter extends React.Component {
   render() {
-    const screenFactory = new ScreenFactory();
 
-    const browserHistory = createBrowserHistory();
-    browserHistory.listen(location => {
-      console.log(location);
-    });
-
-    // just testing how we can handle button config based on page/screen views
-    if (browserHistory.location.pathname === '/contacts') {
-      this.props.buttonEvents.LEFT.handler = () => {
-        alert('This should be modified');
-      }
-    }
-
-    const buildRoute = (screenObj, index) => {
+    let buildRoute = (screenObj, index) => {
       return (<Route exact={ screenObj.isExactPath }
                      path={ screenObj.path } component={ screenObj.component }
                      key={index}
       />);
     };
+
+    const screenFactory = new ScreenFactory();
     const routes = screenFactory.screens.map(buildRoute);
+
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           {routes}
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

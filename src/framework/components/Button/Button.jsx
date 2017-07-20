@@ -8,8 +8,7 @@ export default class Button extends React.Component {
 
   render() {
     return (
-      <button id={this.props.id} className='button' onClick={ () => {this.props.showOnClick.handler()}}>
-
+      <button id={this.props.id} className='button' onClick={ () => {this.props.onClick.handler()}}>
       </button>
     );
   }

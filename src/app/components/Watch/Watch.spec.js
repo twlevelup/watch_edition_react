@@ -17,5 +17,10 @@ describe('Watch component', () => {
     const result = WatchComponent.find('.case');
     expect(result.exists()).toBeTruthy();
   });
+
+  test('it should have four buttons', () => {
+    const result = WatchComponent.find('button');
+    expect(result.exists()).toBeTruthy();
+  });
 });
 
