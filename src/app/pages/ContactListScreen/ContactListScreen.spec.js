@@ -1,10 +1,10 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import ContactScreen from './ContactScreen';
+import {shallow} from 'enzyme';
+import ContactListScreen from './ContactListScreen';
 
 describe('ContactListScreen component', () => {
-  const componentWrapper = mount(
-    <ContactScreen />
+  const componentWrapper = shallow(
+    <ContactListScreen />
   );
 
   test('it should have a title', () => {
