@@ -20,7 +20,7 @@ describe('Watch component', () => {
 
   test('it should have four buttons', () => {
     const result = WatchComponent.find('button');
-    expect(result.exists()).toBeTruthy();
+    expect(result).toHaveLength(4);
   });
 });
 

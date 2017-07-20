@@ -3,7 +3,7 @@ import DateTimeDisplay from "../../../framework/components/DateTimeDisplay/DateT
 
 export default function HomeScreen(props) {
     return (
-      <div>
+      <div id="watch-home-page">
         <DateTimeDisplay/>
 
         <img src="../../img/logo.png" alt=""/>
