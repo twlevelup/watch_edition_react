@@ -1,5 +1,6 @@
 import React from "react";
 import {Route} from "react-router-dom";
+import "./screen_layout.scss";
 
 class ScreenLayout extends React.Component {
 
@@ -14,11 +15,15 @@ class ScreenLayout extends React.Component {
     }
 
     return (
-      <div className="screen-layout">
+      <div className={this.props.className}>
         {React.Children.map(this.props.children, compRouteWrapper)}
       </div>
     )
   }
+}
+
+ScreenLayout.defaultProps = {
+  className: "screen-layout"
 }
 
 export default ScreenLayout;
