@@ -1,9 +1,9 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import Watch from './Watch.jsx';
 
 describe('Watch component', () => {
-  const WatchComponent = mount(
+  const WatchComponent = shallow(
     <Watch />
   );
 
@@ -19,7 +19,7 @@ describe('Watch component', () => {
   });
 
   test('it should have four buttons', () => {
-    const result = WatchComponent.find('button');
+    const result = WatchComponent.find('Button');
     expect(result).toHaveLength(4);
   });
 });

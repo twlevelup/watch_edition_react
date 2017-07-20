@@ -1,7 +1,7 @@
 import React from 'react';
 import GenericList from "../../../framework/components/GenericList/GenericList";
 
-export default class ContactsScreen extends React.Component {
+export default class ContactListScreen extends React.Component {
 
   render() {
     return (

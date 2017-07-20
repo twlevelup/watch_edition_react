@@ -1,9 +1,9 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import NotFoundScreen from './NotFoundScreen';
 
 describe('NotFoundScreen component', () => {
-  const componentWrapper = mount(
+  const componentWrapper = shallow(
     <NotFoundScreen />
   );
 

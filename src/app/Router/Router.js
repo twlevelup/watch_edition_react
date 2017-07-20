@@ -4,7 +4,7 @@ import {Redirect, Router, Switch} from 'react-router-dom';
 import ScreenLayout from '../../framework/components/ScreenLayout/ScreenLayout';
 import HomeScreen from '../pages/HomeScreen/HomeScreen';
 import NotFoundScreen from '../pages/NotFoundScreen/NotFoundScreen';
-import ContactListScreen from '../pages/ContactListScreen/ContactScreen';
+import ContactListScreen from '../pages/ContactListScreen/ContactListScreen';
 
 export default class ViewRouter extends React.Component {
   render() {

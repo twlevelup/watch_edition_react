@@ -5,17 +5,22 @@ import GenericList from './GenericList.jsx';
 describe('GenericList component', () => {
 
   describe('When a list of objects is passed to the [items] props', () => {
-    const dummyContactObject = {name: 'Thoguhtworks', phone: '02637434'};
+    const dummyContactObject = {name: 'ThoughtWorks', phone: '02637434'};
     const dummyAddressObject = {unit: '51', 'POSTAL ADDRESS': 'somwhere on mars'};
-    const contactsWrapper = shallow(
+    const componentWrapper = shallow(
       <GenericList class='test' items={[dummyContactObject, dummyAddressObject]}/>
     );
 
-    test('it should list all objects by key and value', () => {
-      expect(contactsWrapper.find('.key').at(0), dummyContactObject.name).toBeTruthy();
-      expect(contactsWrapper.find('.key').at(1), dummyAddressObject.unit).toBeTruthy();
-      expect(contactsWrapper.find('.value').at(0), dummyAddressObject.phone).toBeTruthy();
-      expect(contactsWrapper.find('.value').at(1), dummyAddressObject['POSTAL ADDRESS']).toBeTruthy();
+    // todo: change this to be a snapshot test?
+    test('it should list all objects by their keys and values', () => {
+      expect(componentWrapper.contains(<span className="key">name</span>)).toBeTruthy();
+      expect(componentWrapper.contains(<span className="value">{dummyContactObject.name}</span>)).toBeTruthy();
+      expect(componentWrapper.contains(<span className="key">phone</span>)).toBeTruthy();
+      expect(componentWrapper.contains(<span className="value">{dummyContactObject.phone}</span>)).toBeTruthy();
+      expect(componentWrapper.contains(<span className="key">unit</span>)).toBeTruthy();
+      expect(componentWrapper.contains(<span className="value">{dummyAddressObject.unit}</span>)).toBeTruthy();
+      expect(componentWrapper.contains(<span className="key">POSTAL ADDRESS</span>)).toBeTruthy();
+      expect(componentWrapper.contains(<span className="value">{dummyAddressObject['POSTAL ADDRESS']}</span>)).toBeTruthy();
     });
 
     test('it should list duplicate objects without throwing an error', () => {

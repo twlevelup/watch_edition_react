@@ -1,18 +1,18 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import ContactScreen from './ContactScreen';
+import {shallow} from 'enzyme';
+import ContactListScreen from './ContactListScreen';
 
 describe('ContactListScreen component', () => {
-  const componentWrapper = mount(
-    <ContactScreen />
+  const componentWrapper = shallow(
+    <ContactListScreen />
   );
 
   test('it should have a title', () => {
-    expect(componentWrapper.find('#date-time-display').exists()).toBeTruthy();
+    expect(componentWrapper.find('.title').text()).toContain('Contacts');
   });
 
-  test('it should have some content', () => {
-    expect(componentWrapper.find('#home-page-content').exists()).toBeTruthy();
+  test('it should display a list of contacts using GenericList component', () => {
+    expect(componentWrapper.find('GenericList').exists()).toBeTruthy();
   });
 
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import Button from './Button.jsx';
 
 describe('Button component', () => {
@@ -7,7 +7,7 @@ describe('Button component', () => {
   let button_id = "button-id";
   let clickHandlerObj = {handler: jest.genMockFunction()};
 
-  const ButtonWrapper = mount(
+  const ButtonWrapper = shallow(
     <Button id={button_id}
             onClick={clickHandlerObj}/>
   );
