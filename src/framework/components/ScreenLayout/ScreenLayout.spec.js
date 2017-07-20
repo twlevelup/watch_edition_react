@@ -16,7 +16,7 @@ describe("ScreenLayout component", () => {
 
     beforeEach(() => {
       renderedScreen = mount(<StaticRouter context={{}}><ScreenLayout><Mock path="/"/><Mock/></ScreenLayout></StaticRouter>);
-    });
+    })
 
     test("It places children with a defined 'path' prop inside a Route element", () => {
       expect(renderedScreen.find(Route).find(Mock).length).toBe(1);
@@ -30,4 +30,4 @@ describe("ScreenLayout component", () => {
       expect(renderedScreen.find(Mock).length).toBe(2);
     });
   });
-});
+})
