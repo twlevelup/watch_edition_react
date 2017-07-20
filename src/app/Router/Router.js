@@ -1,8 +1,9 @@
 import React from 'react';
-import history from './browserHistory';
-import {Router, Route, Switch} from 'react-router-dom';
+import history from './BrowserHistory';
+import {Redirect, Router, Switch} from 'react-router-dom';
 import ScreenLayout from '../../framework/components/ScreenLayout/ScreenLayout';
 import HomeScreen from '../pages/HomeScreen/HomeScreen';
+import NotFoundScreen from '../pages/NotFoundScreen/NotFoundScreen';
 import ContactListScreen from '../pages/ContactListScreen/ContactsScreen';
 
 export default class ViewRouter extends React.Component {
@@ -13,6 +14,8 @@ export default class ViewRouter extends React.Component {
           <ScreenLayout>
             <HomeScreen path="/"/>
             <ContactListScreen path="/contacts" contacts={[{name:'test'}]} />
+            <NotFoundScreen path="/notfound"/>
+            {/*<Redirect to="/notfound"/> // this causes tests to fail. need to look into it*/}
           </ScreenLayout>
         </Switch>
       </Router>

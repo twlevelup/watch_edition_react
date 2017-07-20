@@ -1,8 +1,8 @@
 import React from 'react';
 import './watch.scss';
 import Button from "../../../framework/components/Button/Button";
-import ViewRouter from '../Router';
-import history from '../browserHistory';
+import ViewRouter from '../../Router/Router';
+import history from '../../Router/BrowserHistory';
 
 export default class Watch extends React.Component {
 
@@ -31,7 +31,7 @@ export default class Watch extends React.Component {
       },
       TOP: {
         handler: () => {
-          goToLink('/');
+          goToLink('/notfound');
         }
       }
     };

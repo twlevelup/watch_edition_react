@@ -10,7 +10,7 @@ class ScreenLayout extends React.Component {
         {React.Children.map(this.props.children, child => {
           if (child.props.path) {
             return <Route exact path={child.props.path} component={() => {return child}}/>
-          }else {
+          } else {
             return child;
           }
         })}
