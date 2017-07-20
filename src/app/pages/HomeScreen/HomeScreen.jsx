@@ -8,7 +8,7 @@ export default class HomeScreen extends React.Component {
         <DateTimeDisplay/>
 
         <div id="home-page-content">
-          <img src="../../img/logo.png" alt=""/>
+          <img src="../../../logo.png" alt=""/>
 
           <div>Hello, World!</div>
 
