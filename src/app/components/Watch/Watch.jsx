@@ -6,38 +6,37 @@ import history from '../../../framework/Router/BrowserHistory';
 import HomeScreen from "../../pages/HomeScreen/HomeScreen";
 import ContactListScreen from "../../pages/ContactListScreen/ContactListScreen";
 import NotFoundScreen from "../../pages/NotFoundScreen/NotFoundScreen";
+import ScreenLayout from "../../../framework/components/ScreenLayout/ScreenLayout"
 
 export default class Watch extends React.Component {
 
-
-  render() {
+  constructor() {
+    super();
     let goToLink = (link) => {
       history.push(link);
     };
 
-    // todo: where do we put this? should we create some sort of service that we pass around to other components?
-    let buttonEvents = {
-      LEFT: {
-        handler: () => {
-          goToLink('/');
-        }
+    this.eventHandlers = {
+      LEFT: () => {
+        goToLink('/notfound');
       },
-      RIGHT: {
-        handler: () => {
-          goToLink('/contacts');
-        }
+      RIGHT: () => {
+        goToLink('/notfound');
       },
-      BOTTOM: {
-        handler: () => {
-          goToLink('/notfound');
-        }
+      BOTTOM: () => {
+        goToLink('/notfound');
       },
-      TOP: {
-        handler: () => {
-          goToLink('/notfound');
-        }
+      TOP:  () => {
+        goToLink('/notfound');
       }
     };
+  }
+
+  render() {
+
+    let mapEventHandler = (newHandlers = {}) => {
+      this.eventHandlers = Object.assign({}, this.eventHandlers, newHandlers)
+    }
 
     return (
       <div id='watch-container'>
@@ -45,14 +44,16 @@ export default class Watch extends React.Component {
           <div className='strap strap-top'/>
           <div id='watch-wrapper'>
             <div id='watch' className='case'>
-              <Button id="button-right" onClick={buttonEvents.RIGHT}/>
-              <Button id="button-left" onClick={buttonEvents.LEFT}/>
-              <Button id="button-bottom" onClick={buttonEvents.BOTTOM}/>
-              <Button id="button-top" onClick={buttonEvents.TOP}/>
+              <Button id="button-right" onClick={() => this.eventHandlers.RIGHT()}/>
+              <Button id="button-left" onClick={() => this.eventHandlers.LEFT()}/>
+              <Button id="button-bottom" onClick={() => this.eventHandlers.BOTTOM()}/>
+              <Button id="button-top" onClick={() => this.eventHandlers.TOP()}/>
               <ViewRouter>
-                <HomeScreen path="/"/>
-                <ContactListScreen path="/contacts" contacts={[{name:'test', 'Address': 'test address'}]} />
-                <NotFoundScreen path="/notfound"/>
+                <ScreenLayout handlerMapper={newMap => mapEventHandler(newMap)}>
+                  <HomeScreen path="/"/>
+                  <ContactListScreen path="/contacts" contacts={[{name:'test', 'Address': 'test address'}]} />
+                  <NotFoundScreen path="/notfound"/>
+                </ScreenLayout>
               </ViewRouter>
             </div>
           </div>

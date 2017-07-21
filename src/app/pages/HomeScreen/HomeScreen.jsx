@@ -1,9 +1,15 @@
 import React from 'react';
 import Date from "../../../framework/components/Date/Date";
 import Time from "../../../framework/components/Time/Time";
+import history from '../../../framework/Router/BrowserHistory';
 
 export default class HomeScreen extends React.Component {
   render() {
+    this.props.handlerMapper({
+      LEFT: () => history.push("/"),
+      RIGHT: () => history.push("/contacts")
+    });
+
     return (
       <div id="watch-home-page">
         <Date />

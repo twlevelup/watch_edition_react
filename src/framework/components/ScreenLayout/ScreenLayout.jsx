@@ -6,7 +6,8 @@ class ScreenLayout extends React.Component {
 
   render() {
 
-    let compRouteWrapper = child => {
+    let childWrapper = child => {
+      child = React.cloneElement(child, {handlerMapper: newMap => {this.props.handlerMapper(newMap)}});
       if (child.props.path) {
         return <Route exact path={child.props.path} component={() => {return child}}/>
       }else {
@@ -15,15 +16,18 @@ class ScreenLayout extends React.Component {
     };
 
     return (
-      <div className={this.props.className}>
-        {React.Children.map(this.props.children, compRouteWrapper)}
+      <div>
+        <div className={this.props.className}>
+          {React.Children.map(this.props.children, childWrapper)}
+        </div>
       </div>
     )
   }
 }
 
 ScreenLayout.defaultProps = {
-  className: "screen-layout"
+  className: "screen-layout",
+  handlerMapper: newMap => {}
 };
 
 export default ScreenLayout;
