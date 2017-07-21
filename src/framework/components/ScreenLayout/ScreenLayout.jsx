@@ -12,7 +12,7 @@ class ScreenLayout extends React.Component {
       }else {
         return child;
       }
-    }
+    };
 
     return (
       <div className={this.props.className}>
@@ -24,6 +24,6 @@ class ScreenLayout extends React.Component {
 
 ScreenLayout.defaultProps = {
   className: "screen-layout"
-}
+};
 
 export default ScreenLayout;
