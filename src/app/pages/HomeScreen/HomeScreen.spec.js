@@ -8,7 +8,8 @@ describe('HomeScreen component', () => {
   );
 
   test('it should have DateTimeDisplay component', () => {
-    expect(componentWrapper.find('#date-time-display').exists()).toBeTruthy();
+    expect(componentWrapper.find('#date-display').exists()).toBeTruthy();
+    expect(componentWrapper.find('#time-display').exists()).toBeTruthy();
   });
 
   test('it should have some content', () => {

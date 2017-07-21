@@ -1,6 +1,6 @@
 import React from 'react';
-import history from './BrowserHistory';
 import {Router, Switch} from 'react-router-dom';
+import history from './BrowserHistory';
 import ScreenLayout from '../components/ScreenLayout/ScreenLayout';
 
 export default class ViewRouter extends React.Component {

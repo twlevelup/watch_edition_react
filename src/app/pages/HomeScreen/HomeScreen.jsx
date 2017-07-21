@@ -1,11 +1,13 @@
 import React from 'react';
-import DateTimeDisplay from "../../../framework/components/DateTimeDisplay/DateTimeDisplay";
+import Date from "../../../framework/components/Date/Date";
+import Time from "../../../framework/components/Time/Time";
 
 export default class HomeScreen extends React.Component {
   render() {
     return (
       <div id="watch-home-page">
-        <DateTimeDisplay/>
+        <Date />
+        <Time />
 
         <div id="home-page-content">
           <img src="../../../logo.png" alt=""/>
