@@ -5,10 +5,12 @@ import history from '../../../framework/Router/BrowserHistory';
 
 export default class HomeScreen extends React.Component {
   render() {
-    this.props.handlerMapper({
-      LEFT: () => history.push("/"),
-      RIGHT: () => history.push("/contacts")
-    });
+    if (this.props.handlerMapper){
+      this.props.handlerMapper({
+        LEFT: () => history.push("/"),
+        RIGHT: () => history.push("/contacts")
+      });
+    }
 
     return (
       <div id="watch-home-page">

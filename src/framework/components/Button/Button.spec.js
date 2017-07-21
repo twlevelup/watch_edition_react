@@ -5,7 +5,7 @@ import Button from './Button.jsx';
 describe('Button component', () => {
 
   let button_id = "button-id";
-  let clickHandlerObj = {handler: jest.genMockFunction()};
+  let clickHandlerObj = jest.genMockFunction();
 
   const ButtonWrapper = shallow(
     <Button id={button_id}
@@ -20,8 +20,7 @@ describe('Button component', () => {
 
   test('it should trigger onClick function when clicked', () => {
     ButtonWrapper.find({id: button_id}).simulate('click');
-    expect(clickHandlerObj.handler).toBeCalled();
+    expect(clickHandlerObj).toBeCalled();
 
   });
 });
-
