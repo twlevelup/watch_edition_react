@@ -1,8 +1,11 @@
 import React from 'react';
 import './watch.scss';
 import Button from "../../../framework/components/Button/Button";
-import ViewRouter from '../../Router/Router';
-import history from '../../Router/BrowserHistory';
+import ViewRouter from '../../../framework/Router/ViewRouter';
+import history from '../../../framework/Router/BrowserHistory';
+import HomeScreen from "../../pages/HomeScreen/HomeScreen";
+import ContactListScreen from "../../pages/ContactListScreen/ContactListScreen";
+import NotFoundScreen from "../../pages/NotFoundScreen/NotFoundScreen";
 
 export default class Watch extends React.Component {
 
@@ -46,7 +49,11 @@ export default class Watch extends React.Component {
               <Button id="button-left" onClick={buttonEvents.LEFT}/>
               <Button id="button-bottom" onClick={buttonEvents.BOTTOM}/>
               <Button id="button-top" onClick={buttonEvents.TOP}/>
-              <ViewRouter/>
+              <ViewRouter>
+                <HomeScreen path="/"/>
+                <ContactListScreen path="/contacts" contacts={[{name:'test', 'Address': 'test address'}]} />
+                <NotFoundScreen path="/notfound"/>
+              </ViewRouter>
             </div>
           </div>
           <div className='strap strap-bottom'/>
