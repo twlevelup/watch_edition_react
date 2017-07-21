@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import {mount} from 'enzyme';
 import Date from './Date';
 import moment from 'moment';
 
@@ -8,10 +8,20 @@ describe('DateTimeDisplay component', () => {
     <Date/>
   );
 
-  test('it should display the current date as {ddd MMMM DD YYYY}', () => {
-    const result = dateWrapper.find('.clock-date');
-    let expectedDate = moment().format('ddd MMMM DD YYYY');
-    expect(result.text()).toContain(expectedDate);
+  describe('When rendered without a [format] property', () => {
+    test('it should display the current date as {ddd MMMM DD YYYY} by default', () => {
+      const result = dateWrapper.find('.clock-date');
+      let expectedDate = moment().format('ddd MMMM DD YYYY');
+      expect(result.text()).toContain(expectedDate);
+    });
+  });
+
+  describe('When rendered with a [format] property', () => {
+    test('it should display the current date as the format property given', () => {
+      const result = mount(<Date format="MMM-DD-YY"/>).find('.clock-date');
+      let expectedDate = moment().format('MMM-DD-YY');
+      expect(result.text()).toContain(expectedDate);
+    });
   });
 });
 
