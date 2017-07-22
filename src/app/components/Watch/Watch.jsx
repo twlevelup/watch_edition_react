@@ -41,26 +41,22 @@ export default class Watch extends React.Component {
     };
 
     return (
-      <div id='watch-container'>
-        <div id='watch' className='watch'>
-          <div className='strap strap-top'/>
-          <div id='watch-wrapper'>
-            <div id='watch' className='case'>
-              <Button id="button-right" onClick={() => this.eventHandlers.RIGHT()}/>
-              <Button id="button-left" onClick={() => this.eventHandlers.LEFT()}/>
-              <Button id="button-bottom" onClick={() => this.eventHandlers.BOTTOM()}/>
-              <Button id="button-top" onClick={() => this.eventHandlers.TOP()}/>
-              <ViewRouter>
-                <ScreenLayout handlerMapper={newMap => mapEventHandler(newMap)}>
-                  <HomeScreen path="/"/>
-                  <ContactListScreen path="/contacts" contacts={contacts} />
-                  <NotFoundScreen path="/notfound"/>
-                </ScreenLayout>
-              </ViewRouter>
-            </div>
-          </div>
-          <div className='strap strap-bottom'/>
+      <div id='watch' className='watch'>
+        <div className='strap strap-top' />
+        <div id='watch' className='case'>
+          <Button id="button-right" onClick={() => this.eventHandlers.RIGHT()} />
+          <Button id="button-left" onClick={() => this.eventHandlers.LEFT()} />
+          <Button id="button-bottom" onClick={() => this.eventHandlers.BOTTOM()} />
+          <Button id="button-top" onClick={() => this.eventHandlers.TOP()} />
+          <ViewRouter>
+            <ScreenLayout handlerMapper={newMap => mapEventHandler(newMap)}>
+              <HomeScreen path="/" />
+              <ContactListScreen path="/contacts" contacts={contacts} />
+              <NotFoundScreen path="/notfound" />
+            </ScreenLayout>
+          </ViewRouter>
         </div>
+        <div className='strap strap-bottom' />
       </div>
     );
   }
