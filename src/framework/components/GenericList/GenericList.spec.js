@@ -8,7 +8,7 @@ describe('GenericList component', () => {
     const dummyContactObject = {name: 'ThoughtWorks', phone: '02637434'};
     const dummyAddressObject = {unit: '51', 'POSTAL ADDRESS': 'somwhere on mars'};
     const componentWrapper = shallow(
-      <GenericList class='test' items={[dummyContactObject, dummyAddressObject]}/>
+      <GenericList className="test" items={[dummyContactObject, dummyAddressObject]}/>
     );
 
     // todo: change this to be a snapshot test?
@@ -39,7 +39,7 @@ describe('GenericList component', () => {
 
   describe('When [class] property is set', () => {
     test('it should set the class to [class]', () => {
-      expect(shallow(<GenericList class="dummyDum-DumDum"/>).find('.dummyDum-DumDum').exists()).toBeTruthy();
+      expect(shallow(<GenericList className="dummyDum-DumDum"/>).find('.dummyDum-DumDum').exists()).toBeTruthy();
     });
   });
 });

@@ -19,7 +19,7 @@ export default class GenericList extends React.Component {
 
 
     let itemList = this.props.items? this.props.items.map(objToListItem): [];
-    let className = this.props.class || 'generic-list';
+    let className = this.props.className || 'generic-list';
 
     return (
       <div className={className}>
