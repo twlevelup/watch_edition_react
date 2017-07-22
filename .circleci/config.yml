@@ -19,6 +19,11 @@ jobs:
     docker:
       - image: circleci/node:7.10
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
       - run: npm test -- --ci
 workflows:
   version: 2
