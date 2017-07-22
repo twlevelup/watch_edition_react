@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ListItem from "./ListItem/ListItem";
 
 class GenericList extends React.Component {
   static propTypes = {
@@ -10,20 +11,16 @@ class GenericList extends React.Component {
 
     let objToListItem = (obj, index) => {
       return (
-        <li key={ index }>
-          { Object.keys(obj).map(function (key, index) {
+        <li key={index}>
+          {Object.keys(obj).map(function (key, index) {
             let value = obj[key];
-            return (
-              <span className="block" key={ index }>
-                <span className="key">{key}</span>: <span className="value">{value}</span>
-              </span>
-            )
+            return <ListItem key={index} className='block' text={value} label={key + ': '}/>
           })}
         </li>);
     };
 
 
-    let itemList = this.props.items? this.props.items.map(objToListItem): [];
+    let itemList = this.props.items ? this.props.items.map(objToListItem) : [];
     let className = this.props.className || 'generic-list';
 
     return (
