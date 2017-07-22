@@ -1,6 +1,7 @@
 import React from 'react';
 import GenericList from "../../../framework/components/GenericList/GenericList";
 import PropTypes from 'prop-types';
+import './contact_list.scss'
 
 export default class ContactListScreen extends React.Component {
   static propTypes = {
@@ -9,9 +10,9 @@ export default class ContactListScreen extends React.Component {
 
   render() {
     return (
-      <div id='contact-screen'>
+      <div id='contact-screen' className='contact-screen'>
         <h1 className="title">Contacts </h1>
-        <GenericList class='contacts' items={this.props.contacts}/>
+        <GenericList className='contacts-list' items={this.props.contacts}/>
       </div>
     );
   }

@@ -7,6 +7,8 @@ import HomeScreen from "../../pages/HomeScreen/HomeScreen";
 import ContactListScreen from "../../pages/ContactListScreen/ContactListScreen";
 import NotFoundScreen from "../../pages/NotFoundScreen/NotFoundScreen";
 import ScreenLayout from "../../../framework/components/ScreenLayout/ScreenLayout"
+import contacts from '../../data/contacts.json';
+
 
 export default class Watch extends React.Component {
 
@@ -36,7 +38,7 @@ export default class Watch extends React.Component {
 
     let mapEventHandler = (newHandlers = {}) => {
       this.eventHandlers = Object.assign({}, this.eventHandlers, newHandlers)
-    }
+    };
 
     return (
       <div id='watch-container'>
@@ -51,7 +53,7 @@ export default class Watch extends React.Component {
               <ViewRouter>
                 <ScreenLayout handlerMapper={newMap => mapEventHandler(newMap)}>
                   <HomeScreen path="/"/>
-                  <ContactListScreen path="/contacts" contacts={[{name:'test', 'Address': 'test address'}]} />
+                  <ContactListScreen path="/contacts" contacts={contacts} />
                   <NotFoundScreen path="/notfound"/>
                 </ScreenLayout>
               </ViewRouter>

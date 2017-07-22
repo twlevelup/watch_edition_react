@@ -1,0 +1,33 @@
+[
+  {
+    "Name": "Contact 1",
+    "Phone": "+61 025 3625 3265",
+    "Address": "105 test street"
+  },
+  {
+    "Name": "Contact 2",
+    "Phone": "+61 025 3625 3265",
+    "Address": "105 test street"
+  },
+  {
+    "Name": "Contact 3",
+    "Phone": "+61 025 3625 3265",
+    "Address": "105 test street"
+  },
+  {
+    "Name": "Contact 4",
+    "Phone": "+61 025 3625 3265",
+    "Address": "105 test street"
+  },
+  {
+    "Name": "Contact 5",
+    "Phone": "+61 025 3625 3265",
+    "Address": "105 test street, dummy state, country notfound"
+  },
+  {
+    "Name": "GOT",
+    "Contact method": "Pigeon",
+    "Address": "Somewhere up north",
+    "Favourite season": "Winter"
+  }
+]
