@@ -1,0 +1,17 @@
+.notification-popup {
+  background-color: #020202;
+  color: white;
+  position: absolute;
+  height: 70%;
+  width: 66%;
+  top: 20px;
+  left: 10%;
+  opacity: 0.9;
+  z-index: 100;
+  font-size: 1.2em;
+  padding: 20px;
+  &.hidden {
+    display: none;
+  }
+
+}

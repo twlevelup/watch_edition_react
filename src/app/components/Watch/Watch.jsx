@@ -8,6 +8,7 @@ import ContactListScreen from "../../pages/ContactListScreen/ContactListScreen";
 import NotFoundScreen from "../../pages/NotFoundScreen/NotFoundScreen";
 import ScreenLayout from "../../../framework/components/ScreenLayout/ScreenLayout"
 import contacts from '../../data/contacts.json';
+import NotificationPopup from "./NotificationPopup/NotificationPopup";
 
 
 export default class Watch extends React.Component {
@@ -28,7 +29,7 @@ export default class Watch extends React.Component {
       BOTTOM: () => {
         goToLink('/notfound');
       },
-      TOP:  () => {
+      TOP: () => {
         goToLink('/notfound');
       }
     };
@@ -46,6 +47,8 @@ export default class Watch extends React.Component {
           <div className='strap strap-top'/>
           <div id='watch-wrapper'>
             <div id='watch' className='case'>
+              <NotificationPopup show={this.props.notificationEvent.displayNotification}
+                                 text={this.props.notificationEvent.text}/>
               <Button id="button-right" onClick={() => this.eventHandlers.RIGHT()}/>
               <Button id="button-left" onClick={() => this.eventHandlers.LEFT()}/>
               <Button id="button-bottom" onClick={() => this.eventHandlers.BOTTOM()}/>
@@ -53,7 +56,7 @@ export default class Watch extends React.Component {
               <ViewRouter>
                 <ScreenLayout handlerMapper={newMap => mapEventHandler(newMap)}>
                   <HomeScreen path="/"/>
-                  <ContactListScreen path="/contacts" contacts={contacts} />
+                  <ContactListScreen path="/contacts" contacts={contacts}/>
                   <NotFoundScreen path="/notfound"/>
                 </ScreenLayout>
               </ViewRouter>
