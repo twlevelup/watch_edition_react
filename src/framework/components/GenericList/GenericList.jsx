@@ -1,6 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class GenericList extends React.Component {
+class GenericList extends React.Component {
+  static propTypes = {
+    items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  };
+
   render() {
 
     let objToListItem = (obj, index) => {
@@ -29,3 +34,4 @@ export default class GenericList extends React.Component {
   }
 }
 
+export default GenericList;

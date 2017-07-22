@@ -4,7 +4,7 @@ import ContactListScreen from './ContactListScreen';
 
 describe('ContactListScreen component', () => {
   const componentWrapper = shallow(
-    <ContactListScreen />
+    <ContactListScreen contacts={[]}/>
   );
 
   test('it should have a title', () => {
