@@ -16,8 +16,8 @@ describe('HomePage', () => {
     expect(result.text()).toBe('LevelUp Watch Edition');
   });
 
-  xtest('it should display the NotifierForm', () => {
-    expect(homeContainerWrapper.find('NotifierForm').exists()).toBeTruthy();
+  test('it should display the NotifierForm', () => {
+    expect(homeContainerWrapper.find('NotificationForm').exists()).toBeTruthy();
   });
 });
 

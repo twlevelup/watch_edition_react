@@ -3,8 +3,9 @@ import {shallow} from 'enzyme';
 import Watch from './Watch.jsx';
 
 describe('Watch component', () => {
+  const dummyNotificationEvent = {displayNotification: true, text: 'test'};
   const WatchComponent = shallow(
-    <Watch />
+    <Watch notificationEvent={dummyNotificationEvent}/>
   );
 
   test('it should display the straps', () => {
@@ -14,13 +15,21 @@ describe('Watch component', () => {
   });
 
   test('it should display the watch case', () => {
-    const result = WatchComponent.find('.case');
-    expect(result.exists()).toBeTruthy();
+    expect(WatchComponent.find('.case').exists()).toBeTruthy();
   });
 
   test('it should have four buttons', () => {
-    const result = WatchComponent.find('Button');
-    expect(result).toHaveLength(4);
+    expect(WatchComponent.find('Button')).toHaveLength(4);
+  });
+
+  test('it should have a ViewRouter component', () => {
+    expect(WatchComponent.find('ViewRouter').exists()).toBeTruthy();
+  });
+
+  test('it should pass the notificationEvent props to the NotificationPopup component', () => {
+    const result = WatchComponent.find('NotificationPopup');
+    expect(result.props().show).toBe(dummyNotificationEvent.displayNotification);
+    expect(result.props().text).toBe(dummyNotificationEvent.text);
   });
 });
 

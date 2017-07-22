@@ -46,7 +46,7 @@
     padding:7.3em 0
   }
 
-  .button:nth-child(1){
+  #button-right {
     position:absolute;
     right:-2.3em;
     top: 10.3em;
@@ -56,7 +56,7 @@
     background:#e4e4e4;
   }
 
-  .button:nth-child(2){
+  #button-left {
     position:absolute;
     left:-2.15em;
     top: 10.3em;
@@ -67,7 +67,7 @@
     transform: rotateY(180deg);
   }
 
-  .button:nth-child(3){
+  #button-bottom {
     position:absolute;
     left: 12.8em;
     bottom:-4.8em;
@@ -78,7 +78,7 @@
     transform: rotateZ(90deg);
   }
 
-  .button:nth-child(4){
+  #button-top {
     position:absolute;
     left: 12.8em;
     top: -4.8em;
