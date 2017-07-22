@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  build:
+    docker:
+      working_directory: ~/watch-app
+      image: circleci/node:7.10
+    branches:
+      only: circle-ci
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+  test: 
+    docker:
+      working_directory: ~/watch-app
+      image: circleci/node:7.10
+    branches:
+      only: circle-ci
+    steps:
+      - run: npm test -- --ci
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
