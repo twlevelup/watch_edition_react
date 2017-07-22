@@ -8,7 +8,7 @@ const ListItem = ({ className = '', label, text }) => (
   </span>
 );
 
-ListItem.propType = {
+ListItem.propTypes = {
   label: string.isRequired,
   text: string.isRequired,
 };
