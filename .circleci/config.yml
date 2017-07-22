@@ -1,16 +1,9 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
       working_directory: ~/watch-app
       image: circleci/node:7.10
-    branches:
-      only:
-        - circle-ci-config
     steps:
       - checkout
       # Download and cache dependencies
@@ -27,9 +20,6 @@ jobs:
     docker:
       working_directory: ~/watch-app
       image: circleci/node:7.10
-    branches:
-      only:
-        - circle-ci-config
     steps:
       - run: npm test -- --ci
 workflows:
