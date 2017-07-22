@@ -43,7 +43,7 @@ export default class Watch extends React.Component {
     return (
       <div id='watch' className='watch'>
         <div className='strap strap-top' />
-        <div id='watch' className='case'>
+        <div id='watch-face' className='case'>
           <Button id="button-right" onClick={() => this.eventHandlers.RIGHT()} />
           <Button id="button-left" onClick={() => this.eventHandlers.LEFT()} />
           <Button id="button-bottom" onClick={() => this.eventHandlers.BOTTOM()} />
