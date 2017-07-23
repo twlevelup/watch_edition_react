@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Watch from './WatchWrapper';
+import Watch from './WatchPage';
 import Button from '../components/Button/Button';
 
 describe('Watch component', () => {
