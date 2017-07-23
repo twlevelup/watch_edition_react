@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import './screen_layout.scss';
 
@@ -6,11 +7,17 @@ class ScreenLayout extends React.Component {
 
   render() {
     const childWrapper = child => {
-      child = React.cloneElement(child, { handlerMapper: newMap => { this.props.handlerMapper(newMap); } });
-      if (child.props.path) {
-        return <Route exact path={ child.props.path } component={ () => { return child; } } />;
+      const clonedChild = React.cloneElement(child, {
+        handlerMapper: newMap => { this.props.handlerMapper(newMap); },
+      });
+      if (clonedChild.props.path) {
+        return (<Route
+          exact
+          path={ clonedChild.props.path }
+          component={ () => { return clonedChild; } }
+        />);
       }
-      return child;
+      return clonedChild;
     };
 
     return (
@@ -23,9 +30,18 @@ class ScreenLayout extends React.Component {
   }
 }
 
+ScreenLayout.propTypes = {
+  className: PropTypes.string,
+  handlerMapper: PropTypes.func,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
+
 ScreenLayout.defaultProps = {
   className: 'screen-layout',
-  handlerMapper: newMap => {},
+  handlerMapper: () => {},
 };
 
 export default ScreenLayout;

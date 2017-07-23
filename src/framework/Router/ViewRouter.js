@@ -3,13 +3,7 @@ import { Router, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from './BrowserHistory';
 
-export default class ViewRouter extends React.Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]).isRequired,
-  }
+class ViewRouter extends React.Component {
   render() {
     return (
       <Router history={ history }>
@@ -20,3 +14,12 @@ export default class ViewRouter extends React.Component {
     );
   }
 }
+
+ViewRouter.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
+
+export default ViewRouter;
