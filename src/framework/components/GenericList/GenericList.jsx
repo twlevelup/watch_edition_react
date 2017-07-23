@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListItem from "./ListItem/ListItem";
+import ListItem from './ListItem/ListItem';
 
 class GenericList extends React.Component {
   static propTypes = {
@@ -8,27 +8,34 @@ class GenericList extends React.Component {
   };
 
   render() {
-
-    let objToListItem = (obj, index) => {
+    const objToListItem = (obj, index) => {
       return (
-        <li key={index}>
-          {Object.keys(obj).map(function (key, index) {
-            let value = obj[key];
-            return <ListItem key={index} className='block' text={value} label={key + ': '}/>
+        <li key={ index }>
+          {Object.keys(obj).map(key => {
+            const value = obj[key];
+            return <ListItem key={ key } className='block' text={ value } label={ `${ key }: ` } />;
           })}
         </li>);
     };
 
 
-    let itemList = this.props.items ? this.props.items.map(objToListItem) : [];
-    let className = this.props.className || 'generic-list';
+    const itemList = this.props.items ? this.props.items.map(objToListItem) : [];
+    const className = this.props.className || 'generic-list';
 
     return (
-      <div className={className}>
+      <div className={ className }>
         <ul>{itemList}</ul>
       </div>
     );
   }
 }
+
+GenericList.propTypes = {
+  className: PropTypes.string,
+};
+
+GenericList.defaultProps = {
+  className: 'generic-list',
+};
 
 export default GenericList;

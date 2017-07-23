@@ -1,15 +1,26 @@
 import React from 'react';
-import './notification_popup.scss'
+import PropTypes from 'prop-types';
 
-export default class NotificationPopup extends React.Component {
-  render() {
-    let visibilityClass = this.props.show ? '' : 'hidden';
-    return (
-      <div className={'notification-popup ' + visibilityClass}>
-        <p>
-          {this.props.text} {this.props.show}
-        </p>
-      </div>
-    );
-  }
-}
+import './notification_popup.scss';
+
+const NotificationPopup = ({ text, show }) => {
+  const visibilityClass = show ? '' : 'hidden';
+  return (
+    <div className={ `notification-popup ${ visibilityClass }` }>
+      <p>
+        {text}{show}
+      </p>
+    </div>
+  );
+};
+
+NotificationPopup.propTypes = {
+  show: PropTypes.bool,
+  text: PropTypes.string.isRequired,
+};
+
+NotificationPopup.defaultProps = {
+  show: PropTypes.bool,
+};
+
+export default NotificationPopup;

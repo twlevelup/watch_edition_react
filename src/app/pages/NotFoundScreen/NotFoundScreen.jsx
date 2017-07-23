@@ -4,9 +4,9 @@ export default class NotFoundScreen
   extends React.Component {
   render() {
     return (
-      <div id="not-found-page">
+      <div id='not-found-page'>
         Oh Noes!
       </div>
-    )
+    );
   }
 }

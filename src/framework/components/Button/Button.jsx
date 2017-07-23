@@ -1,15 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './button.scss';
 
-export default class Button extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Button = ({ id, onClick }) => (
+  <button id={ id } className='button' onClick={ onClick } />
+);
 
-  render() {
-    return (
-      <button id={this.props.id} className='button' onClick={ () => {this.props.onClick()}}>
-      </button>
-    );
-  }
-}
+Button.propTypes = {
+  id: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+  id: undefined,
+  onClick: () => {},
+};
+
+export default Button;
