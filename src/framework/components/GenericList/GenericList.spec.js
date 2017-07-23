@@ -18,14 +18,14 @@ describe('GenericList component', () => {
 
   describe('When no [class] property is set', () => {
     test('it should set the class to default-list', () => {
-      expect(shallow(<GenericList items={ [] } />).find('.generic-list').exists()).toBeTruthy();
+      expect(shallow(<GenericList items={ [] } />).find('.generic-list')).toBePresent();
     });
   });
 
   describe('When [class] property is set', () => {
     test('it should set the class to [class]', () => {
       expect(shallow(<GenericList className='dummyDum-DumDum' items={ [] } />)
-        .find('.dummyDum-DumDum').exists()).toBeTruthy();
+        .find('.dummyDum-DumDum')).toBePresent();
     });
   });
 });

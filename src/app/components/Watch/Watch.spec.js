@@ -15,7 +15,7 @@ describe('Watch component', () => {
   });
 
   test('it should display the watch case', () => {
-    expect(WatchComponent.find('.case').exists()).toBeTruthy();
+    expect(WatchComponent.find('.case')).toBePresent();
   });
 
   test('it should have four buttons', () => {
@@ -23,7 +23,7 @@ describe('Watch component', () => {
   });
 
   test('it should have a ViewRouter component', () => {
-    expect(WatchComponent.find('ViewRouter').exists()).toBeTruthy();
+    expect(WatchComponent.find('ViewRouter')).toBePresent();
   });
 
   test('it should pass the notificationEvent props to the NotificationPopup component', () => {

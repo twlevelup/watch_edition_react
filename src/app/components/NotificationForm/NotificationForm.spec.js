@@ -13,12 +13,12 @@ describe('NotificationForm', () => {
 
   test('it should have an text input area', () => {
     const componentWrapper = shallow(<NotificationForm { ...defaultProps } />);
-    expect(componentWrapper.find('.notification-input').exists()).toBeTruthy();
+    expect(componentWrapper.find('.notification-input')).toBePresent();
   });
 
   test('it should have a submit notification button', () => {
     const componentWrapper = shallow(<NotificationForm { ...defaultProps } />);
-    expect(componentWrapper.find('.submit-btn').exists()).toBeTruthy();
+    expect(componentWrapper.find('.submit-btn')).toBePresent();
   });
 
   describe('When notification text is changed', () => {

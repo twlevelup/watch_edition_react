@@ -8,10 +8,10 @@ describe('ContactListScreen component', () => {
   );
 
   test('it should have a title', () => {
-    expect(componentWrapper.find('.title').exists()).toBeTruthy();
+    expect(componentWrapper.find('.title')).toBePresent();
   });
 
   test('it should contain a GenericList component', () => {
-    expect(componentWrapper.find('GenericList').exists()).toBeTruthy();
+    expect(componentWrapper.find('GenericList')).toBePresent();
   });
 });
