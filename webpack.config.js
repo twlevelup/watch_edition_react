@@ -39,6 +39,13 @@ const rules = [
   {
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
+    enforce: 'pre',
+    loader: 'eslint-loader',
+    options: { emitWarnings: true },
+  },
+  {
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
     use: [
       'babel-loader',
     ],
@@ -126,6 +133,10 @@ module.exports = {
     hot: !isProduction,
     host: '0.0.0.0',
     disableHostCheck: true,
+    overlay: {
+      errors: true,
+      warnings: false,
+    },
     stats: {
       assets: true,
       children: false,
