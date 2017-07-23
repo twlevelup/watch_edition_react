@@ -2,6 +2,8 @@
 
 [![Build Status](https://circleci.com/gh/twlevelup/watch_edition_react.png)](https://circleci.com/gh/twlevelup/watch_edition_react)
 
+[![Coverage Status](https://coveralls.io/repos/github/twlevelup/watch_edition_react/badge.svg?branch=coveralls_spike)](https://coveralls.io/github/twlevelup/watch_edition_react?branch=coveralls_spike)
+
 This git repo contains all the code you need to prototype apps for the Proto Watch.
 
 The [wiki](https://github.com/twlevelup/watch_edition/wiki) contains lots of useful documentation
