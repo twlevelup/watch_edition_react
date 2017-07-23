@@ -13,7 +13,7 @@ describe('DateTimeDisplay component', () => {
     test('it should display the current date as {ddd MMMM DD YYYY} by default', () => {
       const result = dateWrapper.find('.clock-date');
       const expectedDate = moment().format('ddd MMMM DD YYYY');
-      expect(result.text()).toContain(expectedDate);
+      expect(result).toIncludeText(expectedDate);
     });
   });
 
@@ -21,7 +21,7 @@ describe('DateTimeDisplay component', () => {
     test('it should display the current date as the format property given', () => {
       const result = mount(<Date format='MMM-DD-YY' />).find('.clock-date');
       const expectedDate = moment().format('MMM-DD-YY');
-      expect(result.text()).toContain(expectedDate);
+      expect(result).toIncludeText(expectedDate);
     });
   });
 });

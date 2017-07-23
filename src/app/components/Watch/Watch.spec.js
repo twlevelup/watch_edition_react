@@ -10,7 +10,7 @@ describe('Watch component', () => {
 
   test('it should display the straps', () => {
     const result = WatchComponent.find('.strap');
-    expect(result.exists()).toBeTruthy();
+    expect(result).toBePresent();
     expect(result.length).toBe(2);
   });
 

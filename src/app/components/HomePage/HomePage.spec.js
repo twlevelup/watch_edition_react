@@ -13,7 +13,7 @@ describe('HomePage', () => {
 
   test('it should display the LevelUp title', () => {
     const result = homeContainerWrapper.find('h1');
-    expect(result.text()).toBe('LevelUp Watch Edition');
+    expect(result).toHaveText('LevelUp Watch Edition');
   });
 
   test('it should display the NotifierForm', () => {

@@ -15,7 +15,7 @@ describe('Button component', () => {
 
   test('it should have id', () => {
     const button = ButtonWrapper.find({ id: buttonId });
-    expect(button.exists()).toBeTruthy();
+    expect(button).toBePresent();
   });
 
   test('it should trigger onClick function when clicked', () => {
