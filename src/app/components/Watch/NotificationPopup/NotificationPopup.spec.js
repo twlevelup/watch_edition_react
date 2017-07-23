@@ -3,23 +3,23 @@ import { shallow } from 'enzyme';
 import NotificationPopup from './NotificationPopup';
 
 describe('NotificationPopup component', () => {
-  const composeComponent = ({ shown, text }) =>
-    shallow(<NotificationPopup show={ shown } text={ text } />);
-
   describe('When rendered with [show] property set to false', () => {
     test('it should be hidden', () => {
-      expect(composeComponent({ shown: false }).find('.notification-popup.hidden').exists()).toBeTruthy();
+      const wrapper = shallow(<NotificationPopup show={ false } text='hidden' />);
+      expect(wrapper.find('.notification-popup')).toHaveClassName('hidden');
     });
   });
 
   describe('When rendered with [show] property set to true', () => {
     test('it should be visible', () => {
-      expect(composeComponent({ shown: true }).find('.notification-popup').hasClass('hidden')).toBeFalsy();
+      const wrapper = shallow(<NotificationPopup show text='not hidden' />);
+      expect(wrapper.find('.notification-popup')).not.toHaveClassName('hidden');
     });
 
     test('it should display the [text] property', () => {
-      const props = { shown: true, text: 'show me something' };
-      expect(composeComponent(props).find('.notification-popup').text()).toContain(props.text);
+      const props = { show: true, text: 'show me something' };
+      const wrapper = shallow(<NotificationPopup { ...props } />);
+      expect(wrapper.find('.notification-popup')).toHaveText(props.text);
     });
 
     xtest('it have a close button', () => {

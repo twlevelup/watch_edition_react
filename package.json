@@ -43,6 +43,7 @@
     "html-webpack-plugin": "^2.29.0",
     "jest": "^20.0.4",
     "jest-css-modules": "^1.1.0",
+    "jest-enzyme": "^3.6.1",
     "mockdate": "^2.0.1",
     "node-sass": "^4.5.3",
     "react-test-renderer": "^15.6.1",
@@ -64,6 +65,12 @@
   "jest": {
     "transform": {
       ".*": "<rootDir>/node_modules/jest-css-modules"
-    }
+    },
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jest-enzyme"
+    ]
   }
 }
