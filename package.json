@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "loglevel": "^1.4.1",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
