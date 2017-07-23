@@ -1,16 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProduction = nodeEnv === 'production';
 
 const buildPath = path.join(__dirname, './build');
-const imgPath = path.join(__dirname, './src');
 const sourcePath = path.join(__dirname, './src');
 
 
@@ -34,20 +31,7 @@ const plugins = [
     template: path.join(sourcePath, 'index.html'),
     path: buildPath,
     filename: 'index.html',
-  }),
-  new webpack.LoaderOptionsPlugin({
-    options: {
-      postcss: [
-        autoprefixer({
-          browsers: [
-            'last 3 version',
-            'ie >= 10',
-          ],
-        }),
-      ],
-      context: sourcePath,
-    },
-  }),
+  })
 ];
 
 // Common rules
@@ -58,16 +42,11 @@ const rules = [
     use: [
       'babel-loader',
     ],
-  },
-  {
-    test: /\.(png|gif|jpg|svg)$/,
-    include: imgPath,
-    use: 'url-loader?limit=20480&name=assets/[name]-[hash].[ext]',
-  },
+  }
 ];
 
 if (isProduction) {
-  // Production plugins
+  // Minify and uglify js when built for PROD
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -76,8 +55,6 @@ if (isProduction) {
         conditionals: true,
         unused: true,
         comparisons: true,
-        sequences: true,
-        dead_code: true,
         evaluate: true,
         if_return: true,
         join_vars: true,
@@ -89,24 +66,21 @@ if (isProduction) {
     new ExtractTextPlugin('style-[hash].css')
   );
 
-  // Production rules
+  // Separate the styles into an external CSS file
   rules.push(
     {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: 'css-loader!postcss-loader!sass-loader',
+        use: 'css-loader!sass-loader',
       }),
     }
   );
 } else {
-  // Development plugins
+  // Development plugins + rules
   plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new DashboardPlugin()
+    new webpack.HotModuleReplacementPlugin()
   );
-
-  // Development rules
   rules.push(
     {
       test: /\.scss$/,
@@ -114,7 +88,6 @@ if (isProduction) {
       use: [
         {loader: 'style-loader', options: {sourceMap: true}},
         {loader: 'css-loader', options: {sourceMap: true}},
-        {loader: 'postcss-loader', options: {sourceMap: true}},
         {loader: 'sass-loader', options: {sourceMap: true}}
       ],
     }
@@ -161,11 +134,7 @@ module.exports = {
       modules: false,
       publicPath: false,
       timings: true,
-      version: false,
-      warnings: true,
-      colors: {
-        green: '\u001b[32m',
-      },
+      warnings: true
     },
   },
 };
