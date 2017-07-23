@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './notification_form.scss';
 
 export default class NotificationForm extends React.Component {
@@ -42,3 +44,9 @@ export default class NotificationForm extends React.Component {
     );
   }
 }
+
+NotificationForm.propTypes = {
+  defaultText: PropTypes.string.isRequired,
+  handleEvent: PropTypes.func.isRequired,
+};
+
