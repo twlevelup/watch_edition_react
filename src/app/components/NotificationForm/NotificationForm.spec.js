@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import NotificationForm from './NotificationForm';
 
 describe('NotificationForm', () => {
@@ -14,6 +14,5 @@ describe('NotificationForm', () => {
   test('it should have a submit notification button', () => {
     expect(componentWrapper.find('.submit-btn').exists()).toBeTruthy();
   });
-
 });
 

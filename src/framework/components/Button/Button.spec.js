@@ -1,26 +1,25 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import Button from './Button.jsx';
 
 describe('Button component', () => {
-
-  let button_id = "button-id";
-  let clickHandlerObj = jest.genMockFunction();
+  const buttonId = 'button-id';
+  const clickHandlerObj = jest.genMockFunction();
 
   const ButtonWrapper = shallow(
-    <Button id={button_id}
-            onClick={clickHandlerObj}/>
+    <Button
+      id={ buttonId }
+      onClick={ clickHandlerObj }
+    />
   );
 
   test('it should have id', () => {
-    let button = ButtonWrapper.find({id: button_id});
+    const button = ButtonWrapper.find({ id: buttonId });
     expect(button.exists()).toBeTruthy();
-
   });
 
   test('it should trigger onClick function when clicked', () => {
-    ButtonWrapper.find({id: button_id}).simulate('click');
+    ButtonWrapper.find({ id: buttonId }).simulate('click');
     expect(clickHandlerObj).toBeCalled();
-
   });
 });

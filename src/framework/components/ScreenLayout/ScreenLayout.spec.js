@@ -1,21 +1,21 @@
-import React from "react";
-import ScreenLayout from "./ScreenLayout";
-import {mount} from "enzyme";
-import {Route, StaticRouter} from "react-router-dom";
+import React from 'react';
+import { mount } from 'enzyme';
+import { Route, StaticRouter } from 'react-router-dom';
 
-describe("ScreenLayout component", () => {
+import ScreenLayout from './ScreenLayout';
 
+describe('ScreenLayout component', () => {
   class Mock extends React.Component {
     render() {
-      return <div>Mock</div>
+      return <div>Mock</div>;
     }
   }
 
-  describe("When rendering with child components", () => {
+  describe('When rendering with child components', () => {
     let renderedScreen;
 
     beforeEach(() => {
-      renderedScreen = mount(<StaticRouter context={{}}><ScreenLayout><Mock path="/"/><Mock/></ScreenLayout></StaticRouter>);
+      renderedScreen = mount(<StaticRouter context={ {} }><ScreenLayout><Mock path='/' /><Mock /></ScreenLayout></StaticRouter>);
     });
 
     test("It places children with a defined 'path' prop inside a Route element", () => {

@@ -1,12 +1,12 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import ViewRouter from './ViewRouter';
 import BrowserHistory from './BrowserHistory';
 
 describe('ViewRouter component', () => {
   class MockChild extends React.Component {
     render() {
-      return <div>Mock</div>
+      return <div>Mock</div>;
     }
   }
   const componentWrapper = shallow(
@@ -22,11 +22,8 @@ describe('ViewRouter component', () => {
   });
 
   describe('When rendering with children components ', () => {
-
     test('it should list them as children of ScreenLayout component', () => {
       expect(componentWrapper.find('MockChild')).toHaveLength(3);
     });
-
-
   });
 });

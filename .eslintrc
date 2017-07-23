@@ -19,6 +19,7 @@ ecmaFeatures:
 
 env:
   browser: true
+  jest: true
 
 rules:
   arrow-body-style: 0

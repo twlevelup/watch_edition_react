@@ -1,5 +1,5 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import { mount } from 'enzyme';
 import HomeScreen from './HomeScreen';
 
 describe('HomeScreen component', () => {
@@ -15,6 +15,5 @@ describe('HomeScreen component', () => {
   test('it should have some content', () => {
     expect(componentWrapper.find('#home-page-content').exists()).toBeTruthy();
   });
-
 });
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import Watch from './Watch.jsx';
 
 describe('Watch component', () => {
-  const dummyNotificationEvent = {displayNotification: true, text: 'test'};
+  const dummyNotificationEvent = { displayNotification: true, text: 'test' };
   const WatchComponent = shallow(
-    <Watch notificationEvent={dummyNotificationEvent}/>
+    <Watch notificationEvent={ dummyNotificationEvent } />
   );
 
   test('it should display the straps', () => {

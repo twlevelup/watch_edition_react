@@ -1,10 +1,10 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import ContactListScreen from './ContactListScreen';
 
 describe('ContactListScreen component', () => {
   const componentWrapper = shallow(
-    <ContactListScreen contacts={[]}/>
+    <ContactListScreen contacts={ [] } />
   );
 
   test('it should have a title', () => {
@@ -14,5 +14,4 @@ describe('ContactListScreen component', () => {
   test('it should contain a GenericList component', () => {
     expect(componentWrapper.find('GenericList').exists()).toBeTruthy();
   });
-
 });
