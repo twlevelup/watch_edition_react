@@ -31,7 +31,7 @@ const plugins = [
     template: path.join(sourcePath, 'index.html'),
     path: buildPath,
     filename: 'index.html',
-  })
+  }),
 ];
 
 // Common rules
@@ -42,7 +42,7 @@ const rules = [
     use: [
       'babel-loader',
     ],
-  }
+  },
 ];
 
 if (isProduction) {
@@ -86,9 +86,9 @@ if (isProduction) {
       test: /\.scss$/,
       exclude: /node_modules/,
       use: [
-        {loader: 'style-loader', options: {sourceMap: true}},
-        {loader: 'css-loader', options: {sourceMap: true}},
-        {loader: 'sass-loader', options: {sourceMap: true}}
+        { loader: 'style-loader', options: { sourceMap: true } },
+        { loader: 'css-loader', options: { sourceMap: true } },
+        { loader: 'sass-loader', options: { sourceMap: true } },
       ],
     }
   );
@@ -134,7 +134,7 @@ module.exports = {
       modules: false,
       publicPath: false,
       timings: true,
-      warnings: true
+      warnings: true,
     },
   },
 };

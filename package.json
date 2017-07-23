@@ -12,7 +12,8 @@
     "test:coverage": "jest --coverage",
     "start": "webpack-dev-server",
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
-    "lint": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx || true"
+    "lint": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx",
+    "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
