@@ -1,20 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export const WatchWrapper = props => (
-  <div>
-    { props.children }
-  </div>
-);
+import WatchWrapper from './WatchWrapper';
 
-WatchWrapper.propTypes = {
-  children: PropTypes.element.isRequired,
-};
-
-
-const createWatchPage = () => (
+const createWatchPage = (actions) => (
   Component => ((props) => (
-    <WatchWrapper>
+    <WatchWrapper actions={ actions } >
       <Component { ...props } />
     </WatchWrapper>))
 );
