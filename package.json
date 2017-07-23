@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:dev": "npm run test -- --watchAll",
-    "test:ci": "npm run test -- --ci",
+    "test:ci": "npm run test:coverage -- --ci",
     "test:coverage": "jest --coverage",
     "start": "webpack-dev-server",
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
@@ -72,6 +72,14 @@
       "react",
       "enzyme",
       "jest-enzyme"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 90,
+        "lines": 99,
+        "statements": 89
+      }
+    }
   }
 }
