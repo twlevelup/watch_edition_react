@@ -4,10 +4,10 @@ import './date.scss';
 
 export default class Watch extends React.Component {
   render() {
-    let format = this.props.format || 'ddd MMMM DD YYYY';
+    const format = this.props.format || 'ddd MMMM DD YYYY';
     return (
       <div id='date-display'>
-        <p className='clock-date'>Date: <Moment format={format}></Moment></p>
+        <p className='clock-date'>Date: <Moment format={ format } /></p>
       </div>
     );
   }

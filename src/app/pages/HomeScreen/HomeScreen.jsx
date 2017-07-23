@@ -1,24 +1,24 @@
 import React from 'react';
-import Date from "../../../framework/components/Date/Date";
-import Time from "../../../framework/components/Time/Time";
+import Date from '../../../framework/components/Date/Date';
+import Time from '../../../framework/components/Time/Time';
 import history from '../../../framework/Router/BrowserHistory';
 
 export default class HomeScreen extends React.Component {
   render() {
-    if (this.props.handlerMapper){
+    if (this.props.handlerMapper) {
       this.props.handlerMapper({
-        LEFT: () => history.push("/"),
-        RIGHT: () => history.push("/contacts")
+        LEFT: () => history.push('/'),
+        RIGHT: () => history.push('/contacts'),
       });
     }
 
     return (
-      <div id="watch-home-page">
+      <div id='watch-home-page'>
         <Date />
         <Time />
 
-        <div id="home-page-content">
-          <img src="../../../logo.png" alt=""/>
+        <div id='home-page-content'>
+          <img src='../../../logo.png' alt='' />
 
           <div>Hello, World!</div>
 
@@ -47,6 +47,6 @@ export default class HomeScreen extends React.Component {
           </p>
         </div>
       </div>
-    )
+    );
   }
 }
