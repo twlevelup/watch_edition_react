@@ -1,10 +1,19 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import moment from 'moment';
+import MockDate from 'mockdate';
 
 import Time from './Time';
 
 describe('DateTimeDisplay component', () => {
+  beforeEach(() => {
+    MockDate.set(moment());
+  });
+
+  afterEach(() => {
+    MockDate.reset();
+  });
+
   const TimeWrapper = mount(
     <Time />
   );
@@ -25,4 +34,3 @@ describe('DateTimeDisplay component', () => {
     });
   });
 });
-
