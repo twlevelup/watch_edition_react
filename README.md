@@ -45,7 +45,7 @@ To view the build status and get notifications about the build status:
 
 Add the following XML config to CCTray or CCMenu on your dev machine
 
-	https://circleci.com/gh/twlevelup/watch_edition.cc.xml
+```https://circleci.com/gh/twlevelup/watch_edition_react.cc.xml```
 
 You can also access the CI server and view the status of the build here [Circle CI](https://circleci.com/gh/twlevelup/watch_edition_react)
 
