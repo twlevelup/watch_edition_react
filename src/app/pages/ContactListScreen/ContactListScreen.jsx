@@ -1,6 +1,7 @@
 import React from 'react';
-import GenericList from '../../../framework/components/GenericList/GenericList';
 import PropTypes from 'prop-types';
+
+import GenericList from '../../../framework/components/GenericList/GenericList';
 import './contact_list.scss';
 
 export default class ContactListScreen extends React.Component {
