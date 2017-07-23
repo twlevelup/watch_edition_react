@@ -65,6 +65,7 @@
   },
   "jest": {
     "transform": {
+      "^.+\\.jsx?$": "babel-jest",
       ".*": "<rootDir>/node_modules/jest-css-modules"
     },
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
