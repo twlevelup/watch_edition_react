@@ -9,8 +9,13 @@ const ListItem = ({ className = '', label, text }) => (
 );
 
 ListItem.propTypes = {
+  className: string,
   label: string.isRequired,
   text: string.isRequired,
+};
+
+ListItem.defaultProps = {
+  className: '',
 };
 
 export default ListItem;
