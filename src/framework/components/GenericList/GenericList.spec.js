@@ -24,7 +24,8 @@ describe('GenericList component', () => {
 
   describe('When [class] property is set', () => {
     test('it should set the class to [class]', () => {
-      expect(shallow(<GenericList className='dummyDum-DumDum' items={ [] } />).find('.dummyDum-DumDum').exists()).toBeTruthy();
+      expect(shallow(<GenericList className='dummyDum-DumDum' items={ [] } />)
+        .find('.dummyDum-DumDum').exists()).toBeTruthy();
     });
   });
 });
