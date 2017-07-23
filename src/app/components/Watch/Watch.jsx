@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './watch.scss';
 import Button from '../../../framework/components/Button/Button';
 import ViewRouter from '../../../framework/Router/ViewRouter';
@@ -11,27 +13,20 @@ import contacts from '../../data/contacts.json';
 import NotificationPopup from './NotificationPopup/NotificationPopup';
 
 
+const goToLink = (link) => {
+  history.push(link);
+};
+
 export default class Watch extends React.Component {
 
-  constructor() {
-    super();
-    const goToLink = (link) => {
-      history.push(link);
-    };
+  constructor(props) {
+    super(props);
 
     this.eventHandlers = {
-      LEFT: () => {
-        goToLink('/notfound');
-      },
-      RIGHT: () => {
-        goToLink('/notfound');
-      },
-      BOTTOM: () => {
-        goToLink('/notfound');
-      },
-      TOP: () => {
-        goToLink('/notfound');
-      },
+      LEFT: () => { goToLink('/notfound'); },
+      RIGHT: () => { goToLink('/notfound'); },
+      BOTTOM: () => { goToLink('/notfound'); },
+      TOP: () => { goToLink('/notfound'); },
     };
   }
 
@@ -66,3 +61,10 @@ export default class Watch extends React.Component {
     );
   }
 }
+
+Watch.propTypes = {
+  notificationEvent: PropTypes.shape({
+    displayNotification: PropTypes.bool,
+    text: PropTypes.string,
+  }).isRequired,
+};
