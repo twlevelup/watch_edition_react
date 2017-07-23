@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import WatchPage from './WatchPage';
 
 const mapObjectValues = (object, func) => (
@@ -10,7 +9,7 @@ const mapObjectValues = (object, func) => (
 
 const createWatchPage = (actions, initalPageState = {}) => (
   PageComponent => ((props) => {
-    class PageWrapper extends Component {
+    class PageWrapper extends React.Component {
       constructor(p) {
         super(p);
         this.state = { pageState: initalPageState };

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../components/Button/Button';
 
 import '../../app/components/Watch/watch.scss';
 
-export default class WatchWrapper extends Component {
+export default class WatchWrapper extends React.Component {
   render() {
     const { children, actions } = this.props;
     return (
