@@ -1,36 +1,28 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import moment from 'moment';
-import MockDate from 'mockdate';
+import { shallow } from 'enzyme';
 
 import Time from './Time';
 
-describe('DateTimeDisplay component', () => {
-  beforeEach(() => {
-    MockDate.set(moment());
-  });
+describe('Time component', () => {
+  const composeComponent = (props) => shallow(
+    <Time { ...props } />
+  ).find('t');
 
-  afterEach(() => {
-    MockDate.reset();
+  test('it should refresh the time every second', () => {
+    expect(composeComponent().props().interval).toBe(1000);
   });
-
-  const TimeWrapper = mount(
-    <Time />
-  );
 
   describe('When rendered without a [format] property', () => {
     test('it should display the current time formatted as {HH:mm:ss}', () => {
-      const result = TimeWrapper.find('.clock-time');
-      const currentHourAndMinutes = moment().format('HH:mm:ss');
-      expect(result.text()).toContain(currentHourAndMinutes);
+      expect(composeComponent().props().format).toContain('HH:mm:ss');
     });
   });
 
   describe('When rendered with [format] property', () => {
     test('it should display the current time formatted as format property', () => {
-      const result = mount(<Time format='HH-HH-mm-ss' />).find('.clock-time');
-      const currentHourAndMinutes = moment().format('HH-HH-mm-ss');
-      expect(result.text()).toContain(currentHourAndMinutes);
+      const expectedTimeFormat = 'HH-HH-mm-ss';
+      const result = shallow(<Time format={ expectedTimeFormat } />).find('t');
+      expect(result.props().format).toContain(expectedTimeFormat);
     });
   });
 });

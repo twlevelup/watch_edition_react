@@ -1,14 +1,14 @@
 import Moment from 'react-moment';
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import './time.scss';
 
 const Time = (props) => {
   const { format } = props;
+  const oneSecond = 1000;
   return (
     <div id='time-display'>
-      <p className='clock-time'>Time: <Moment interval={ 1000 } format={ format } /></p>
+      <p className='clock-time'>Time: <Moment interval={ oneSecond } format={ format } /></p>
     </div>
   );
 };
