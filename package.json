@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:dev": "npm run test -- --watchAll",
-    "test:ci": "npm run test:coverage -- --ci",
+    "test:ci": "npm run test --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:coverage": "jest --coverage",
     "start": "webpack-dev-server",
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
@@ -32,6 +32,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.23.0",
+    "coveralls": "^2.13.1",
     "css-loader": "0.28.4",
     "enzyme": "^2.9.1",
     "enzyme-matchers": "^3.6.1",
@@ -67,6 +68,10 @@
     "transform": {
       ".*": "<rootDir>/node_modules/jest-css-modules"
     },
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
     "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "unmockedModulePathPatterns": [
       "react",
