@@ -11,7 +11,7 @@ show_instructions () {
   echo "    install       installs any required dependencies"
   echo "    test          runs all your unit tests"
   echo "    test:dev      runs all your unit tests in development mode"
-  echo "    pre-commit    prepares your changes to be committed"
+  echo "    precommit     prepares your changes to be committed"
   echo "    start         runs your local development server at http://localhost:8000"
 }
 
@@ -50,8 +50,8 @@ if [[ $1 ]]; then
     exit $?
   fi
 
-  if [[ $1 == "pre-commit" ]]; then
-    npm -s run-script ci
+  if [[ $1 == "precommit" ]]; then
+    npm -s run precommit
     exit $?
   fi
 
