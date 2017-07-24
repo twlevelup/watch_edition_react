@@ -1,7 +1,11 @@
 import React from 'react';
-import Watch from '../Watch/Watch';
+import Watch from '../../../framework/components/Watch/Watch';
 import './HomePage.scss';
 import NotificationForm from '../NotificationForm/NotificationForm';
+import HomeScreen from '../../pages/HomeScreen/HomeScreen';
+import ContactListScreen from '../../pages/ContactListScreen/ContactListScreen';
+import NotFoundScreen from '../../pages/NotFoundScreen/NotFoundScreen';
+import contacts from '../../data/contacts.json';
 
 export default class HomePage extends React.Component {
   constructor(props) {
@@ -30,10 +34,13 @@ export default class HomePage extends React.Component {
           />
         </div>
         <div id='right'>
-          <Watch notificationEvent={ this.state.notificationEvent } />
+          <Watch notificationEvent={ this.state.notificationEvent }>
+            <HomeScreen path="/" />
+            <ContactListScreen path="/contacts" contacts={ contacts } />
+            <NotFoundScreen path="notfound" />
+          </Watch>
         </div>
       </div>
     );
   }
 }
-
