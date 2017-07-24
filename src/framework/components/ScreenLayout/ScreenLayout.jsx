@@ -4,16 +4,15 @@ import { Route } from 'react-router-dom';
 import './screen_layout.scss';
 
 class ScreenLayout extends React.Component {
+  injectHandlerMap = child => {
+    return React.cloneElement(child, {
+      handlerMapper: newMap => { this.props.handlerMapper(newMap); },
+    });
+  };
 
   render() {
-    const injectHandlerMap = child => {
-      return React.cloneElement(child, {
-        handlerMapper: newMap => { this.props.handlerMapper(newMap); },
-      });
-    };
-
     const wrapChild = child => {
-      const clonedChild = injectHandlerMap(child);
+      const clonedChild = this.injectHandlerMap(child);
       if (clonedChild.props.path) {
         return (<Route
           exact

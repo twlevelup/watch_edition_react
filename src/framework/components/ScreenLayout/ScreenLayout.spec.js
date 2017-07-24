@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Route, StaticRouter } from 'react-router-dom';
 
 import ScreenLayout from './ScreenLayout';
@@ -13,10 +13,34 @@ describe('ScreenLayout component', () => {
 
   describe('When rendering with child components', () => {
     let renderedScreen;
+    let handlerMapperFn;
 
     beforeEach(() => {
+      handlerMapperFn = jest.fn();
       renderedScreen = mount(
         <StaticRouter context={ {} }><ScreenLayout><Mock path='/' /><Mock /></ScreenLayout></StaticRouter>);
+    });
+
+    describe('injectHandlerMap function', () => {
+      test('It should attach the handler mapper to the given component', () => {
+        const result = shallow(
+          <ScreenLayout handlerMapper={ handlerMapperFn }>
+            <Mock path='/' /><Mock />
+          </ScreenLayout>
+        );
+        expect(result.instance().injectHandlerMap(<Mock />).props.handlerMapper).toBeDefined();
+        result.instance().injectHandlerMap(<Mock />).props.handlerMapper();
+        expect(handlerMapperFn).toHaveBeenCalled();
+      });
+    });
+
+    test('It should a have default handlerMapper attached to children components', () => {
+      const result = shallow(
+        <ScreenLayout>
+          <Mock path='/' /><Mock />
+        </ScreenLayout>
+      );
+      expect(result.instance().injectHandlerMap(<Mock />).props.handlerMapper).toBeDefined();
     });
 
     test("It places children with a defined 'path' prop inside a Route element", () => {
