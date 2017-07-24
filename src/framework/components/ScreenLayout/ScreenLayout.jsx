@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-import './screen_layout.scss';
+import './screen_layout.css';
 
 class ScreenLayout extends React.Component {
   injectHandlerMap = (child) => {

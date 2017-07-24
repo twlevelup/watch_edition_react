@@ -46,9 +46,7 @@
     "jest": "^20.0.4",
     "jest-css-modules": "^1.1.0",
     "jest-enzyme": "^3.6.1",
-    "node-sass": "^4.5.3",
     "react-test-renderer": "^15.6.1",
-    "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.6.1"
@@ -67,7 +65,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
-      "!*.scss",
+      "!*.css",
       "!*/index.js"
     ],
     "transform": {

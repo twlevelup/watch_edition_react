@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './watch.scss';
+import './watch.css';
 import Button from '../Button/Button';
 import ViewRouter from '../../Router/ViewRouter';
 import history from '../../Router/BrowserHistory';

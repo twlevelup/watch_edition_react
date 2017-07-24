@@ -76,10 +76,10 @@ if (isProduction) {
   // Separate the styles into an external CSS file
   rules.push(
     {
-      test: /\.scss$/,
+      test: /\.css$/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: 'css-loader!sass-loader',
+        use: 'css-loader',
       }),
     }
   );
@@ -90,12 +90,11 @@ if (isProduction) {
   );
   rules.push(
     {
-      test: /\.scss$/,
+      test: /\.css$/,
       exclude: /node_modules/,
       use: [
         { loader: 'style-loader', options: { sourceMap: true } },
         { loader: 'css-loader', options: { sourceMap: true } },
-        { loader: 'sass-loader', options: { sourceMap: true } },
       ],
     }
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './notification_popup.scss';
+import './notification_popup.css';
 
 const NotificationPopup = ({ text, show }) => {
   const visibilityClass = show ? '' : 'hidden';
