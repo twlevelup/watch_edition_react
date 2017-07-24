@@ -6,10 +6,14 @@ import './screen_layout.scss';
 class ScreenLayout extends React.Component {
 
   render() {
-    const childWrapper = child => {
-      const clonedChild = React.cloneElement(child, {
+    const injectHandlerMap = child => {
+      return React.cloneElement(child, {
         handlerMapper: newMap => { this.props.handlerMapper(newMap); },
       });
+    }
+
+    const wrapChild = child => {
+      const clonedChild = injectHandlerMap(child)
       if (clonedChild.props.path) {
         return (<Route
           exact
@@ -23,7 +27,7 @@ class ScreenLayout extends React.Component {
     return (
       <div>
         <div className={ this.props.className }>
-          {React.Children.map(this.props.children, childWrapper)}
+          {React.Children.map(this.props.children, wrapChild)}
         </div>
       </div>
     );
