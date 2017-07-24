@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Watch from './Watch.jsx';
+import history from '../../../framework/Router/BrowserHistory';
+
+jest.mock('../../../framework/Router/BrowserHistory');
+history.push = jest.fn();
 
 describe('Watch component', () => {
   let WatchComponent;
@@ -34,54 +38,39 @@ describe('Watch component', () => {
     expect(result.props().text).toBe(dummyNotificationEvent.text);
   });
 
-  test('it should trigger event handler when button is been clicked', () => {
-    const result = WatchComponent.find('#button-right');
-    expect(result).toBePresent();
-
-    WatchComponent.instance().eventHandlers.RIGHT = jest.fn();
-
-    result.simulate('click');
-    expect(WatchComponent.instance().eventHandlers.RIGHT).toBeCalled();
-  });
-
   test('it should trigger event handler when right button is been clicked', () => {
     const result = WatchComponent.find('#button-right');
     expect(result).toBePresent();
 
-    WatchComponent.instance().eventHandlers.RIGHT = jest.fn();
-
     result.simulate('click');
-    expect(WatchComponent.instance().eventHandlers.RIGHT).toBeCalled();
+
+    expect(history.push).toBeCalledWith('/notfound');
   });
 
   test('it should trigger event handler when left button is been clicked', () => {
     const result = WatchComponent.find('#button-left');
     expect(result).toBePresent();
 
-    WatchComponent.instance().eventHandlers.LEFT = jest.fn();
-
     result.simulate('click');
-    expect(WatchComponent.instance().eventHandlers.LEFT).toBeCalled();
+
+    expect(history.push).toBeCalledWith('/notfound');
   });
 
   test('it should trigger event handler when top button is been clicked', () => {
     const result = WatchComponent.find('#button-top');
     expect(result).toBePresent();
 
-    WatchComponent.instance().eventHandlers.TOP = jest.fn();
-
     result.simulate('click');
-    expect(WatchComponent.instance().eventHandlers.TOP).toBeCalled();
+
+    expect(history.push).toBeCalledWith('/notfound');
   });
 
   test('it should trigger event handler when bottom button is been clicked', () => {
     const result = WatchComponent.find('#button-bottom');
     expect(result).toBePresent();
 
-    WatchComponent.instance().eventHandlers.BOTTOM = jest.fn();
-
     result.simulate('click');
-    expect(WatchComponent.instance().eventHandlers.BOTTOM).toBeCalled();
+    expect(history.push).toBeCalledWith('/notfound');
   });
 
   test('it should contain screen layout component', () => {
