@@ -18,12 +18,9 @@ class GenericList extends React.Component {
         </li>);
     };
 
-
     const itemList = this.props.items ? this.props.items.map(objToListItem) : [];
-    const className = this.props.className || 'generic-list';
-
     return (
-      <div className={ className }>
+      <div className={ this.props.className }>
         <ul>{itemList}</ul>
       </div>
     );

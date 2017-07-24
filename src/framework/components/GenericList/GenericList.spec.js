@@ -16,6 +16,12 @@ describe('GenericList component', () => {
     });
   });
 
+  describe('When rendered without props', () => {
+    test('it should be rendered with no items', () => {
+      expect(shallow(<GenericList />).find('.generic-list')).toBePresent();
+    });
+  });
+
   describe('When no [class] property is set', () => {
     test('it should set the class to default-list', () => {
       expect(shallow(<GenericList items={ [] } />).find('.generic-list')).toBePresent();
