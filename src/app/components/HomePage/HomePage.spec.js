@@ -18,7 +18,10 @@ describe('HomePage', () => {
     });
 
     test('it should have an event handler that updates the components state', () => {
-      expect(shallow(<HomePage />).find('NotificationForm')).toBePresent();
+      const wrapper = shallow(<HomePage />);
+      const dummyNotificationEvent = { text: 'wowow', displayNotification: true };
+      wrapper.instance().notificationHandler(dummyNotificationEvent);
+      expect(wrapper).toHaveState('notificationEvent', dummyNotificationEvent);
     });
 
     test('it should pass the defaultText prop to NotificationForm', () => {
