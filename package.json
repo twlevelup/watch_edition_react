@@ -51,7 +51,7 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.5.1"
+    "webpack-dev-server": "^2.6.1"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
@@ -65,6 +65,11 @@
     "react-router-dom": "^4.1.2"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!*.scss",
+      "!*/index.js"
+    ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest",
       ".*": "<rootDir>/node_modules/jest-css-modules"
@@ -77,10 +82,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 50,
-        "functions": 90,
-        "lines": 99,
-        "statements": 89
+        "branches": 90,
+        "functions": 97,
+        "lines": 100,
+        "statements": 100
       }
     }
   }

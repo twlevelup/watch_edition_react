@@ -14,10 +14,11 @@ export default class HomePage extends React.Component {
     };
   }
 
+  notificationHandler = (newEvent = this.state.notificationEvent) => {
+    this.setState({ notificationEvent: newEvent });
+  };
+
   render() {
-    const notificationHandler = (newEvent = {}) => {
-      this.setState({ notificationEvent: newEvent });
-    };
     return (
       <div id='home-container'>
         <div id='left'>
@@ -25,7 +26,7 @@ export default class HomePage extends React.Component {
           <p>This is LevelUp Watch Edition sample app.</p>
           <NotificationForm
             defaultText={ this.state.notificationEvent.text }
-            handleEvent={ notificationEvent => notificationHandler(notificationEvent) }
+            handleEvent={ this.notificationHandler }
           />
         </div>
         <div id='right'>

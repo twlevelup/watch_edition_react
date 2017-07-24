@@ -1,7 +1,7 @@
 import React from 'react';
 import { string } from 'prop-types';
 
-const ListItem = ({ className = '', label, text }) => (
+const ListItem = ({ className, label, text }) => (
   <span className={ className }>
     <span className='key'>{label}</span>
     <span className='value'>{text}</span>

@@ -30,11 +30,12 @@ export default class Watch extends React.Component {
     };
   }
 
-  render() {
-    const mapEventHandler = (newHandlers = {}) => {
-      this.eventHandlers = Object.assign({}, this.eventHandlers, newHandlers);
-    };
+  mapEventHandler = (newHandlers = {}) => {
+    this.eventHandlers = Object.assign({}, this.eventHandlers, newHandlers);
+  };
 
+
+  render() {
     return (
       <div id='watch' className='watch'>
         <div className='strap strap-top' />
@@ -49,7 +50,7 @@ export default class Watch extends React.Component {
           <Button id='button-bottom' onClick={ () => this.eventHandlers.BOTTOM() } />
           <Button id='button-top' onClick={ () => this.eventHandlers.TOP() } />
           <ViewRouter>
-            <ScreenLayout handlerMapper={ newMap => mapEventHandler(newMap) }>
+            <ScreenLayout handlerMapper={ this.mapEventHandler }>
               <HomeScreen path='/' />
               <ContactListScreen path='/contacts' contacts={ contacts } />
               <NotFoundScreen path='/notfound' />

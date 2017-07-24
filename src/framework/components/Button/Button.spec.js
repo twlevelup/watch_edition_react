@@ -6,20 +6,17 @@ describe('Button component', () => {
   const buttonId = 'button-id';
   const clickHandlerObj = jest.genMockFunction();
 
-  const ButtonWrapper = shallow(
-    <Button
-      id={ buttonId }
-      onClick={ clickHandlerObj }
-    />
+  const composeComponent = () => shallow(
+    <Button id={ buttonId } onClick={ clickHandlerObj } />
   );
 
   test('it should have id', () => {
-    const button = ButtonWrapper.find({ id: buttonId });
+    const button = composeComponent().find({ id: buttonId });
     expect(button).toBePresent();
   });
 
   test('it should trigger onClick function when clicked', () => {
-    ButtonWrapper.find({ id: buttonId }).simulate('click');
+    composeComponent().find({ id: buttonId }).simulate('click');
     expect(clickHandlerObj).toBeCalled();
   });
 });
