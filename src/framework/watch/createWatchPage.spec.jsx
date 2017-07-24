@@ -17,10 +17,10 @@ describe('WatchPage HigherOrderComponent', () => {
       bottom: jest.fn(),
     };
     actions = {
-      left: (pageState) => () => mockFunctions.left(pageState),
-      right: (pageState) => () => mockFunctions.right(pageState),
-      top: (pageState) => () => mockFunctions.top(pageState),
-      bottom: (pageState) => () => mockFunctions.bottom(pageState),
+      left: pageState => () => mockFunctions.left(pageState),
+      right: pageState => () => mockFunctions.right(pageState),
+      top: pageState => () => mockFunctions.top(pageState),
+      bottom: pageState => () => mockFunctions.bottom(pageState),
     };
   });
 

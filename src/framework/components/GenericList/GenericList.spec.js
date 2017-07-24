@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import GenericList from './GenericList.jsx';
+import GenericList from './GenericList';
 
 describe('GenericList component', () => {
   describe('When a list of objects is passed to the [items] props', () => {

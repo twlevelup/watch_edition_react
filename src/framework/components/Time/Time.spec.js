@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import Time from './Time';
 
 describe('Time component', () => {
-  const composeComponent = (props) => shallow(
+  const composeComponent = props => shallow(
     <Time { ...props } />
   ).find('t');
 

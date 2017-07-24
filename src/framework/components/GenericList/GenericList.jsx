@@ -11,7 +11,7 @@ class GenericList extends React.Component {
     const objToListItem = (obj, index) => {
       return (
         <li key={ index }>
-          {Object.keys(obj).map(key => {
+          {Object.keys(obj).map((key) => {
             const value = obj[key];
             return <ListItem key={ key } className='block' text={ value } label={ `${ key }: ` } />;
           })}
