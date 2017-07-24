@@ -1,19 +1,37 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import HomeScreen from './HomeScreen';
+import Date from '../../../framework/components/Date/Date';
+import Time from '../../../framework/components/Time/Time';
 
 describe('HomeScreen component', () => {
-  const componentWrapper = mount(
-    <HomeScreen />
-  );
+  test('it should have Date component', () => {
+    expect(shallow(<HomeScreen />)).toContainReact(<Time />);
+  });
 
-  test('it should have DateTimeDisplay component', () => {
-    expect(componentWrapper.find('#date-display')).toBePresent();
-    expect(componentWrapper.find('#time-display')).toBePresent();
+  test('it should have Time component', () => {
+    expect(shallow(<HomeScreen />)).toContainReact(<Date />);
   });
 
   test('it should have some content', () => {
-    expect(componentWrapper.find('#home-page-content')).toBePresent();
+    expect(shallow(<HomeScreen />).find('#home-page-content')).toBePresent();
+  });
+
+  describe('When rendered with handlerMapper ', () => {
+    let buttonHandlerMapper;
+    let buttonActions;
+    beforeEach(() => {
+      buttonHandlerMapper = jest.fn();
+      const wrapper = shallow(<HomeScreen handlerMapper={ buttonHandlerMapper } />);
+      buttonActions = wrapper.instance().buttonActions;
+    });
+
+    test('it should override the LEFT button', () => {
+      expect(buttonHandlerMapper).toHaveBeenCalledWith({ 'LEFT': buttonActions.LEFT, 'RIGHT': buttonActions.RIGHT });
+    });
+
+    test('it should override the RIGHT button', () => {
+      expect(buttonHandlerMapper).toHaveBeenCalledWith({ 'LEFT': buttonActions.LEFT, 'RIGHT': buttonActions.RIGHT });
+    });
   });
 });
-
