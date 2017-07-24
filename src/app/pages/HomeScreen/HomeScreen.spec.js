@@ -3,6 +3,10 @@ import { shallow } from 'enzyme';
 import HomeScreen from './HomeScreen';
 import Date from '../../../framework/components/Date/Date';
 import Time from '../../../framework/components/Time/Time';
+import history from '../../../framework/Router/BrowserHistory';
+
+jest.mock('../../../framework/Router/BrowserHistory');
+history.push = jest.fn();
 
 describe('HomeScreen component', () => {
   test('it should have Date component', () => {
@@ -15,6 +19,14 @@ describe('HomeScreen component', () => {
 
   test('it should have some content', () => {
     expect(shallow(<HomeScreen />).find('#home-page-content')).toBePresent();
+  });
+
+  test('it should have a LEFT button config of going to Home page', () => {
+    expect(shallow(<HomeScreen />).instance().buttonActions.LEFT()).toEqual(history.push('/'));
+  });
+
+  test('it should have a RIGHT button config of going to contactList page', () => {
+    expect(shallow(<HomeScreen />).instance().buttonActions.RIGHT()).toEqual(history.push('/contacts'));
   });
 
   describe('When rendered with handlerMapper ', () => {
