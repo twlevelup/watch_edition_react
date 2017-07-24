@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './notification_form.scss';
+import './notification_form.css';
 
 export default class NotificationForm extends React.Component {
   constructor(props) {

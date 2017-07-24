@@ -1,6 +1,6 @@
 import React from 'react';
 import Watch from '../../../framework/components/Watch/Watch';
-import './HomePage.scss';
+import './HomePage.css';
 import NotificationForm from '../NotificationForm/NotificationForm';
 import HomeScreen from '../../pages/HomeScreen/HomeScreen';
 import ContactListScreen from '../../pages/ContactListScreen/ContactListScreen';
