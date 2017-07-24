@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 import ViewRouter from '../../Router/ViewRouter';
 import history from '../../Router/BrowserHistory';
 import ScreenLayout from '../ScreenLayout/ScreenLayout';
-import NotificationPopup from './NotificationPopup/NotificationPopup';
+import NotificationPopup from '../NotificationPopup/NotificationPopup';
 
 
 const goToLink = (link) => {

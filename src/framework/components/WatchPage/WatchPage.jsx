@@ -1,23 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from '../components/Button/Button';
+import NotificationPopup from '../NotificationPopup/NotificationPopup';
+import Button from '../Button/Button';
+import ScreenLayout from '../ScreenLayout/ScreenLayout';
 
-import '../components/Watch/watch.scss';
+import '../Watch/watch.scss';
 
-export default class WatchWrapper extends React.Component {
+export default class WatchPage extends React.Component {
   render() {
-    const { children, actions } = this.props;
+    const { children, actions, notificationEvent } = this.props;
     return (
       <div id='watch' className='watch'>
         <div className='strap strap-top' />
         <div id='watch-face' className='case'>
-          { /* TODO: Add Notifications */ }
+          <NotificationPopup
+            show={ notificationEvent.displayNotification }
+            text={ notificationEvent.text }
+          />
           <Button id='button-right' onClick={ () => actions.right() } />
           <Button id='button-left' onClick={ () => actions.left() } />
           <Button id='button-bottom' onClick={ () => actions.bottom() } />
           <Button id='button-top' onClick={ () => actions.top() } />
-          { children }
+          <ScreenLayout>
+            { children }
+          </ScreenLayout>
         </div>
         <div className='strap strap-bottom' />
       </div>
@@ -25,7 +32,7 @@ export default class WatchWrapper extends React.Component {
   }
 }
 
-WatchWrapper.propTypes = {
+WatchPage.propTypes = {
   children: PropTypes.element.isRequired,
   actions: PropTypes.shape({
     left: PropTypes.func.isRequired,
@@ -33,4 +40,16 @@ WatchWrapper.propTypes = {
     bottom: PropTypes.func.isRequired,
     top: PropTypes.func.isRequired,
   }).isRequired,
+  notificationEvent: PropTypes.shape({
+    displayNotification: PropTypes.bool,
+    text: PropTypes.string,
+  }),
 };
+
+WatchPage.defaultProps = {
+  notificationEvent: {
+    displayNotification: false,
+    text: '',
+  },
+};
+

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import WatchPage from './WatchPage';
+import WatchPage from '../components/WatchPage/WatchPage';
 import createWatchPage from './createWatchPage';
 
 const DummyComponent = () => (<h1>Hello</h1>);

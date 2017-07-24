@@ -1,5 +1,5 @@
 import React from 'react';
-import WatchPage from './WatchPage';
+import WatchPage from '../components/WatchPage/WatchPage';
 
 const mapObjectValues = (object, func) => (
   Object.keys(object).reduce((newObject, key) => (
