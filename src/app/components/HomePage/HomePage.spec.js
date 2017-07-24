@@ -30,8 +30,8 @@ describe('HomePage', () => {
 
     test('it should pass notificationEvent callback handler to NotificationForm', () => {
       const componentWrapper = shallow(<HomePage />);
-      expect(componentWrapper.find('NotificationForm').props().handleEvent).toBe(
-        componentWrapper.find('NotificationForm').props().handleEvent);
+      expect(componentWrapper.find('NotificationForm'))
+        .toHaveProp('handleEvent', componentWrapper.instance().notificationHandler);
     });
 
     test('it should default state for the notification event', () => {
