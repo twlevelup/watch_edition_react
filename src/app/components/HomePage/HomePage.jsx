@@ -35,9 +35,9 @@ export default class HomePage extends React.Component {
         </div>
         <div id='right'>
           <Watch notificationEvent={ this.state.notificationEvent }>
-            <HomeScreen path="/" />
-            <ContactListScreen path="/contacts" contacts={ contacts } />
-            <NotFoundScreen path="notfound" />
+            <HomeScreen path='/' />
+            <ContactListScreen path='/contacts' contacts={ contacts } />
+            <NotFoundScreen path='notfound' />
           </Watch>
         </div>
       </div>
