@@ -1,17 +1,14 @@
 import React from 'react';
-import {shallow,} from 'enzyme';
+import { shallow } from 'enzyme';
 import Watch from './Watch.jsx';
-import ScreenLayout from "../../../framework/components/ScreenLayout/ScreenLayout";
 
 describe('Watch component', () => {
   let WatchComponent;
-  const dummyNotificationEvent = {displayNotification: true, text: 'test'};
+  const dummyNotificationEvent = { displayNotification: true, text: 'test' };
   beforeEach(() => {
     WatchComponent = shallow(
-      <Watch notificationEvent={dummyNotificationEvent}/>
-    );
+      <Watch notificationEvent={ dummyNotificationEvent } />);
   });
-
 
   test('it should display the straps', () => {
     const result = WatchComponent.find('.strap');
@@ -38,7 +35,7 @@ describe('Watch component', () => {
   });
 
   test('it should trigger event handler when button is been clicked', () => {
-    let result = WatchComponent.find('#button-right');
+    const result = WatchComponent.find('#button-right');
     expect(result).toBePresent();
 
     WatchComponent.instance().eventHandlers.RIGHT = jest.fn();
@@ -48,7 +45,7 @@ describe('Watch component', () => {
   });
 
   test('it should trigger event handler when right button is been clicked', () => {
-    let result = WatchComponent.find('#button-right');
+    const result = WatchComponent.find('#button-right');
     expect(result).toBePresent();
 
     WatchComponent.instance().eventHandlers.RIGHT = jest.fn();
@@ -58,7 +55,7 @@ describe('Watch component', () => {
   });
 
   test('it should trigger event handler when left button is been clicked', () => {
-    let result = WatchComponent.find('#button-left');
+    const result = WatchComponent.find('#button-left');
     expect(result).toBePresent();
 
     WatchComponent.instance().eventHandlers.LEFT = jest.fn();
@@ -68,7 +65,7 @@ describe('Watch component', () => {
   });
 
   test('it should trigger event handler when top button is been clicked', () => {
-    let result = WatchComponent.find('#button-top');
+    const result = WatchComponent.find('#button-top');
     expect(result).toBePresent();
 
     WatchComponent.instance().eventHandlers.TOP = jest.fn();
@@ -78,7 +75,7 @@ describe('Watch component', () => {
   });
 
   test('it should trigger event handler when bottom button is been clicked', () => {
-    let result = WatchComponent.find('#button-bottom');
+    const result = WatchComponent.find('#button-bottom');
     expect(result).toBePresent();
 
     WatchComponent.instance().eventHandlers.BOTTOM = jest.fn();
@@ -88,9 +85,25 @@ describe('Watch component', () => {
   });
 
   test('it should contain screen layout component', () => {
-    let result = WatchComponent.find('ScreenLayout');
+    const result = WatchComponent.find('ScreenLayout');
     expect(result).toHaveProp('handlerMapper', WatchComponent.instance().mapEventHandler);
   });
 
-});
+  test('it should update event handlers', () => {
+    const mockFunc = () => {
+      jest.fn();
+    };
+    const newEventHandlers =
+      {
+        LEFT: mockFunc,
+        RIGHT: mockFunc,
+        BOTTOM: mockFunc,
+        TOP: mockFunc,
+      };
+    expect(WatchComponent.instance().eventHandlers).not.toEqual(newEventHandlers);
 
+    WatchComponent.instance().mapEventHandler(newEventHandlers);
+
+    expect(WatchComponent.instance().eventHandlers).toEqual(newEventHandlers);
+  });
+});
