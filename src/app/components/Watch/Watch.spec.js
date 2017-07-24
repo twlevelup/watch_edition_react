@@ -14,6 +14,13 @@ describe('Watch component', () => {
       <Watch notificationEvent={ dummyNotificationEvent } />);
   });
 
+  const verifyClickingButtonEvent = (result, resultPath) => {
+    expect(result).toBePresent();
+    result.simulate('click');
+    expect(history.push).toBeCalledWith(resultPath);
+  };
+
+
   test('it should display the straps', () => {
     const result = WatchComponent.find('.strap');
     expect(result).toBePresent();
@@ -39,38 +46,19 @@ describe('Watch component', () => {
   });
 
   test('it should trigger event handler when right button is been clicked', () => {
-    const result = WatchComponent.find('#button-right');
-    expect(result).toBePresent();
-
-    result.simulate('click');
-
-    expect(history.push).toBeCalledWith('/notfound');
+    verifyClickingButtonEvent(WatchComponent.find('#button-right'), '/notfound');
   });
 
   test('it should trigger event handler when left button is been clicked', () => {
-    const result = WatchComponent.find('#button-left');
-    expect(result).toBePresent();
-
-    result.simulate('click');
-
-    expect(history.push).toBeCalledWith('/notfound');
+    verifyClickingButtonEvent(WatchComponent.find('#button-left'), '/notfound');
   });
 
   test('it should trigger event handler when top button is been clicked', () => {
-    const result = WatchComponent.find('#button-top');
-    expect(result).toBePresent();
-
-    result.simulate('click');
-
-    expect(history.push).toBeCalledWith('/notfound');
+    verifyClickingButtonEvent(WatchComponent.find('#button-top'), '/notfound');
   });
 
   test('it should trigger event handler when bottom button is been clicked', () => {
-    const result = WatchComponent.find('#button-bottom');
-    expect(result).toBePresent();
-
-    result.simulate('click');
-    expect(history.push).toBeCalledWith('/notfound');
+    verifyClickingButtonEvent(WatchComponent.find('#button-bottom'), '/notfound');
   });
 
   test('it should contain screen layout component', () => {
