@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Button from '../components/Button/Button';
 
-import '../../app/components/Watch/watch.scss';
+import '../components/Watch/watch.scss';
 
 export default class WatchWrapper extends React.Component {
   render() {
