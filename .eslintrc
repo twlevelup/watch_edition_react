@@ -22,15 +22,15 @@ env:
 
 rules:
   arrow-body-style: 0
-  arrow-parens: 0
+  arrow-parens: "error"
   class-methods-use-this: 0
   func-names: 0
   indent: ["warn", 2]
   indent-legacy: "off"
   max-len: ["error", 120]
-  new-cap: 0
+  new-cap: "warn"
   no-plusplus: 0
-  no-return-assign: 0
+  no-return-assign: "error"
   quote-props: 0
   template-curly-spacing: [2, "always"]
   comma-dangle: ["error", {
@@ -41,12 +41,12 @@ rules:
     "functions": "never"
   }]
   jsx-quotes: [1, "prefer-single"]
-  react/forbid-prop-types: 0
+  react/forbid-prop-types: "error"
   react/jsx-curly-spacing: [2, "always"]
   react/jsx-filename-extension: 0
   react/jsx-boolean-value: 0
   react/prefer-stateless-function: 0
-  import/extensions: 0
-  import/no-extraneous-dependencies: 0
-  import/no-unresolved: 0
+  import/extensions: 'error'
+  import/no-extraneous-dependencies: ["error", {"devDependencies": true}]
+  import/no-unresolved: 'error'
   import/prefer-default-export: 0

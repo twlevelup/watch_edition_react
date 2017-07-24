@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Watch from './Watch.jsx';
+import Watch from './Watch';
 import history from '../../../framework/Router/BrowserHistory';
 import ScreenLayout from '../ScreenLayout/ScreenLayout';
 
@@ -12,7 +12,9 @@ describe('Watch component', () => {
   const dummyNotificationEvent = { displayNotification: true, text: 'test' };
   beforeEach(() => {
     WatchComponent = shallow(
-      <Watch notificationEvent={ dummyNotificationEvent } />);
+      <Watch notificationEvent={ dummyNotificationEvent }>
+        <div>Mock</div>
+      </Watch>);
   });
 
   const verifyClickingButtonEvent = (result, resultPath) => {

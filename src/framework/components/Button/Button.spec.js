@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from './Button.jsx';
+import Button from './Button';
 
 describe('Button component', () => {
   const buttonId = 'button-id';
