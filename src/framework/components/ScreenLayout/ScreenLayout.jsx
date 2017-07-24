@@ -10,10 +10,10 @@ class ScreenLayout extends React.Component {
       return React.cloneElement(child, {
         handlerMapper: newMap => { this.props.handlerMapper(newMap); },
       });
-    }
+    };
 
     const wrapChild = child => {
-      const clonedChild = injectHandlerMap(child)
+      const clonedChild = injectHandlerMap(child);
       if (clonedChild.props.path) {
         return (<Route
           exact

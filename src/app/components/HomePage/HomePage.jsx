@@ -14,7 +14,7 @@ export default class HomePage extends React.Component {
     };
   }
 
-  notificationHandler = (newEvent = {}) => {
+  notificationHandler = (newEvent = this.state.notificationEvent) => {
     this.setState({ notificationEvent: newEvent });
   };
 

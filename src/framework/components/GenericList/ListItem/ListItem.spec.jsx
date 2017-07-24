@@ -17,6 +17,10 @@ describe('List Item', () => {
     });
   });
 
+  test('it should have no class by default', () => {
+    expect(shallow(<ListItem label='' text='' />).find('span').first()).toHaveClassName('');
+  });
+
   describe('When rendered with a className', () => {
     test('it should have that class', () => {
       expect(shallow(<ListItem label='' text='' className='testListClass' />)).toHaveClassName('testListClass');
