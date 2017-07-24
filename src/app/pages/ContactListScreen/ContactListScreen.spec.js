@@ -11,6 +11,10 @@ describe('ContactListScreen component', () => {
     expect(componentWrapper.find('.title')).toBePresent();
   });
 
+  test('it should have class[contact-screen]', () => {
+    expect(componentWrapper).toHaveClassName('contact-screen');
+  });
+
   test('it should contain a GenericList component', () => {
     expect(componentWrapper.find('GenericList')).toBePresent();
   });

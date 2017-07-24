@@ -3,21 +3,44 @@ import { shallow } from 'enzyme';
 import HomePage from './HomePage.jsx';
 
 describe('HomePage', () => {
-  const homeContainerWrapper = shallow(
-    <HomePage />
-  );
-
   test('it should display the Watch component', () => {
-    expect(homeContainerWrapper.find('Watch')).toBePresent();
+    expect(shallow(<HomePage />).find('Watch')).toBePresent();
   });
 
   test('it should display the LevelUp title', () => {
-    const result = homeContainerWrapper.find('h1');
+    const result = shallow(<HomePage />).find('h1');
     expect(result).toHaveText('LevelUp Watch Edition');
   });
 
-  test('it should display the NotifierForm', () => {
-    expect(homeContainerWrapper.find('NotificationForm')).toBePresent();
+  describe('When rendered with NotificationForm as a child component', () => {
+    test('it should display the NotificationForm', () => {
+      expect(shallow(<HomePage />).find('NotificationForm')).toBePresent();
+    });
+
+    test('it should have an event handler that updates the components state', () => {
+      expect(shallow(<HomePage />).find('NotificationForm')).toBePresent();
+    });
+
+    test('it should pass the defaultText prop to NotificationForm', () => {
+      const componentWrapper = shallow(<HomePage />);
+      const dummyState = { notificationEvent: { text: 'testText' } };
+      componentWrapper.setState(dummyState);
+      expect(componentWrapper.find('NotificationForm')).toHaveProp('defaultText', dummyState.notificationEvent.text);
+    });
+
+    test('it should pass notificationEvent callback handler to NotificationForm', () => {
+      const componentWrapper = shallow(<HomePage />);
+      expect(componentWrapper.find('NotificationForm').props().handleEvent).toBe(
+        componentWrapper.find('NotificationForm').props().handleEvent);
+    });
+
+    test('it should default state for the notification event', () => {
+      const notificationEvent = {
+        text: 'Default notification text',
+        displayNotification: false,
+      };
+      expect(shallow(<HomePage />)).toHaveState('notificationEvent', notificationEvent);
+    });
   });
 });
 

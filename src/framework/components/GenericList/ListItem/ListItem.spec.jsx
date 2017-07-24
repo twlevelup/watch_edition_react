@@ -16,4 +16,10 @@ describe('List Item', () => {
       expect(component.find('.value').text()).toEqual(item.text);
     });
   });
+
+  describe('When rendered with a className', () => {
+    test('it should have that class', () => {
+      expect(shallow(<ListItem label='' text='' className='testListClass' />)).toHaveClassName('testListClass');
+    });
+  });
 });
