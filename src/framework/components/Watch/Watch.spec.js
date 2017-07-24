@@ -64,7 +64,7 @@ describe('Watch component', () => {
 
   test('it should contain screen layout component', () => {
     const result = WatchComponent.find('ScreenLayout');
-    expect(result).toHaveProp('handlerMapper', WatchComponent.instance().mapEventHandler);
+    expect(result).toHaveLength(1);
   });
 
   test('it should update event handlers', () => {
