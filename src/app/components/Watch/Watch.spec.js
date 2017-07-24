@@ -92,5 +92,24 @@ describe('Watch component', () => {
     expect(result).toHaveProp('handlerMapper', WatchComponent.instance().mapEventHandler);
   });
 
+  test('it should update event handlers', () => {
+    let mockFunc = () => {
+      jest.fn();
+    };
+    let newEventHandlers =
+      {
+        LEFT: mockFunc,
+        RIGHT: mockFunc,
+        BOTTOM: mockFunc,
+        TOP: mockFunc,
+      };
+    expect(WatchComponent.instance().eventHandlers).not.toEqual(newEventHandlers);
+
+    WatchComponent.instance().mapEventHandler(newEventHandlers);
+
+    expect(WatchComponent.instance().eventHandlers).toEqual(newEventHandlers);
+
+  });
+
 });
 

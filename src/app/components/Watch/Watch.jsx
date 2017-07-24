@@ -57,7 +57,7 @@ export default class Watch extends React.Component {
           <Button id='button-bottom' onClick={() => this.eventHandlers.BOTTOM()}/>
           <Button id='button-top' onClick={() => this.eventHandlers.TOP()}/>
           <ViewRouter>
-            <ScreenLayout handlerMapper={ this.mapEventHandler }>
+            <ScreenLayout handlerMapper={this.mapEventHandler}>
               <HomeScreen path='/'/>
               <ContactListScreen path='/contacts' contacts={contacts}/>
               <NotFoundScreen path='/notfound'/>
