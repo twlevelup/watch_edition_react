@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Watch from './Watch.jsx';
 import history from '../../../framework/Router/BrowserHistory';
+import ScreenLayout from '../ScreenLayout/ScreenLayout';
 
 jest.mock('../../../framework/Router/BrowserHistory');
 history.push = jest.fn();
@@ -79,7 +80,7 @@ describe('Watch component', () => {
       };
     expect(WatchComponent.instance().eventHandlers).not.toEqual(newEventHandlers);
 
-    WatchComponent.instance().mapEventHandler(newEventHandlers);
+    WatchComponent.find(ScreenLayout).prop('handlerMapper')(newEventHandlers);
 
     expect(WatchComponent.instance().eventHandlers).toEqual(newEventHandlers);
   });

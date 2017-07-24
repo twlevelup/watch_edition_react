@@ -2,14 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './watch.scss';
-import Button from '../../../framework/components/Button/Button';
-import ViewRouter from '../../../framework/Router/ViewRouter';
-import history from '../../../framework/Router/BrowserHistory';
-import HomeScreen from '../../pages/HomeScreen/HomeScreen';
-import ContactListScreen from '../../pages/ContactListScreen/ContactListScreen';
-import NotFoundScreen from '../../pages/NotFoundScreen/NotFoundScreen';
-import ScreenLayout from '../../../framework/components/ScreenLayout/ScreenLayout';
-import contacts from '../../data/contacts.json';
+import Button from '../Button/Button';
+import ViewRouter from '../../Router/ViewRouter';
+import history from '../../Router/BrowserHistory';
+import ScreenLayout from '../ScreenLayout/ScreenLayout';
 import NotificationPopup from './NotificationPopup/NotificationPopup';
 
 
@@ -50,10 +46,8 @@ export default class Watch extends React.Component {
           <Button id='button-bottom' onClick={ () => this.eventHandlers.BOTTOM() } />
           <Button id='button-top' onClick={ () => this.eventHandlers.TOP() } />
           <ViewRouter>
-            <ScreenLayout handlerMapper={ this.mapEventHandler }>
-              <HomeScreen path='/' />
-              <ContactListScreen path='/contacts' contacts={ contacts } />
-              <NotFoundScreen path='/notfound' />
+            <ScreenLayout handlerMapper={ newMap => mapEventHandler(newMap) }>
+              {this.props.children}
             </ScreenLayout>
           </ViewRouter>
         </div>
@@ -68,4 +62,8 @@ Watch.propTypes = {
     displayNotification: PropTypes.bool,
     text: PropTypes.string,
   }).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
