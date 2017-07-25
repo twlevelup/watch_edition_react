@@ -3,6 +3,11 @@ import { shallow } from 'enzyme';
 import GenericList from './GenericList';
 
 describe('GenericList component', () => {
+  let componentWrapper;
+  beforeEach(() => {
+    componentWrapper = shallow(<GenericList items={ [] } />);
+  });
+
   describe('When a list of objects is passed to the [items] props', () => {
     const dummyContactObject = { name: 'ThoughtWorks', phone: '02637434' };
     const dummyAddressObject = { unit: '51', 'POSTAL ADDRESS': 'somwhere on mars' };
@@ -18,13 +23,13 @@ describe('GenericList component', () => {
 
   describe('When rendered without props', () => {
     test('it should be rendered with no items', () => {
-      expect(shallow(<GenericList />).find('.generic-list')).toBePresent();
+      expect(componentWrapper.find('.generic-list')).toBePresent();
     });
   });
 
   describe('When no [class] property is set', () => {
     test('it should set the class to default-list', () => {
-      expect(shallow(<GenericList items={ [] } />).find('.generic-list')).toBePresent();
+      expect(componentWrapper.find('.generic-list')).toBePresent();
     });
   });
 

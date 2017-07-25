@@ -1,18 +1,13 @@
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import React from 'react';
-import './date.scss';
+import './date.css';
 
-class Watch extends React.Component {
-  render() {
-    const { format } = this.props;
-    return (
-      <div id='date-display'>
-        <p className='clock-date'>Date: <Moment format={ format } /></p>
-      </div>
-    );
-  }
-}
+const Watch = ({ format }) => (
+  <div id='date-display'>
+    <p className='clock-date'>Date: <Moment format={ format } /></p>
+  </div>
+);
 
 Watch.propTypes = {
   format: PropTypes.string,

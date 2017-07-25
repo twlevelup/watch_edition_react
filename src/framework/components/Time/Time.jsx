@@ -1,7 +1,7 @@
 import Moment from 'react-moment';
 import React from 'react';
 import PropTypes from 'prop-types';
-import './time.scss';
+import './time.css';
 
 const Time = (props) => {
   const { format } = props;

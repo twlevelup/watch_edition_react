@@ -1,0 +1,89 @@
+
+#watch .strap {
+  position: absolute;
+  z-index: 1;
+  left: 4.4em;
+  width: 11.2em;
+  height: 7.6em;
+  background: #785734;
+  border-radius: 10px 10px 0 0;
+}
+
+#watch .strap.strap-top {
+  top: 0;
+}
+
+#watch .strap.strap-bottom {
+  bottom: 0;
+  transform: rotate(180deg);
+}
+
+#watch ::-webkit-scrollbar {
+  display: none;
+}
+
+.case {
+  position: relative;
+  z-index: 2;
+  background: #030303;
+  width: 300px;
+  height: 300px;
+  border-radius: 4em;
+  background: #3F484A; /* Dial colour */
+  border: 10px solid silver; /* Face border */
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5), 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.watch {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  margin: 0 auto;
+  width: 22.8em;
+  padding: 7.3em 0
+}
+
+#watch #button-right {
+  position: absolute;
+  right: -2.3em;
+  top: 10.3em;
+  height: 6.5em;
+  width: 0.8em;
+  border-left: 0px;
+  background: #e4e4e4;
+}
+
+#watch #button-left {
+  position: absolute;
+  left: -2.15em;
+  top: 10.3em;
+  height: 6.5em;
+  width: 0.8em;
+  border-left: 0px;
+  background: #e4e4e4;
+  transform: rotateY(180deg);
+}
+
+#watch #button-bottom {
+  position: absolute;
+  left: 12.8em;
+  bottom: -4.8em;
+  height: 6.5em;
+  width: 0.8em;
+  border-left: 0px;
+  background: #e4e4e4;
+  transform: rotateZ(90deg);
+}
+
+#watch #button-top {
+  position: absolute;
+  left: 12.8em;
+  top: -4.8em;
+  height: 6.5em;
+  width: 0.8em;
+  border-left: 0px;
+  background: #e4e4e4;
+  transform: rotateZ(90deg) rotateY(180deg);
+}
+
+

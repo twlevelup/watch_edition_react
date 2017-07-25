@@ -1,11 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Watch from './Watch';
-import history from '../../../framework/Router/BrowserHistory';
+import ButtonAction from '../../../framework/util/ButtonAction';
 import ScreenLayout from '../ScreenLayout/ScreenLayout';
 
-jest.mock('../../../framework/Router/BrowserHistory');
-history.push = jest.fn();
+jest.mock('../../../framework/util/ButtonAction');
+ButtonAction.goToPage = jest.fn();
+ButtonAction.scrollDown = jest.fn();
+ButtonAction.scrollUp = jest.fn();
 
 describe('Watch component', () => {
   let WatchComponent;
@@ -17,10 +19,16 @@ describe('Watch component', () => {
       </Watch>);
   });
 
-  const verifyClickingButtonEvent = (result, resultPath) => {
+  afterEach(() => {
+    ButtonAction.goToPage.mockClear();
+    ButtonAction.scrollDown.mockClear();
+    ButtonAction.scrollUp.mockClear();
+  });
+
+  const verifyClickingButtonEvent = (buttonAction, result, resultPath) => {
     expect(result).toBePresent();
     result.simulate('click');
-    expect(history.push).toBeCalledWith(resultPath);
+    expect(buttonAction).toBeCalledWith(resultPath);
   };
 
 
@@ -49,19 +57,19 @@ describe('Watch component', () => {
   });
 
   test('it should trigger event handler when right button is been clicked', () => {
-    verifyClickingButtonEvent(WatchComponent.find('#button-right'), '/notfound');
+    verifyClickingButtonEvent(ButtonAction.goToPage, WatchComponent.find('#button-right'), '/notfound');
   });
 
   test('it should trigger event handler when left button is been clicked', () => {
-    verifyClickingButtonEvent(WatchComponent.find('#button-left'), '/notfound');
+    verifyClickingButtonEvent(ButtonAction.goToPage, WatchComponent.find('#button-left'), '/notfound');
   });
 
   test('it should trigger event handler when top button is been clicked', () => {
-    verifyClickingButtonEvent(WatchComponent.find('#button-top'), '/notfound');
+    verifyClickingButtonEvent(ButtonAction.scrollUp, WatchComponent.find('#button-top'), '.screen-layout');
   });
 
   test('it should trigger event handler when bottom button is been clicked', () => {
-    verifyClickingButtonEvent(WatchComponent.find('#button-bottom'), '/notfound');
+    verifyClickingButtonEvent(ButtonAction.scrollDown, WatchComponent.find('#button-bottom'), '.screen-layout');
   });
 
   test('it should contain screen layout component', () => {
@@ -85,5 +93,12 @@ describe('Watch component', () => {
     WatchComponent.find(ScreenLayout).prop('handlerMapper')(newEventHandlers);
 
     expect(WatchComponent.instance().eventHandlers).toEqual(newEventHandlers);
+  });
+
+  test('mapEventHandler function should not fail when there are no new handlers ', () => {
+    const dummyHandlers = { RABIT_WHOLE: jest.fn() };
+    WatchComponent.instance().eventHandlers = dummyHandlers;
+    WatchComponent.instance().mapEventHandler();
+    expect(WatchComponent.instance().eventHandlers).toEqual(dummyHandlers);
   });
 });

@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './watch.scss';
+import './watch.css';
 import Button from '../Button/Button';
 import ViewRouter from '../../Router/ViewRouter';
-import history from '../../Router/BrowserHistory';
+import ButtonAction from '../../util/ButtonAction';
 import ScreenLayout from '../ScreenLayout/ScreenLayout';
 import NotificationPopup from '../NotificationPopup/NotificationPopup';
-
-
-const goToLink = (link) => {
-  history.push(link);
-};
 
 export default class Watch extends React.Component {
 
@@ -19,10 +14,10 @@ export default class Watch extends React.Component {
     super(props);
 
     this.eventHandlers = {
-      LEFT: () => { goToLink('/notfound'); },
-      RIGHT: () => { goToLink('/notfound'); },
-      BOTTOM: () => { goToLink('/notfound'); },
-      TOP: () => { goToLink('/notfound'); },
+      LEFT: () => { ButtonAction.goToPage('/notfound'); },
+      RIGHT: () => { ButtonAction.goToPage('/notfound'); },
+      BOTTOM: () => { ButtonAction.scrollDown('.screen-layout'); },
+      TOP: () => { ButtonAction.scrollUp('.screen-layout'); },
     };
   }
 
