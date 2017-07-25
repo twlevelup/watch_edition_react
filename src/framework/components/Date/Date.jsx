@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import React from 'react';
-import './date.scss';
+import './date.css';
 
 class Watch extends React.Component {
   render() {
