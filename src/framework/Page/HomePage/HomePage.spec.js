@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import HomePage from './HomePage';
+import WatchApp from '../../watch/WatchApp';
 
 describe('HomePage', () => {
-  test('it should display the Watch component', () => {
-    expect(shallow(<HomePage />).find('Watch')).toBePresent();
+  test('it should display the WatchApp component', () => {
+    expect(shallow(<HomePage />).find(WatchApp)).toBePresent();
   });
 
   test('it should display the LevelUp title', () => {
@@ -51,6 +52,18 @@ describe('HomePage', () => {
         displayNotification: false,
       };
       expect(shallow(<HomePage />)).toHaveState('notificationEvent', notificationEvent);
+    });
+
+    it('it should pass page components enhanced with the notification event', () => {
+      const defaultNotification = {
+        text: 'Default notification text',
+        displayNotification: false,
+      };
+
+      const watchAppWrapper = shallow(<HomePage pages={ [{ component: {} }] } />).find(WatchApp);
+      const enhancedComponent = watchAppWrapper.props().pages[0].component();
+
+      expect(enhancedComponent.props).toMatchObject({ notificationEvent: defaultNotification });
     });
   });
 });

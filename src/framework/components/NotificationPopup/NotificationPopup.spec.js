@@ -4,7 +4,7 @@ import NotificationPopup from './NotificationPopup';
 
 describe('NotificationPopup component', () => {
   describe('When rendered with [show] property set to false', () => {
-    test('it should be hidden', () => {
+    it('it should be hidden', () => {
       const wrapper = shallow(<NotificationPopup show={ false } text='hidden' />);
       expect(wrapper.find('.notification-popup')).toHaveClassName('hidden');
     });

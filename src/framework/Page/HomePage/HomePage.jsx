@@ -1,11 +1,11 @@
 import React from 'react';
-import Watch from '../../../framework/components/Watch/Watch';
-import './HomePage.css';
+import PropTypes from 'prop-types';
+import { mapProps } from 'recompose';
+
 import NotificationForm from '../NotificationForm/NotificationForm';
-import HomeScreen from '../../pages/HomeScreen/HomeScreen';
-import ContactListScreen from '../../pages/ContactListScreen/ContactListScreen';
-import NotFoundScreen from '../../pages/NotFoundScreen/NotFoundScreen';
-import contacts from '../../data/contacts.json';
+import WatchApp from '../../watch/WatchApp';
+
+import './HomePage.css';
 
 export default class HomePage extends React.Component {
   constructor(props) {
@@ -23,24 +23,38 @@ export default class HomePage extends React.Component {
   };
 
   render() {
+    const { notificationEvent } = this.state;
+    const withNotifications = mapProps(props => ({ ...props, notificationEvent }));
     return (
       <div id='home-container'>
         <div id='left'>
           <h1>LevelUp Watch Edition</h1>
           <p>This is LevelUp Watch Edition sample app.</p>
           <NotificationForm
-            defaultText={ this.state.notificationEvent.text }
+            defaultText={ notificationEvent.text }
             handleEvent={ this.notificationHandler }
           />
         </div>
         <div id='right'>
-          <Watch notificationEvent={ this.state.notificationEvent }>
-            <HomeScreen path='/' />
-            <ContactListScreen path='/contacts' contacts={ contacts } />
-            <NotFoundScreen path='/notfound' />
-          </Watch>
+          <WatchApp pages={
+            this.props.pages.map(({ path, component }) => ({
+              path,
+              component: withNotifications(component),
+            })) }
+          />
         </div>
       </div>
     );
   }
 }
+
+HomePage.propTypes = {
+  pages: PropTypes.arrayOf(PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    component: PropTypes.func.isRequired,
+  })),
+};
+
+HomePage.defaultProps = {
+  pages: [],
+};
