@@ -4,6 +4,7 @@ import './HomePage.css';
 import NotificationForm from '../NotificationForm/NotificationForm';
 import HomeScreen from '../../pages/HomeScreen/HomeScreen';
 import ContactListScreen from '../../pages/ContactListScreen/ContactListScreen';
+import CounterScreen from '../../pages/CounterScreen/CounterScreen';
 import NotFoundScreen from '../../pages/NotFoundScreen/NotFoundScreen';
 import contacts from '../../data/contacts.json';
 
@@ -37,6 +38,7 @@ export default class HomePage extends React.Component {
           <Watch notificationEvent={ this.state.notificationEvent }>
             <HomeScreen path='/' />
             <ContactListScreen path='/contacts' contacts={ contacts } />
+            <CounterScreen path='/counter' />
             <NotFoundScreen path='/notfound' />
           </Watch>
         </div>

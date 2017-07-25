@@ -14,7 +14,7 @@ export default class HomeScreen extends React.Component {
   }
 
   buttonActions = {
-    LEFT: () => history.push('/'),
+    LEFT: () => history.push('/counter'),
     RIGHT: () => history.push('/contacts'),
   };
 
