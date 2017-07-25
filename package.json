@@ -47,6 +47,7 @@
     "jest-css-modules": "^1.1.0",
     "jest-enzyme": "^3.6.1",
     "react-test-renderer": "^15.6.1",
+    "recompose": "^0.24.0",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.6.1"

@@ -22,7 +22,7 @@ const createWatchPage = (actions, initalPageState = {}) => (
         const { pageState } = this.state;
         const boundActions = mapObjectValues(actions, action => action(pageState, this.updatePageState, this.props));
         return (
-          <WatchPage actions={ boundActions } >
+          <WatchPage actions={ boundActions } notificationEvent={ props.notificationEvent } >
             <PageComponent { ...props } pageState={ pageState } />
           </WatchPage>
         );

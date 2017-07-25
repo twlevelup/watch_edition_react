@@ -5,7 +5,7 @@ import HomeScreen from './app/pages/HomeScreen/HomeScreen';
 import NotFoundScreen from './app/pages/NotFoundScreen/NotFoundScreen';
 
 import createWatchPage from './framework/watch/createWatchPage';
-import WatchApp from './framework/watch/WatchApp';
+import WatchApp from './framework/Page/HomePage/HomePage';
 import { changePage } from './framework/watch/actions';
 
 const homeActions = {
