@@ -1,12 +1,9 @@
 import React from 'react';
 
-export default class NotFoundScreen
-  extends React.Component {
-  render() {
-    return (
-      <div id='not-found-page'>
-        Oh Noes!
-      </div>
-    );
-  }
-}
+const NotFoundScreen = () => (
+  <div id='not-found-page'>
+    Oh Noes!
+  </div>
+);
+
+export default NotFoundScreen;
