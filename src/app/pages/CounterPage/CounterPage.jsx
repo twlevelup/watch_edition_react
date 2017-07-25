@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CounterPage = ({ pageState }) => (
+const CounterPage = ({ number }) => (
   <div>
-    <h1>{pageState.number}</h1>
+    <h1>{number}</h1>
   </div>
 );
 
 CounterPage.propTypes = {
-  pageState: PropTypes.shape({ number: PropTypes.number }),
+  number: PropTypes.number,
 };
 
 CounterPage.defaultProps = {
-  pageState: 0,
+  number: 0,
 };
 
 export default CounterPage;

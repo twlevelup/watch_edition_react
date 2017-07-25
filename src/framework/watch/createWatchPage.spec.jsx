@@ -46,7 +46,7 @@ describe('WatchPage HigherOrderComponent', () => {
     const Page = createWatchPage(actions, initalState)(DummyComponent);
     const wrapper = shallow(<Page />);
 
-    expect(shallowRenderPageWrapper(wrapper).find(DummyComponent)).toHaveProp('pageState', initalState);
+    expect(shallowRenderPageWrapper(wrapper).find(DummyComponent)).toHaveProp('some', initalState.some);
   });
 
   it('should pass any changes of state to the page', () => {
@@ -58,7 +58,7 @@ describe('WatchPage HigherOrderComponent', () => {
 
     const pageWrapper = shallowRenderPageWrapper(wrapper).setState({ pageState: newState });
 
-    expect(pageWrapper.find(DummyComponent)).toHaveProp('pageState', newState);
+    expect(pageWrapper.find(DummyComponent)).toHaveProp('some', newState.some);
   });
 
   it('should render the WatchPage', () => {
@@ -104,7 +104,7 @@ describe('WatchPage HigherOrderComponent', () => {
       boundActions.left();
       mockFunctions.left.mock.calls[0][0](newState);
 
-      expect(pageWrapper.find(DummyComponent).props().pageState).toBe(newState);
+      expect(pageWrapper.find(DummyComponent).props()).toEqual(newState);
     });
 
     it('should bind the props that are passed to the parent component', () => {
