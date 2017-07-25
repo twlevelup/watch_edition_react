@@ -45,7 +45,7 @@ rules:
   react/jsx-curly-spacing: [2, "always"]
   react/jsx-filename-extension: 0
   react/jsx-boolean-value: 0
-  react/prefer-stateless-function: 0
+  react/prefer-stateless-function: [ "error", { "ignorePureComponents": true } ]
   import/extensions: 'error'
   import/no-extraneous-dependencies: ["error", {"devDependencies": true}]
   import/no-unresolved: 'error'
