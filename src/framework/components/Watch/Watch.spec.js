@@ -86,4 +86,11 @@ describe('Watch component', () => {
 
     expect(WatchComponent.instance().eventHandlers).toEqual(newEventHandlers);
   });
+
+  test('mapEventHandler function should not fail when there are no new handlers ', () => {
+    const dummyHandlers = { RABIT_WHOLE: jest.fn() };
+    WatchComponent.instance().eventHandlers = dummyHandlers;
+    WatchComponent.instance().mapEventHandler();
+    expect(WatchComponent.instance().eventHandlers).toEqual(dummyHandlers);
+  });
 });

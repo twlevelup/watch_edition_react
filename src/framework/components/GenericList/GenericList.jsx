@@ -13,8 +13,7 @@ const objToListItem = (obj, index) => {
 };
 
 const GenericList = ({ className, items }) => {
-  const itemList = items ? items.map(objToListItem) : [];
-
+  const itemList = items.map(objToListItem);
   return (
     <div className={ className }>
       <ul>{itemList}</ul>
@@ -29,6 +28,7 @@ GenericList.propTypes = {
 
 GenericList.defaultProps = {
   className: 'generic-list',
+  items: [],
 };
 
 export default GenericList;
