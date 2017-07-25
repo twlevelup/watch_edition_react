@@ -4,11 +4,9 @@ import ViewRouter from './ViewRouter';
 import BrowserHistory from './BrowserHistory';
 
 describe('ViewRouter component', () => {
-  class MockChild extends React.Component {
-    render() {
-      return <div>Mock</div>;
-    }
-  }
+  const MockChild = () => {
+    return <div>Mock</div>;
+  };
   const componentWrapper = shallow(
     <ViewRouter>
       <MockChild />
