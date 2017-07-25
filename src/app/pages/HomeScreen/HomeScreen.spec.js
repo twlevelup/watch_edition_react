@@ -6,9 +6,11 @@ import Time from '../../../framework/components/Time/Time';
 import history from '../../../framework/Router/BrowserHistory';
 
 jest.mock('../../../framework/Router/BrowserHistory');
-history.push = jest.fn();
 
 describe('HomeScreen component', () => {
+  beforeEach(() => {
+    history.push = jest.fn();
+  });
   test('it should have Date component', () => {
     expect(shallow(<HomeScreen />)).toContainReact(<Time />);
   });
@@ -21,12 +23,16 @@ describe('HomeScreen component', () => {
     expect(shallow(<HomeScreen />).find('#home-page-content')).toBePresent();
   });
 
-  test('it should have a LEFT button config of going to Home page', () => {
-    expect(shallow(<HomeScreen />).instance().buttonActions.LEFT()).toEqual(history.push('/'));
+  test('it should have a LEFT button config of going to Counter Page', () => {
+    const wrapper = shallow(<HomeScreen />);
+    wrapper.instance().buttonActions.LEFT();
+    expect(history.push).toHaveBeenCalledWith('/counter');
   });
 
   test('it should have a RIGHT button config of going to contactList page', () => {
-    expect(shallow(<HomeScreen />).instance().buttonActions.RIGHT()).toEqual(history.push('/contacts'));
+    const wrapper = shallow(<HomeScreen />);
+    wrapper.instance().buttonActions.RIGHT();
+    expect(history.push).toHaveBeenCalledWith('/contacts');
   });
 
   describe('When rendered with handlerMapper ', () => {
