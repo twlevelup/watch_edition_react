@@ -2,36 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import './screen_layout.css';
+import injectHandlerMap from './HandlerMapInjection';
 
-class ScreenLayout extends React.Component {
-  injectHandlerMap = (child) => {
-    return React.cloneElement(child, {
-      handlerMapper: (newMap) => { this.props.handlerMapper(newMap); },
-    });
+const ScreenLayout = ({ children, className, handlerMapper }) => {
+  const wrapChild = (child) => {
+    const clonedChild = injectHandlerMap(child, handlerMapper);
+    if (clonedChild.props.path) {
+      return (<Route
+        exact
+        path={ clonedChild.props.path }
+        component={ () => { return clonedChild; } }
+      />);
+    }
+    return clonedChild;
   };
 
-  render() {
-    const wrapChild = (child) => {
-      const clonedChild = this.injectHandlerMap(child);
-      if (clonedChild.props.path) {
-        return (<Route
-          exact
-          path={ clonedChild.props.path }
-          component={ () => { return clonedChild; } }
-        />);
-      }
-      return clonedChild;
-    };
-
-    return (
-      <div>
-        <div className={ this.props.className }>
-          {React.Children.map(this.props.children, wrapChild)}
-        </div>
+  return (
+    <div>
+      <div className={ className }>
+        {React.Children.map(children, wrapChild)}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 ScreenLayout.propTypes = {
   className: PropTypes.string,
