@@ -19,4 +19,15 @@ describe('actions', () => {
       expect(history.push).toHaveBeenCalledWith('/page/1');
     });
   });
+  describe('changePageState', () => {
+    it('should create an action that changes the page state', () => {
+      const updateState = jest.fn();
+      const state = 1;
+      const addOne = actions.changePageState(oldState => oldState + 1)(state, updateState);
+
+      addOne();
+
+      expect(updateState).toHaveBeenCalledWith(2);
+    });
+  });
 });

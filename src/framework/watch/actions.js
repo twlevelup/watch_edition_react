@@ -4,3 +4,6 @@ export const changePage = location =>
     return () => props.history.push(loc);
   };
 
+export const changePageState = func => (
+    (pageState, updatePageState) => () => updatePageState(func(pageState))
+  );
