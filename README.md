@@ -4,16 +4,15 @@
 
 This git repo contains all the code you need to prototype apps for the Proto Watch.
 
-The [wiki](https://github.com/twlevelup/watch_edition/wiki) contains lots of useful documentation
+The [wiki](https://github.com/twlevelup/watch_edition_react/wiki) contains lots of useful documentation
 
 # Installation
 
-See the [Installation Instructions](https://github.com/twlevelup/watch_edition/wiki/Installation)
+See the [Installation Instructions](https://github.com/twlevelup/watch_edition_react/wiki/Installation)
 
 ## Continuous Integration
 
 This project is continuously deployed to heroku by [Circle CI](https://circleci.com).
-You can view this app at [https://twlevelup-watch-edition.herokuapp.com/](https://twlevelup-watch-edition.herokuapp.com/)
 
 
 ## Setup
@@ -33,9 +32,8 @@ Server is visible from the local network as well.
 2. Run ```git pull --rebase```
 3. Fix any merge conflicts
 4. Run
-```./go pre-commit``` (OS X)
-```npm -s run test``` (Windows)
-```docker-compose -f docker-compose.test.yml up``` (Docker)
+```./go precommit``` (OS X)
+```npm run precommit``` (Windows)
 4. Fix any errors
 5. Run ```git push```
 
