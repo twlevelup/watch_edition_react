@@ -3,40 +3,45 @@ import { shallow } from 'enzyme';
 import GenericList from './GenericList';
 
 describe('GenericList component', () => {
-  let componentWrapper;
-  beforeEach(() => {
-    componentWrapper = shallow(<GenericList items={ [] } />);
-  });
+  const DummyListItem = text => <div>{text}</div>;
+  const defaultProps = {
+    items: [],
+    className: 'some-class-name',
+    liClassName: 'lilili',
+    listItem: DummyListItem,
+  };
+
+  const composeComponent = (props = {}) => (
+    shallow(<GenericList { ...defaultProps } { ...props } />)
+  );
 
   describe('When a list of objects is passed to the [items] props', () => {
-    const dummyContactObject = { name: 'ThoughtWorks', phone: '02637434' };
-    const dummyAddressObject = { unit: '51', 'POSTAL ADDRESS': 'somwhere on mars' };
-
     test('it should list objects using ListItem component', () => {
-      const contactsWrapper = shallow(
-        <GenericList class='test' items={ [dummyContactObject, dummyContactObject, dummyAddressObject] } />
-      );
-      expect(contactsWrapper.find('li')).toHaveLength(3);
-      expect(contactsWrapper.find('ListItem')).toHaveLength(6);
+      const contactsList = composeComponent({
+        items: ['itemA', 'itemB'],
+      });
+      const listItems = contactsList.find('li');
+      expect(listItems).toHaveLength(2);
+      expect(listItems.at(0)).toHaveText('itemA');
+      expect(listItems.at(1)).toHaveText('itemB');
     });
   });
 
   describe('When rendered without props', () => {
     test('it should be rendered with no items', () => {
-      expect(componentWrapper.find('.generic-list')).toBePresent();
+      expect(composeComponent().hasClass(defaultProps.className)).toBeTruthy();
     });
   });
 
   describe('When no [class] property is set', () => {
     test('it should set the class to default-list', () => {
-      expect(componentWrapper.find('.generic-list')).toBePresent();
+      expect(composeComponent({ className: undefined }).hasClass('generic-list')).toBeTruthy();
     });
   });
 
   describe('When [class] property is set', () => {
     test('it should set the class to [class]', () => {
-      expect(shallow(<GenericList className='dummyDum-DumDum' items={ [] } />)
-        .find('.dummyDum-DumDum')).toBePresent();
+      expect(composeComponent({ className: 'yo' }).hasClass('yo')).toBeTruthy();
     });
   });
 });

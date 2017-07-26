@@ -3,19 +3,22 @@ import { shallow } from 'enzyme';
 import ContactListScreen from './ContactListScreen';
 
 describe('ContactListScreen component', () => {
-  const componentWrapper = shallow(
-    <ContactListScreen contacts={ [] } />
+  const defaultProps = {
+    contacts: [],
+  };
+  const composeComponent = (props = {}) => shallow(
+    <ContactListScreen { ...defaultProps } { ...props } />
   );
 
   test('it should have a title', () => {
-    expect(componentWrapper.find('.title')).toBePresent();
+    expect(composeComponent().find('.title')).toBePresent();
   });
 
   test('it should have class[contact-screen]', () => {
-    expect(componentWrapper).toHaveClassName('contact-screen');
+    expect(composeComponent()).toHaveClassName('contact-screen');
   });
 
   test('it should contain a GenericList component', () => {
-    expect(componentWrapper.find('GenericList')).toBePresent();
+    expect(composeComponent().find('GenericList')).toBePresent();
   });
 });
