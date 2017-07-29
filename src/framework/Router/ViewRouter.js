@@ -1,15 +1,13 @@
 import React from 'react';
-import { Router, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import PropTypes from 'prop-types';
-import history from './BrowserHistory';
+import browserHistory from './BrowserHistory';
 
 const ViewRouter = ({ children }) => {
   return (
-    <Router history={ history }>
-      <Switch>
-        { children }
-      </Switch>
-    </Router>
+    <ConnectedRouter history={ browserHistory }>
+      { children }
+    </ConnectedRouter>
   );
 };
 

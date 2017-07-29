@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './button.css';
 
-const Button = ({ id, onClick }) => (
-  <button id={ id } className='button' onClick={ onClick } />
-);
+const Button = ({ id, onClick }) => {
+  return (<button id={ id } className='button' onClick={ onClick } />);
+};
+
 
 Button.propTypes = {
   id: PropTypes.string,
@@ -13,7 +14,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   id: undefined,
-  onClick: undefined,
+  onClick: () => {},
 };
 
 export default Button;

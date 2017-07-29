@@ -1,21 +1,38 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ContactListScreen from './ContactListScreen';
+import { ContactListScreen, ContactScreenButtons } from './ContactListScreen';
+import ButtonAction from '../../../framework/util/ButtonAction';
+
+jest.mock('../../../framework/util/ButtonAction');
 
 describe('ContactListScreen component', () => {
-  const componentWrapper = shallow(
-    <ContactListScreen contacts={ [] } />
-  );
+  let componentWrapper;
+  beforeEach(() => {
+    jest.spyOn(ButtonAction, 'goToPage');
+    componentWrapper = shallow(
+      <ContactListScreen contacts={ [] } />
+    );
+  });
 
-  test('it should have a title', () => {
+  it('should have a title', () => {
     expect(componentWrapper.find('.title')).toBePresent();
   });
 
-  test('it should have class[contact-screen]', () => {
+  it('should have class[contact-screen]', () => {
     expect(componentWrapper).toHaveClassName('contact-screen');
   });
 
-  test('it should contain a GenericList component', () => {
+  it('should contain a GenericList component', () => {
     expect(componentWrapper.find('GenericList')).toBePresent();
+  });
+
+  it('should have a LEFT button config of going to Home Page', () => {
+    ContactScreenButtons.LEFT();
+    expect(ButtonAction.goToPage).toHaveBeenCalledWith('/');
+  });
+
+  it('should have a RIGHT button config of going to Counter page', () => {
+    ContactScreenButtons.RIGHT();
+    expect(ButtonAction.goToPage).toHaveBeenCalledWith('/counter');
   });
 });

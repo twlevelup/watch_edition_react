@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Route, StaticRouter } from 'react-router-dom';
+import { Route, StaticRouter } from 'react-router';
 
 import ScreenLayout from './ScreenLayout';
 
