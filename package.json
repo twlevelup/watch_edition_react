@@ -69,7 +69,7 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!*.css",
-      "!*/index.js"
+      "!**/index.js"
     ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest",
