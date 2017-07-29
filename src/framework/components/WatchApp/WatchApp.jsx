@@ -1,14 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Watch from '../../../framework/components/Watch/Watch';
-import './HomePage.css';
+import './WatchApp.css';
 import NotificationForm from '../NotificationForm/NotificationForm';
-import HomeScreen from '../../pages/HomeScreen/HomeScreen';
-import ContactScreen from '../../pages/ContactListScreen/ContactListScreen';
-import CounterScreen from '../../pages/CounterScreen/CounterScreen';
-import NotFoundScreen from '../../pages/NotFoundScreen/NotFoundScreen';
-import contacts from '../../data/contacts.json';
 
-class HomePage extends React.Component {
+export default class WatchApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +20,7 @@ class HomePage extends React.Component {
   };
 
   render() {
+    const { pages } = this.props;
     return (
       <div id='home-container'>
         <div id='left'>
@@ -36,10 +33,11 @@ class HomePage extends React.Component {
         </div>
         <div id='right'>
           <Watch notificationEvent={ this.state.notificationEvent }>
-            <HomeScreen path='/' />
-            <ContactScreen path='/contacts' contacts={ contacts } />
-            <CounterScreen path='/counter' />
-            <NotFoundScreen path='/notfound' />
+            {
+              pages.map(({ path, Component, props = {} }) => (
+                <Component key={ `route-${ path }` } path={ path } { ...props } />
+              ))
+            }
           </Watch>
         </div>
       </div>
@@ -47,4 +45,9 @@ class HomePage extends React.Component {
   }
 }
 
-export default HomePage;
+WatchApp.propTypes = {
+  pages: PropTypes.arrayOf(PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    Component: PropTypes.func,
+  })).isRequired,
+};
