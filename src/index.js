@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import HomePage from './framework/components/HomePage/HomePage';
+import WatchApp from './framework/components/WatchApp/WatchApp';
 
 import HomeScreen from './app/pages/HomeScreen/HomeScreen';
 import CounterScreen from './app/pages/CounterScreen/CounterScreen';
@@ -18,5 +18,5 @@ const pages = [
 ];
 
 
-ReactDOM.render(<HomePage pages={ pages } />, document.getElementById('root'));
+ReactDOM.render(<WatchApp pages={ pages } />, document.getElementById('root'));
 

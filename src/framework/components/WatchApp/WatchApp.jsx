@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Watch from '../../../framework/components/Watch/Watch';
-import './HomePage.css';
+import './WatchApp.css';
 import NotificationForm from '../NotificationForm/NotificationForm';
 
-export default class HomePage extends React.Component {
+export default class WatchApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +45,7 @@ export default class HomePage extends React.Component {
   }
 }
 
-HomePage.propTypes = {
+WatchApp.propTypes = {
   pages: PropTypes.arrayOf(PropTypes.shape({
     path: PropTypes.string.isRequired,
     Component: PropTypes.func,
