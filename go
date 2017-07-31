@@ -31,33 +31,31 @@ fi
 
 [[ -d node_modules ]] || initial_setup
 
-if [[ $1 ]]; then
-  if [[ $1 == "--help" || $1 == "-h" ]]; then
-    show_instructions
-  fi
-
-  if [[ $1 == "install" ]]; then
+case "$1" in
+  "install" | "i")
     npm -s install
-  fi
+    ;;
 
-  if [[ $1 == "test" ]]; then
+  "test" | "t" )
     npm -s test
     exit $?
-  fi
+    ;;
 
-  if [[ $1 == "test:dev" ]]; then
+  "test:dev" | "td")
     npm -s run test:dev
     exit $?
-  fi
+    ;;
 
-  if [[ $1 == "precommit" ]]; then
+  "precommit" | "p")
     npm -s run precommit
     exit $?
-  fi
+    ;;
 
-  if [[ $1 == "start" ]]; then
+  "start" | "s")
     npm run start
-  fi
-else
-  show_instructions
-fi
+    ;;
+
+  "--help" | "-h" | *)
+    show_instructions
+    ;;
+esac
