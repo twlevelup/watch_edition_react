@@ -4,15 +4,20 @@ command_exists () {
   type "$1" &> /dev/null ;
 }
 
+bold_text() {
+  echo -e "\033[1m$1\033[0m"
+}
+
 show_instructions () {
-  echo "Usage: ./go <command>"
+  echo "$(bold_text Usage): ./go <command>"
   echo ""
   echo "where <command> is one of:"
-  echo "    install       installs any required dependencies"
-  echo "    test          runs all your unit tests"
-  echo "    test:dev      runs all your unit tests and watch any changes (dev mode)"
-  echo "    precommit     prepares your changes to be committed"
-  echo "    start         runs your local development server at http://localhost:8000"
+  echo "    $(bold_text "setup         ")   setups your development machine"
+  echo "    $(bold_text "install   | i " )   installs any required dependencies"
+  echo "    $(bold_text "test      | t " )   runs all your unit tests"
+  echo "    $(bold_text "test:dev  | td")   runs all your unit tests and watch any changes (dev mode)"
+  echo "    $(bold_text "precommit | p " )   prepares your changes to be committed"
+  echo "    $(bold_text "start     | s " )   runs your local development server at http://localhost:8000"
 }
 
 setup_nvm () {
@@ -80,7 +85,7 @@ case "$1" in
     npm run start
     ;;
 
-  "--help" | "-h" | *)
+  *)
     show_instructions
     ;;
 esac
