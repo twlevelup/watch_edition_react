@@ -15,23 +15,48 @@ show_instructions () {
   echo "    start         runs your local development server at http://localhost:8000"
 }
 
-initial_setup () {
-  echo "It looks like this is your first time trying to run the app."
-  echo "Before you start, I need to set a few things up for you."
-  npm -s install
-  echo "All done! You can now start using the app!"
+setup_nvm () {
+  echo "Installing Node Version Manager (https://github.com/creationix/nvm)"
+
+  curl -o- "https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh" | bash
+
+  if [[ "$0" == *"zsh"* ]]; then
+    source ~/.zshrc
+  elif [[ "$0" == *"bash"* ]]; then
+    source ~/.bashrc
+  else
+    # I tried.
+    source ~/.profile
+    source ~/.bash_profile
+  fi
 }
 
-if ! command_exists node || ! command_exists npm; then
-  echo "You need node and npm to run this!"
-  echo "You'll need to install these yourself as I can't install them for you :("
-  echo "Try using NVM https://github.com/creationix/nvm"
-  exit 1
-fi
-
-[[ -d node_modules ]] || initial_setup
+echo "  _      ________      ________ _     _    _ _____    ____  _    _ _____ _      _____  "
+echo " | |    |  ____\ \    / /  ____| |   | |  | |  __ \  |  _ \| |  | |_   _| |    |  __ \ "
+echo " | |    | |__   \ \  / /| |__  | |   | |  | | |__) | | |_) | |  | | | | | |    | |  | |"
+echo " | |    |  __|   \ \/ / |  __| | |   | |  | |  ___/  |  _ <| |  | | | | | |    | |  | |"
+echo " | |____| |____   \  /  | |____| |___| |__| | |      | |_) | |__| |_| |_| |____| |__| |"
+echo " |______|______|   \/   |______|______\____/|_|      |____/ \____/|_____|______|_____/ "
+echo ""
+echo ""
 
 case "$1" in
+  "setup")
+
+    if ! [[ -d node_modules ]]; then
+      echo "It looks like this is your first time trying to run the app."
+      echo "Before you start, I need to set a few things up for you."
+      echo ""
+      echo ""
+    fi
+
+    setup_nvm
+
+    npm -s install
+
+    echo "All done! You can now start using the app!"
+    ;;
+
   "install" | "i")
     npm -s install
     ;;
