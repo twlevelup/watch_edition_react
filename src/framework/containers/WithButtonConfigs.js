@@ -18,8 +18,8 @@ const ButtonConfigsHOC = (WrappedComponent) => {
 function WithButtonConfigs(component, buttonConfigs) {
   const mapDispatchToProps = (dispatch) => {
     return {
-      onLoadRemapButtons: () => {
-        dispatch(remapButtons(buttonConfigs));
+      onLoadRemapButtons: (newButtonConfigs = buttonConfigs) => {
+        dispatch(remapButtons(newButtonConfigs));
       },
     };
   };
