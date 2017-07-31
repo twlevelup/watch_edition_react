@@ -10,10 +10,6 @@ bold_text() {
   echo -e "\033[1m$1\033[0m"
 }
 
-get_shell() {
-  ps -p $$ | tail -n 1 | awk '{ print $4 }'
-}
-
 green_tick() {
   echo -e "\033[1;92m✓\033[0m $1"
 }
@@ -31,7 +27,7 @@ show_instructions () {
 }
 
 set_nvm_env() {
-   # copied from NVM
+  # copied from NVM
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
@@ -40,9 +36,7 @@ set_nvm_env() {
 setup_nvm () {
   echo "Installing Node Version Manager (https://github.com/creationix/nvm)"
 
-  curl -o- "https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh" | bash
-
-  nvm install
+  curl --progress-bar -o- "https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh" | bash &> /dev/null
 }
 
 echo "  _      ________      ________ _     _    _ _____    ____  _    _ _____ _      _____  "
@@ -66,10 +60,10 @@ case "$1" in
 
     [[ -d node_modules ]] || intro_message
 
-    $has_nvm || setup_nvm
+    [[ -n $NVM_DIR ]] || setup_nvm
     echo $(green_tick "Installed nvm")
 
-    [[ "$(node -v)" = "v$node_version" ]] || nvm install
+    [[ "$(node -v)" = "v$node_version" ]] || nvm install &> /dev/null
     echo $(green_tick "Installed node v$node_version")
 
     [[ -d node_modules ]] || npm -s install > /dev/null
