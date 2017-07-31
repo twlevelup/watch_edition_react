@@ -27,7 +27,7 @@ describe('<CounterScreen />', () => {
     expect(wrapper).toHaveText('-1');
   });
 
-  it('it should have a RIGHT button cgoing to the home page', () => {
+  it('it should have a RIGHT button going to the home page', () => {
     const wrapper = shallow(<CounterScreen />);
     wrapper.instance().buttonActions.RIGHT();
     expect(history.push).toHaveBeenCalledWith('/');

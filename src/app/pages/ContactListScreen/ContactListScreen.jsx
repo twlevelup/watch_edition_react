@@ -6,10 +6,12 @@ import {
 } from 'prop-types';
 
 import GenericList from '../../../framework/components/GenericList/GenericList';
+import WithButtonConfigs from '../../../framework/containers/WithButtonConfigs';
+import ButtonAction from '../../../framework/util/ButtonAction';
 import Contact from './components/Contact/Contact';
 import './contact_list.css';
 
-const ContactListScreen = ({ contacts }) => {
+export const ContactListScreen = ({ contacts }) => {
   return (
     <div id='contact-screen' className='contact-screen'>
       <h1 className='title'>Contacts</h1>
@@ -30,4 +32,9 @@ ContactListScreen.propTypes = {
   })).isRequired,
 };
 
-export default ContactListScreen;
+export const ContactScreenButtons = {
+  LEFT: () => ButtonAction.goToPage('/'),
+  RIGHT: () => ButtonAction.goToPage('/counter'),
+};
+
+export default WithButtonConfigs(ContactListScreen, ContactScreenButtons);

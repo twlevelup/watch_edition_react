@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route } from 'react-router';
 import './screen_layout.css';
-import injectHandlerMap from './HandlerMapInjection';
 
-const ScreenLayout = ({ children, className, handlerMapper }) => {
+const ScreenLayout = ({ children, className }) => {
   const wrapChild = (child) => {
-    const clonedChild = injectHandlerMap(child, handlerMapper);
-    if (clonedChild.props.path) {
+    if (child.props.path) {
       return (<Route
         exact
-        path={ clonedChild.props.path }
-        component={ () => { return clonedChild; } }
+        path={ child.props.path }
+        component={ () => { return child; } }
       />);
     }
-    return clonedChild;
+    return child;
   };
 
   return (
@@ -28,7 +26,6 @@ const ScreenLayout = ({ children, className, handlerMapper }) => {
 
 ScreenLayout.propTypes = {
   className: PropTypes.string,
-  handlerMapper: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -37,7 +34,6 @@ ScreenLayout.propTypes = {
 
 ScreenLayout.defaultProps = {
   className: 'screen-layout',
-  handlerMapper: () => {},
 };
 
 export default ScreenLayout;
