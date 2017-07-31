@@ -1,35 +1,40 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { CounterScreenComponent } from './CounterScreen';
+import ButtonAction from '../../../framework/util/ButtonAction';
 
-import CounterScreen from './CounterScreen';
+jest.mock('../../../framework/util/ButtonAction');
 
-jest.mock('../../../framework/Router/BrowserHistory');
+describe('<CounterScreenComponent />', () => {
+  let componentWrapper;
+  let onLoadRemapButtons;
 
-describe('<CounterScreen />', () => {
   beforeEach(() => {
-    history.push = jest.fn();
+    onLoadRemapButtons = jest.fn();
+    componentWrapper = mount(<CounterScreenComponent onLoadRemapButtons={ onLoadRemapButtons } />);
+    jest.spyOn(ButtonAction, 'goToPage');
   });
 
   it('should display zero by default', () => {
-    const wrapper = shallow(<CounterScreen />);
-    expect(wrapper).toHaveText('0');
+    expect(componentWrapper).toHaveText('0');
+  });
+
+  it('should call onLoadRemapButtons on componentDidMount', () => {
+    expect(onLoadRemapButtons).toHaveBeenCalled();
   });
 
   it('it should have a TOP button config adding 1', () => {
-    const wrapper = shallow(<CounterScreen />);
-    wrapper.instance().buttonActions.TOP();
-    expect(wrapper).toHaveText('1');
+    componentWrapper.instance().buttonActions.TOP();
+    expect(componentWrapper).toHaveText('1');
   });
 
   it('it should have a BOTTOM button config subtract 1', () => {
-    const wrapper = shallow(<CounterScreen />);
-    wrapper.instance().buttonActions.BOTTOM();
-    expect(wrapper).toHaveText('-1');
+    componentWrapper.instance().buttonActions.BOTTOM();
+    expect(componentWrapper).toHaveText('-1');
   });
 
   it('it should have a RIGHT button going to the home page', () => {
-    const wrapper = shallow(<CounterScreen />);
-    wrapper.instance().buttonActions.RIGHT();
-    expect(history.push).toHaveBeenCalledWith('/');
+    componentWrapper.instance().buttonActions.RIGHT();
+    expect(ButtonAction.goToPage).toHaveBeenCalledWith('/');
   });
 });

@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import WithButtonConfigs from '../../../framework/containers/WithButtonConfigs';
+import ButtonAction from '../../../framework/util/ButtonAction';
 
-export default class CounterScreen extends Component {
+export class CounterScreenComponent extends Component {
   constructor(props) {
     super(props);
     this.state = { number: 0 };
+  }
 
-    props.handlerMapper(this.buttonActions);
+  componentDidMount() {
+    this.props.onLoadRemapButtons(this.buttonActions);
   }
 
   buttonActions = {
-    RIGHT: () => history.push('/'),
+    RIGHT: () => ButtonAction.goToPage('/'),
     BOTTOM: () => this.setState({ number: this.state.number - 1 }),
     TOP: () => this.setState({ number: this.state.number + 1 }),
   };
@@ -20,11 +24,9 @@ export default class CounterScreen extends Component {
   }
 }
 
-CounterScreen.propTypes = {
-  handlerMapper: PropTypes.func,
+CounterScreenComponent.propTypes = {
+  onLoadRemapButtons: PropTypes.func.isRequired,
 };
 
-CounterScreen.defaultProps = {
-  handlerMapper: actions => actions,
-};
+export default WithButtonConfigs(CounterScreenComponent);
 
