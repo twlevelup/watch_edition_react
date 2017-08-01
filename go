@@ -1,63 +1,102 @@
-#!/bin/bash
+#! /bin/bash
+
+set -e
 
 command_exists () {
   type "$1" &> /dev/null ;
 }
 
+bold_text() {
+  echo -e "\033[1m$1\033[0m"
+}
+
+green_tick() {
+  echo -e "\033[1;92m✓\033[0m $1"
+}
+
 show_instructions () {
-  echo "Usage: ./go <command>"
+  echo "$(bold_text Usage): ./go <command>"
   echo ""
   echo "where <command> is one of:"
-  echo "    install       installs any required dependencies"
-  echo "    test          runs all your unit tests"
-  echo "    test:dev      runs all your unit tests and watch any changes (dev mode)"
-  echo "    precommit     prepares your changes to be committed"
-  echo "    start         runs your local development server at http://localhost:8000"
+  echo "    $(bold_text "setup         ")   setups your development machine"
+  echo "    $(bold_text "install   | i " )   installs any required dependencies"
+  echo "    $(bold_text "test      | t " )   runs all your unit tests"
+  echo "    $(bold_text "test:dev  | td")   runs all your unit tests and watch any changes (dev mode)"
+  echo "    $(bold_text "precommit | p " )   prepares your changes to be committed"
+  echo "    $(bold_text "start     | s " )   runs your local development server at http://localhost:8000"
 }
 
-initial_setup () {
+set_nvm_env() {
+  # copied from NVM
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+
+setup_nvm () {
+  echo "Installing Node Version Manager (https://github.com/creationix/nvm)"
+
+  curl --progress-bar -o- "https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh" | bash &> /dev/null
+}
+
+echo "  _      ________      ________ _     _    _ _____    ____  _    _ _____ _      _____  "
+echo " | |    |  ____\ \    / /  ____| |   | |  | |  __ \  |  _ \| |  | |_   _| |    |  __ \ "
+echo " | |    | |__   \ \  / /| |__  | |   | |  | | |__) | | |_) | |  | | | | | |    | |  | |"
+echo " | |    |  __|   \ \/ / |  __| | |   | |  | |  ___/  |  _ <| |  | | | | | |    | |  | |"
+echo " | |____| |____   \  /  | |____| |___| |__| | |      | |_) | |__| |_| |_| |____| |__| |"
+echo " |______|______|   \/   |______|______\____/|_|      |____/ \____/|_____|______|_____/ "
+echo ""
+echo ""
+
+intro_message() {
   echo "It looks like this is your first time trying to run the app."
   echo "Before you start, I need to set a few things up for you."
-  npm -s install
-  echo "All done! You can now start using the app!"
 }
 
-if ! command_exists node || ! command_exists npm; then
-  echo "You need node and npm to run this!"
-  echo "You'll need to install these yourself as I can't install them for you :("
-  echo "Try using NVM https://github.com/creationix/nvm"
-  exit 1
-fi
+case "$1" in
+  "setup")
+    node_version=$(cat .nvmrc)
+    set_nvm_env
 
-[[ -d node_modules ]] || initial_setup
+    [[ -d node_modules ]] || intro_message
 
-if [[ $1 ]]; then
-  if [[ $1 == "--help" || $1 == "-h" ]]; then
-    show_instructions
-  fi
+    [[ -n $NVM_DIR ]] || setup_nvm
+    echo $(green_tick "Installed nvm")
 
-  if [[ $1 == "install" ]]; then
+    [[ "$(node -v)" = "v$node_version" ]] || nvm install &> /dev/null
+    echo $(green_tick "Installed node v$node_version")
+
+    [[ -d node_modules ]] || npm -s install > /dev/null
+    echo $(green_tick "Installed npm packages")
+
+    echo ""
+    echo "All done! You can now start using the app!"
+    ;;
+
+  "install" | "i")
     npm -s install
-  fi
+    ;;
 
-  if [[ $1 == "test" ]]; then
+  "test" | "t" )
     npm -s test
     exit $?
-  fi
+    ;;
 
-  if [[ $1 == "test:dev" ]]; then
+  "test:dev" | "td")
     npm -s run test:dev
     exit $?
-  fi
+    ;;
 
-  if [[ $1 == "precommit" ]]; then
+  "precommit" | "p")
     npm -s run precommit
     exit $?
-  fi
+    ;;
 
-  if [[ $1 == "start" ]]; then
+  "start" | "s")
     npm run start
-  fi
-else
-  show_instructions
-fi
+    ;;
+
+  *)
+    show_instructions
+    ;;
+esac

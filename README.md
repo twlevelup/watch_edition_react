@@ -19,7 +19,7 @@ This project is continuously deployed to heroku by [Circle CI](https://circleci.
 Tested with node 8.x
 
 ```
-$ ./go start
+$ ./go setup
 ```
 
 Visit `http://localhost:8000/` from your browser of choice.
