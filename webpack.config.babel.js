@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
+const packgeJson = require('./package.json');
+const babelrc = packgeJson.babel; 
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -46,9 +48,17 @@ const rules = [
   {
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
-    use: [
-      'babel-loader',
-    ],
+    use: {
+      loader: 'babel-loader',
+      options: {
+        babelrc: false,
+        ...babelrc,
+        presets: [ 
+          [ 'es2015', { modules: false}],
+          ...babelrc.presets.filter(p => p !== 'es2015'),
+        ],
+      },
+    },
   },
 ];
 

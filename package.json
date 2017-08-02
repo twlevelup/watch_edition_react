@@ -66,6 +66,10 @@
     "react-scroll": "^1.5.4",
     "redux": "^3.7.2"
   },
+  "babel": {
+    "presets": [ "es2015", "react", "stage-1" ],
+    "plugins": ["transform-class-properties"]
+  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
