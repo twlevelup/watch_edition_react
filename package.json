@@ -16,7 +16,7 @@
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
     "lint": "eslint ./src ./webpack.config.js -f table --ext .js --ext .jsx",
     "lint:fix": "npm run lint -- --fix",
-    "precommit": "npm run test:ci; npm run lint"
+    "precommit": "npm run test:ci && npm run lint"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
