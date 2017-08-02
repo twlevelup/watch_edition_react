@@ -1,12 +1,13 @@
 import { ACTION_TYPES } from '../actions/ButtonAction';
+import ButtonAction from '../util/ButtonAction';
 
-const NoOp = () => {};
+const { doNothing } = ButtonAction;
 
 const initialState = {
-  BOTTOM: NoOp,
-  TOP: NoOp,
-  RIGHT: NoOp,
-  LEFT: NoOp,
+  BOTTOM: doNothing,
+  TOP: doNothing,
+  RIGHT: doNothing,
+  LEFT: doNothing,
 };
 
 

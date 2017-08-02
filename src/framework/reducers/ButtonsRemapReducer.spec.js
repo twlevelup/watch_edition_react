@@ -2,22 +2,14 @@ import reducer from './ButtonsRemapReducer';
 import ButtonAction from '../util/ButtonAction';
 import { ACTION_TYPES } from '../actions/ButtonAction';
 
-
-jest.mock('../util/ButtonAction');
-
 describe('ButtonsRemapReducer', () => {
-  beforeEach(() => {
-    ButtonAction.scrollDown = jest.fn();
-    ButtonAction.scrollUp = jest.fn();
-  });
-
   it('should return the initial state', () => {
     const result = reducer(undefined, {});
-    expect(Object.keys(result)).toContain('TOP', 'BOTTOM', 'LEFT', 'RIGHT');
-    expect(result.TOP());
-    expect(result.BOTTOM());
-    expect(result.LEFT());
-    expect(result.RIGHT());
+
+    expect(result).toMatchObject({ LEFT: ButtonAction.doNothing });
+    expect(result).toMatchObject({ RIGHT: ButtonAction.doNothing });
+    expect(result).toMatchObject({ TOP: ButtonAction.doNothing });
+    expect(result).toMatchObject({ BOTTOM: ButtonAction.doNothing });
   });
 
   describe('When called with BUTTON_REMAP action ', () => {

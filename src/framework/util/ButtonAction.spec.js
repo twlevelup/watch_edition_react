@@ -50,4 +50,9 @@ describe('ButtonAction ', () => {
       });
     });
   });
+  describe('doNothing', () => {
+    it('should be a function', () => {
+      ButtonAction.doNothing();
+    });
+  });
 });

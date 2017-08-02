@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './button.css';
+import ButtonAction from '../../util/ButtonAction';
 
 const Button = ({ id, onClick }) => {
   return (<button id={ id } className='button' onClick={ onClick } />);
@@ -14,7 +15,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   id: undefined,
-  onClick: () => {},
+  onClick: ButtonAction.doNothing,
 };
 
 export default Button;

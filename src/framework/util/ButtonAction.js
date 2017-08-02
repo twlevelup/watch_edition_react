@@ -13,6 +13,7 @@ const ButtonAction = () => {
     scrollDown: (offset = 70) => {
       Scroll.animateScroll.scrollMore(offset, { containerId: 'watch-screen', duration: 0 });
     },
+    doNothing: () => {},
   };
 };
 
