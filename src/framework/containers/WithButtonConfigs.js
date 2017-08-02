@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { remapButtons } from '../actions/ButtonAction';
 
 const ButtonConfigsHOC = (WrappedComponent) => {
-  class Wrapper extends React.Component {
+  class Wrapper extends Component {
     componentWillMount() {
       this.props.remapButtons();
     }

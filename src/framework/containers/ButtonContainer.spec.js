@@ -1,7 +1,7 @@
+import React from 'react';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import configureMockStore from 'redux-mock-store';
-import * as React from 'react';
 import ButtonContainer from './ButtonContainer';
 
 const state = { ButtonActionsReducer: { TOP: jest.fn() } };
