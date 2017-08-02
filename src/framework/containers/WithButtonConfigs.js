@@ -5,8 +5,8 @@ import { remapButtons } from '../actions/ButtonAction';
 
 const ButtonConfigsHOC = (WrappedComponent) => {
   return class Wrapper extends React.Component {
-    componentDidMount() {
-      this.props.onLoadRemapButtons();
+    componentWillMount() {
+      this.props.remapButtons();
     }
 
     render() {
@@ -18,11 +18,12 @@ const ButtonConfigsHOC = (WrappedComponent) => {
 function WithButtonConfigs(component, buttonConfigs) {
   const mapDispatchToProps = (dispatch) => {
     return {
-      onLoadRemapButtons: (newButtonConfigs = buttonConfigs) => {
+      remapButtons: (newButtonConfigs = buttonConfigs) => {
         dispatch(remapButtons(newButtonConfigs));
       },
     };
   };
+
   return connect(
     null,
     mapDispatchToProps

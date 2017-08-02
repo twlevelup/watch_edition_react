@@ -1,3 +1,4 @@
+import Scroll from 'react-scroll';
 import history from '../Router/BrowserHistory';
 
 const ButtonAction = () => {
@@ -5,11 +6,12 @@ const ButtonAction = () => {
     goToPage: (pagePath) => {
       history.push(pagePath);
     },
-    scrollUp: (querySelector, offset = 70) => {
-      document.querySelector(querySelector).scrollTop -= offset;
+
+    scrollUp: (offset = 70) => {
+      Scroll.animateScroll.scrollMore(-offset, { containerId: 'watch-screen', duration: 0 });
     },
-    scrollDown: (querySelector, offset = 70) => {
-      document.querySelector(querySelector).scrollTop += offset;
+    scrollDown: (offset = 70) => {
+      Scroll.animateScroll.scrollMore(offset, { containerId: 'watch-screen', duration: 0 });
     },
   };
 };

@@ -11,7 +11,7 @@ describe('<CounterScreenComponent />', () => {
 
   beforeEach(() => {
     onLoadRemapButtons = jest.fn();
-    componentWrapper = mount(<CounterScreenComponent onLoadRemapButtons={ onLoadRemapButtons } />);
+    componentWrapper = mount(<CounterScreenComponent remapButtons={ onLoadRemapButtons } />);
     jest.spyOn(ButtonAction, 'goToPage');
   });
 

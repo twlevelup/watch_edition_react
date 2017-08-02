@@ -63,6 +63,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
+    "react-scroll": "^1.5.4",
     "redux": "^3.7.2"
   },
   "jest": {

@@ -47,6 +47,8 @@ export const HomeScreenComponent = () => {
 export const HomeScreenButtons = {
   LEFT: () => ButtonAction.goToPage('/counter'),
   RIGHT: () => ButtonAction.goToPage('/contacts'),
+  TOP: () => ButtonAction.scrollUp(),
+  BOTTOM: () => ButtonAction.scrollDown(),
 };
 
 export default WithButtonConfigs(HomeScreenComponent, HomeScreenButtons);

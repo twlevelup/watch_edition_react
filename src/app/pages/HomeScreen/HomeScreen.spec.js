@@ -10,7 +10,7 @@ jest.mock('../../../framework/util/ButtonAction');
 describe('HomeScreenComponent component', () => {
   let homeScreenComponent;
   beforeEach(() => {
-    jest.spyOn(ButtonAction, 'goToPage');
+    jest.spyOn(ButtonAction, 'goToPage', 'scrollUp', 'scrollDown');
     homeScreenComponent = shallow(<HomeScreenComponent />);
   });
   test('it should have Date component', () => {
@@ -33,5 +33,15 @@ describe('HomeScreenComponent component', () => {
   test('it should have a RIGHT button config of going to contactList page', () => {
     HomeScreenButtons.RIGHT();
     expect(ButtonAction.goToPage).toHaveBeenCalledWith('/contacts');
+  });
+
+  test('it should have a TOP button config of going to contactList page', () => {
+    HomeScreenButtons.TOP();
+    expect(ButtonAction.scrollUp).toHaveBeenCalled();
+  });
+
+  test('it should have a BOTTOM button config of going to contactList page', () => {
+    HomeScreenButtons.BOTTOM();
+    expect(ButtonAction.scrollDown).toHaveBeenCalled();
   });
 });

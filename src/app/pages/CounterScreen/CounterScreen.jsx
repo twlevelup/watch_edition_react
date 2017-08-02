@@ -10,7 +10,7 @@ export class CounterScreenComponent extends Component {
   }
 
   componentDidMount() {
-    this.props.onLoadRemapButtons(this.buttonActions);
+    this.props.remapButtons(this.buttonActions);
   }
 
   buttonActions = {
@@ -25,8 +25,7 @@ export class CounterScreenComponent extends Component {
 }
 
 CounterScreenComponent.propTypes = {
-  onLoadRemapButtons: PropTypes.func.isRequired,
+  remapButtons: PropTypes.func.isRequired,
 };
 
 export default WithButtonConfigs(CounterScreenComponent);
-

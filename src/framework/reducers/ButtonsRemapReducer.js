@@ -1,9 +1,10 @@
-import ButtonAction from '../util/ButtonAction';
 import { ACTION_TYPES } from '../actions/ButtonAction';
 
 const initialState = {
-  BOTTOM: () => ButtonAction.scrollDown('.screen-layout'),
-  TOP: () => ButtonAction.scrollUp('.screen-layout'),
+  BOTTOM: () => {},
+  TOP: () => {},
+  RIGHT: () => {},
+  LEFT: () => {},
 };
 
 
@@ -12,7 +13,7 @@ const ButtonActionReducer = (state = initialState, action) => {
   case ACTION_TYPES.BUTTON_REMAP:
     return Object.assign({}, state, action.remapedButtons);
   default:
-    return state;
+    return initialState;
   }
 };
 

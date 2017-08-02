@@ -13,10 +13,7 @@ describe('ButtonsRemapReducer', () => {
 
   it('should return the initial state', () => {
     const result = reducer(undefined, {});
-    result.TOP();
-    expect(ButtonAction.scrollUp).toHaveBeenCalled();
-    result.BOTTOM();
-    expect(ButtonAction.scrollDown).toHaveBeenCalled();
+    expect(Object.keys(result)).toContain("TOP", "BOTTOM", "LEFT", "RIGHT");
   });
 
   describe('When called with BUTTON_REMAP action ', () => {

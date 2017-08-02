@@ -1,22 +1,17 @@
 import history from '../Router/BrowserHistory';
 import ButtonAction from './ButtonAction';
+import Scroll from "react-scroll";
 
 jest.mock('../Router/BrowserHistory');
 history.push = jest.fn();
-document.querySelector = jest.fn();
+Scroll.animateScroll.scrollMore = jest.fn();
+const options = {"containerId": "watch-screen", "duration": 0};
 
 describe('ButtonAction ', () => {
-  let scrollTopObj;
-  beforeEach(() => {
-    scrollTopObj = { scrollTop: 0 };
-    document.querySelector = jest.fn(() => {
-      return scrollTopObj;
-    });
-  });
 
   beforeEach(() => {
     history.push.mockClear();
-    document.querySelector.mockClear();
+    Scroll.animateScroll.scrollMore.mockClear();
   });
 
   describe('goToPage', () => {
@@ -28,18 +23,16 @@ describe('ButtonAction ', () => {
 
   describe('scrollUp', () => {
     describe('When called with an offset value', () => {
-      test('it should scroll element up by changing its offset scrollTop value', () => {
-        ButtonAction.scrollUp('testElm', 80);
-        expect(document.querySelector).toBeCalledWith('testElm');
-        expect(document.querySelector().scrollTop).toBe(-80);
+      test('it should scroll element up by its offset value', () => {
+        ButtonAction.scrollUp(80);
+        expect(Scroll.animateScroll.scrollMore).toBeCalledWith(-80, options);
       });
     });
 
     describe('When called without an offset value', () => {
-      test('it should scroll element up by changing its offset scrollTop by -70', () => {
-        ButtonAction.scrollUp('testElm5');
-        expect(document.querySelector).toBeCalledWith('testElm5');
-        expect(document.querySelector().scrollTop).toBe(-70);
+      test('it should scroll element up by 70', () => {
+        ButtonAction.scrollUp();
+        expect(Scroll.animateScroll.scrollMore).toBeCalledWith(-70, options);
       });
     });
   });
@@ -47,20 +40,18 @@ describe('ButtonAction ', () => {
 
   describe('scrollDown', () => {
     describe('When called with an offset value', () => {
-      test('it should scroll element down by changing its offset scrollTop value', () => {
-        ButtonAction.scrollDown('testElm2', 80);
-        expect(document.querySelector).toBeCalledWith('testElm2');
-        expect(document.querySelector().scrollTop).toBe(80);
+      test('it should scroll element down by its offset value', () => {
+        ButtonAction.scrollDown(80);
+        expect(Scroll.animateScroll.scrollMore).toBeCalledWith(80, options);
+
       });
     });
 
     describe('When called without an offset value', () => {
-      test('it should scroll element down by changing its offset scrollTop by -70', () => {
-        ButtonAction.scrollDown('testElm3');
-        expect(document.querySelector).toBeCalledWith('testElm3');
-        expect(document.querySelector().scrollTop).toBe(70);
+      test('it should scroll element down by 70', () => {
+        ButtonAction.scrollDown();
+        expect(Scroll.animateScroll.scrollMore).toBeCalledWith(70, options);
       });
     });
   });
 });
-
