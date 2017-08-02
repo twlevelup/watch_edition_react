@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { remapButtons } from '../actions/ButtonAction';
 
 const ButtonConfigsHOC = (WrappedComponent) => {
-  return class Wrapper extends React.Component {
+  class Wrapper extends React.Component {
     componentWillMount() {
       this.props.remapButtons();
     }
@@ -12,7 +12,13 @@ const ButtonConfigsHOC = (WrappedComponent) => {
     render() {
       return <WrappedComponent { ...this.props } />;
     }
+  }
+
+  Wrapper.propTypes = {
+    remapButtons: PropTypes.func.isRequired,
   };
+
+  return Wrapper;
 };
 
 function WithButtonConfigs(component, buttonConfigs) {
