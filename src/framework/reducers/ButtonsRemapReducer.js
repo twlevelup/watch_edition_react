@@ -1,17 +1,19 @@
 import { ACTION_TYPES } from '../actions/ButtonAction';
 
+const NoOp = () => {};
+
 const initialState = {
-  BOTTOM: () => {},
-  TOP: () => {},
-  RIGHT: () => {},
-  LEFT: () => {},
+  BOTTOM: NoOp,
+  TOP: NoOp,
+  RIGHT: NoOp,
+  LEFT: NoOp,
 };
 
 
 const ButtonActionReducer = (state = initialState, action) => {
   switch (action.type) {
   case ACTION_TYPES.BUTTON_REMAP:
-    return Object.assign({}, state, action.remapedButtons);
+    return { ...state, ...action.remapedButtons };
   default:
     return initialState;
   }
