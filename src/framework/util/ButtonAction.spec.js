@@ -1,14 +1,12 @@
+import Scroll from 'react-scroll';
 import history from '../Router/BrowserHistory';
 import ButtonAction from './ButtonAction';
-import Scroll from "react-scroll";
 
 jest.mock('../Router/BrowserHistory');
 history.push = jest.fn();
 Scroll.animateScroll.scrollMore = jest.fn();
-const options = {"containerId": "watch-screen", "duration": 0};
-
+const options = { 'containerId': 'watch-screen', 'duration': 0 };
 describe('ButtonAction ', () => {
-
   beforeEach(() => {
     history.push.mockClear();
     Scroll.animateScroll.scrollMore.mockClear();
@@ -37,13 +35,11 @@ describe('ButtonAction ', () => {
     });
   });
 
-
   describe('scrollDown', () => {
     describe('When called with an offset value', () => {
       test('it should scroll element down by its offset value', () => {
         ButtonAction.scrollDown(80);
         expect(Scroll.animateScroll.scrollMore).toBeCalledWith(80, options);
-
       });
     });
 
