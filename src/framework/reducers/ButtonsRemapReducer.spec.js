@@ -14,6 +14,10 @@ describe('ButtonsRemapReducer', () => {
   it('should return the initial state', () => {
     const result = reducer(undefined, {});
     expect(Object.keys(result)).toContain('TOP', 'BOTTOM', 'LEFT', 'RIGHT');
+    expect(result.TOP());
+    expect(result.BOTTOM());
+    expect(result.LEFT());
+    expect(result.RIGHT());
   });
 
   describe('When called with BUTTON_REMAP action ', () => {
