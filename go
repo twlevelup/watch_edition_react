@@ -1,7 +1,5 @@
 #! /bin/bash
 
-set -e
-
 command_exists () {
   type "$1" &> /dev/null ;
 }
@@ -56,17 +54,18 @@ intro_message() {
 case "$1" in
   "setup")
     node_version=$(cat .nvmrc)
-    set_nvm_env
 
     [[ -d node_modules ]] || intro_message
 
-    [[ -n $NVM_DIR ]] || setup_nvm
+    [[ -s $NVM_DIR/nvm.sh ]] || setup_nvm
     echo $(green_tick "Installed nvm")
+
+    set_nvm_env
 
     [[ "$(node -v)" = "v$node_version" ]] || nvm install &> /dev/null
     echo $(green_tick "Installed node v$node_version")
 
-    [[ -d node_modules ]] || npm -s install > /dev/null
+    [[ -d node_modules ]] || npm -s install &> /dev/null
     echo $(green_tick "Installed npm packages")
 
     echo ""
