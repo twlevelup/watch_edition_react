@@ -1,18 +1,7 @@
-#! /bin/bash -e
+#! /bin/bash
 
 command_exists () {
   type "$1" &> /dev/null ;
-}
-
-run_docker() {
-  docker run \
-  -it \
-  --rm \
-  -p "8000:8000" \
-  -w "/app" \
-  -v $(pwd):/app \
-  $docker_image \
-  "${@-bash}"
 }
 
 bold_text() {
@@ -21,14 +10,6 @@ bold_text() {
 
 green_tick() {
   echo -e "\033[1;92m✓\033[0m $1"
-}
-
-red_text() {
-  echo -e "\033[0;91m$1\033[0m"
-}
-
-green_text() {
-  echo -e "\033[0;92m$1\033[0m"
 }
 
 show_instructions () {
@@ -41,6 +22,19 @@ show_instructions () {
   echo "    $(bold_text "test:dev  | td")   runs all your unit tests and watch any changes (dev mode)"
   echo "    $(bold_text "precommit | p " )   prepares your changes to be committed"
   echo "    $(bold_text "start     | s " )   runs your local development server at http://localhost:8000"
+}
+
+set_nvm_env() {
+  # copied from NVM
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+
+setup_nvm () {
+  echo "Installing Node Version Manager (https://github.com/creationix/nvm)"
+
+  curl --progress-bar -o- "https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh" | bash &> /dev/null
 }
 
 echo "  _      ________      ________ _     _    _ _____    ____  _    _ _____ _      _____  "
@@ -57,63 +51,48 @@ intro_message() {
   echo "Before you start, I need to set a few things up for you."
 }
 
-docker_needed_message() {
-  red_text "You need to have docker installed, I can't install it for you."
-  red_text "If you haven't already, please follow the setup instructions for your machine over at"
-  red_text "https://github.com/twlevelup/watch_edition_react/wiki/Setup%3A-Tools"
-}
-
-docker_image_exist() {
-  [[ "$(docker images -q $docker_image 2> /dev/null)" ]]
-}
-
-export NODE_VERSION="$(cat .node-version)"
-export docker_image="node:${NODE_VERSION}"
-
 case "$1" in
   "setup")
-    if ! command_exists docker; then
-      docker_needed_message
-      exit 1
-    fi
+    node_version=$(cat .nvmrc)
 
-    if ! docker_image_exist; then
-      bold_text "Pulling docker image: ${docker_image}"
-      docker pull $docker_image
-      green_tick "Pulled docker image"
-    fi
+    [[ -d node_modules ]] || intro_message
 
-    if [ ! -d "node_modules" ]; then
-      bold_text "Installing npm packages"
-      run_docker npm install
-      green_tick "Installed npm packages"
-    fi
+    [[ -s $NVM_DIR/nvm.sh ]] || setup_nvm
+    echo $(green_tick "Installed nvm")
+
+    set_nvm_env
+
+    [[ "$(node -v)" = "v$node_version" ]] || nvm install &> /dev/null
+    echo $(green_tick "Installed node v$node_version")
+
+    [[ -d node_modules ]] || npm -s install &> /dev/null
+    echo $(green_tick "Installed npm packages")
 
     echo ""
-    green_text "All done! You can now start using the app!"
+    echo "All done! You can now start using the app!"
     ;;
 
   "install" | "i")
-    run_docker npm -s install
+    npm -s install
     ;;
 
   "test" | "t" )
-    run_docker npm -s test
+    npm -s test
     exit $?
     ;;
 
   "test:dev" | "td")
-    run_docker npm -s run test:dev
+    npm -s run test:dev
     exit $?
     ;;
 
   "precommit" | "p")
-    run_docker npm -s run precommit
+    npm -s run precommit
     exit $?
     ;;
 
   "start" | "s")
-    run_docker npm run start
+    npm run start
     ;;
 
   *)
