@@ -35,12 +35,12 @@ describe('HomeScreenComponent component', () => {
     expect(ButtonAction.goToPage).toHaveBeenCalledWith('/contacts');
   });
 
-  test('it should have a TOP button config of going to contactList page', () => {
+  test('it should have a TOP button config of scrolling page up', () => {
     HomeScreenButtons.TOP();
     expect(ButtonAction.scrollUp).toHaveBeenCalled();
   });
 
-  test('it should have a BOTTOM button config of going to contactList page', () => {
+  test('it should have a BOTTOM button config of scrolling page down', () => {
     HomeScreenButtons.BOTTOM();
     expect(ButtonAction.scrollDown).toHaveBeenCalled();
   });
