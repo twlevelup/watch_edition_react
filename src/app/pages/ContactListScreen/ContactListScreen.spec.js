@@ -35,4 +35,14 @@ describe('ContactListScreen component', () => {
     ContactScreenButtons.RIGHT();
     expect(ButtonAction.goToPage).toHaveBeenCalledWith('/counter');
   });
+
+  it('should have a TOP button config of scrolling up', () => {
+    ContactScreenButtons.TOP();
+    expect(ButtonAction.scrollUp).toHaveBeenCalled();
+  });
+
+  it('should have a BOTTOM button config of scrolling down', () => {
+    ContactScreenButtons.BOTTOM();
+    expect(ButtonAction.goToPage).toHaveBeenCalled();
+  });
 });

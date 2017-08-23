@@ -35,6 +35,8 @@ ContactListScreen.propTypes = {
 export const ContactScreenButtons = {
   LEFT: () => ButtonAction.goToPage('/'),
   RIGHT: () => ButtonAction.goToPage('/counter'),
+  TOP: () => ButtonAction.scrollUp(),
+  BOTTOM: () => ButtonAction.scrollDown(),
 };
 
 export default WithButtonConfigs(ContactListScreen, ContactScreenButtons);
