@@ -5,6 +5,7 @@ const ButtonAction = () => {
   return {
     goToPage: (pagePath) => {
       history.push(pagePath);
+      Scroll.animateScroll.scrollToTop({ containerId: 'watch-screen', duration: 0 });
     },
 
     scrollUp: (offset = 70) => {

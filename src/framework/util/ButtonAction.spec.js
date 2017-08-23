@@ -5,17 +5,23 @@ import ButtonAction from './ButtonAction';
 jest.mock('../Router/BrowserHistory');
 history.push = jest.fn();
 Scroll.animateScroll.scrollMore = jest.fn();
+Scroll.animateScroll.scrollToTop = jest.fn();
 const options = { 'containerId': 'watch-screen', 'duration': 0 };
 describe('ButtonAction ', () => {
   beforeEach(() => {
     history.push.mockClear();
     Scroll.animateScroll.scrollMore.mockClear();
+    Scroll.animateScroll.scrollToTop.mockClear();
   });
 
   describe('goToPage', () => {
     test('it should call the BrowserHistory.push method', () => {
       ButtonAction.goToPage('/');
       expect(history.push).toBeCalledWith('/');
+    });
+    test('it should scroll to the top of the page', () => {
+      ButtonAction.goToPage('/');
+      expect(Scroll.animateScroll.scrollToTop).toBeCalled();
     });
   });
 
