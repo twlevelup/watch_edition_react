@@ -3,3 +3,4 @@ node_modules/
 build/
 jest*/
 coverage/
+package-lock.json
