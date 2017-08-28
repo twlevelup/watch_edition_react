@@ -18,10 +18,11 @@ describe('WithButtonConfigs', () => {
   };
   const buttonMappings = { TOP: jest.fn() };
   let buttonWrapper;
+  let ConnectedComponent;
 
   beforeEach(() => {
     jest.spyOn(store, 'dispatch');
-    const ConnectedComponent = WithButtonConfigs(mockedComponent, buttonMappings);
+    ConnectedComponent = WithButtonConfigs(mockedComponent, buttonMappings);
     buttonWrapper = mount(
       <Provider store={ store }>
         <ConnectedComponent someProp />
@@ -43,5 +44,25 @@ describe('WithButtonConfigs', () => {
     };
     expect(store.dispatch).toHaveBeenCalledWith(expectedDispatchAction);
   });
-});
 
+  it('should assign any values in the components location object to props', () => {
+    const fakeNav = {
+      router: {
+        location: {
+          state: {
+            testProp: 'test',
+          },
+        },
+      },
+    };
+    const navStore = configureMockStore()(fakeNav);
+
+    const navigatedComponent = mount(
+      <Provider store={ navStore }>
+        <ConnectedComponent someProp />
+      </Provider>
+    );
+
+    expect(navigatedComponent.find('mockedComponent').props().testProp).toBe('test');
+  });
+});

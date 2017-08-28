@@ -22,6 +22,10 @@ const ButtonConfigsHOC = (WrappedComponent) => {
 };
 
 function WithButtonConfigs(component, buttonConfigs) {
+  const mapStateToProps = (state) => {
+    return ((state.router || {}).location || {}).state ? state.router.location.state : {};
+  };
+
   const mapDispatchToProps = (dispatch) => {
     return {
       remapButtons: (newButtonConfigs = buttonConfigs) => {
@@ -31,7 +35,7 @@ function WithButtonConfigs(component, buttonConfigs) {
   };
 
   return connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(ButtonConfigsHOC(component));
 }

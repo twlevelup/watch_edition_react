@@ -6,7 +6,7 @@ import ButtonAction from '../../../framework/util/ButtonAction';
 export class CounterScreenComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = { number: 0 };
+    this.state = { number: props.number };
   }
 
   componentDidMount() {
@@ -26,6 +26,11 @@ export class CounterScreenComponent extends Component {
 
 CounterScreenComponent.propTypes = {
   remapButtons: PropTypes.func.isRequired,
+  number: PropTypes.number,
+};
+
+CounterScreenComponent.defaultProps = {
+  number: 0,
 };
 
 export default WithButtonConfigs(CounterScreenComponent);
