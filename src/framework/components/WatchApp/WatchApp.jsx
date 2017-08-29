@@ -15,7 +15,7 @@ export default class WatchApp extends React.Component {
     };
   }
 
-  notificationHandler = (newEvent = this.state.notificationEvent) => {
+  notificationHandler = (newEvent) => {
     this.setState({ notificationEvent: newEvent });
   };
 
@@ -27,8 +27,8 @@ export default class WatchApp extends React.Component {
           <h1>LevelUp Watch Edition</h1>
           <p>This is LevelUp Watch Edition sample app.</p>
           <NotificationForm
-            defaultText={ this.state.notificationEvent.text }
             handleEvent={ this.notificationHandler }
+            defaultText={ this.state.notificationEvent.text }
           />
         </div>
         <div id='right'>

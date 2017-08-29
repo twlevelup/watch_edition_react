@@ -32,14 +32,6 @@ describe('WatchApp', () => {
       expect(wrapper).toHaveState('notificationEvent', dummyNotificationEvent);
     });
 
-    test('it should have the event handler set to default state if no new event is passed', () => {
-      const wrapper = shallow(<WatchApp pages={ pages } />);
-      const dummyNotificationEvent = { text: 'wowow', displayNotification: true };
-      wrapper.setState({ notificationEvent: dummyNotificationEvent });
-      wrapper.instance().notificationHandler();
-      expect(wrapper).toHaveState('notificationEvent', dummyNotificationEvent);
-    });
-
     test('it should pass the defaultText prop to NotificationForm', () => {
       const componentWrapper = shallow(<WatchApp pages={ pages } />);
       const dummyState = { notificationEvent: { text: 'testText' } };
@@ -84,4 +76,3 @@ describe('WatchApp', () => {
     });
   });
 });
-
