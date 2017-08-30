@@ -4,9 +4,16 @@ import { NotificationPopupComp } from './NotificationPopup';
 
 describe('NotificationPopup component', () => {
   const remapButtons = jest.fn();
+  const fakeButtons = jest.fn();
   const getMock = (props) => {
     remapButtons.mockClear();
-    return mount(<NotificationPopupComp { ...props } remapButtons={ remapButtons } />);
+    fakeButtons.mockClear();
+    return mount(
+      <NotificationPopupComp
+        { ...props }
+        remapButtons={ remapButtons }
+        buttonConfigs={ { OVERRIDE: fakeButtons } }
+      />);
   };
 
   describe('When rendered with [show] property set to false', () => {
@@ -26,7 +33,7 @@ describe('NotificationPopup component', () => {
 
     it('Should call remapButtons after mounting', () => {
       wrapper.mount();
-      expect(remapButtons).toHaveBeenCalledWith(wrapper.instance().buttonConfig);
+      expect(remapButtons).toHaveBeenCalledWith({ OVERRIDE: fakeButtons });
     });
 
     it('should be visible', () => {
@@ -54,15 +61,6 @@ describe('NotificationPopup component', () => {
       wrapper.setState({ show: false });
 
       expect(remapButtons).toHaveBeenCalledWith({ OVERRIDE: false });
-    });
-  });
-
-  describe('buttonConfigs.OVERRIDE', () => {
-    it('Sets show to false when called', () => {
-      const props = { show: true, text: 'text' };
-      const wrapper = getMock(props);
-      wrapper.instance().buttonConfig.OVERRIDE();
-      expect(wrapper.state('show')).toBe(false);
     });
   });
 });

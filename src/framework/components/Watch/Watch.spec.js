@@ -1,27 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Watch from './Watch';
-import ButtonAction from '../../../framework/util/ButtonAction';
-
-jest.mock('../../../framework/util/ButtonAction');
-ButtonAction.goToPage = jest.fn();
-ButtonAction.scrollDown = jest.fn();
-ButtonAction.scrollUp = jest.fn();
 
 describe('Watch component', () => {
   let WatchComponent;
-  const dummyNotificationEvent = { displayNotification: true, text: 'test' };
+  const fakeFunc = jest.fn();
+  const dummyNotificationEvent = {
+    show: true,
+    text: 'test',
+    buttonConfigs: { OVERRIDE: fakeFunc },
+  };
   beforeEach(() => {
     WatchComponent = shallow(
       <Watch notificationEvent={ dummyNotificationEvent }>
         <div>Mock</div>
       </Watch>);
-  });
-
-  afterEach(() => {
-    ButtonAction.goToPage.mockClear();
-    ButtonAction.scrollDown.mockClear();
-    ButtonAction.scrollUp.mockClear();
   });
 
   test('it should display the straps', () => {
@@ -44,8 +37,7 @@ describe('Watch component', () => {
 
   xtest('it should pass the notificationEvent props to the NotificationPopup component', () => {
     const result = WatchComponent.find('NotificationPopup');
-    expect(result.props().show).toBe(dummyNotificationEvent.displayNotification);
-    expect(result.props().text).toBe(dummyNotificationEvent.text);
+    expect(result.props()).toMatchObject(dummyNotificationEvent);
   });
 
   test('it should contain screen layout component', () => {

@@ -32,12 +32,8 @@ export class NotificationPopupComp extends React.Component {
   }
 
   showPopup = () => {
-    this.props.remapButtons(this.buttonConfig);
+    this.props.remapButtons(this.props.buttonConfigs);
   }
-
-  buttonConfig = {
-    OVERRIDE: () => this.setState({ show: false }),
-  };
 
   render() {
     const { show, text } = this.state;
@@ -56,6 +52,9 @@ NotificationPopupComp.propTypes = {
   show: PropTypes.bool,
   text: PropTypes.string.isRequired,
   remapButtons: PropTypes.func.isRequired,
+  buttonConfigs: PropTypes.shape({
+    OVERRIDE: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 NotificationPopupComp.defaultProps = {

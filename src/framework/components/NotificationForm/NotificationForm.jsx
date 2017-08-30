@@ -9,7 +9,6 @@ export default class NotificationForm extends React.Component {
 
     this.state = {
       input: props.defaultText,
-      showPopup: false,
     };
   }
 
@@ -20,11 +19,11 @@ export default class NotificationForm extends React.Component {
   }
 
   handleSubmit = (e) => {
+    e.preventDefault();
     this.props.handleEvent({
       text: this.state.input,
-      displayNotification: true,
+      show: true,
     });
-    e.preventDefault();
   }
 
   render() {
