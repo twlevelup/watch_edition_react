@@ -6,13 +6,17 @@ services:
   app:
     environment:
       TERM: xterm-color
+      XDG_CONFIG_HOME: /root/scratch
+      HISTFILE: /root/scratch/bash_history
     volumes:
       - coverage:/opt/watch_edition_react/coverage
       - jest:/opt/watch_edition_react/jest
       - watcheditionreact-sync:/opt/watch_edition_react/src
+      - scratch:/root/scratch
 
 volumes:
   watcheditionreact-sync:
     external: true
   jest:
   coverage:
+  scratch:
