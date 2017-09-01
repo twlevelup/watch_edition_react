@@ -1,0 +1,6 @@
+node_modules
+jest_0
+coverage
+.git
+Dockerfile
+docker-*
