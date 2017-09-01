@@ -1,0 +1,14 @@
+# Development overrides. Volumes configured to immediately make source code
+# changes available using docker-sync.
+
+version: "2"
+services:
+  app:
+    environment:
+      TERM: xterm-color
+    volumes:
+      - watcheditionreact-sync:/opt/watch_edition_react/src
+
+volumes:
+  watcheditionreact-sync:
+    external: true
