@@ -17,4 +17,8 @@ docker-compose -f docker-compose.yaml -f docker-compose-dev.yaml run --rm app
 
 You can then use `./go-node` as usual in that environment.
 
+Currently, only the source directory is mapped. The test results are stored in
+separate volumes to allow persistence across runs. See
+`docker-compose-dev.yaml` for details.
+
 [docker-sync]: https://github.com/EugenMayer/docker-sync

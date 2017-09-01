@@ -7,8 +7,12 @@ services:
     environment:
       TERM: xterm-color
     volumes:
+      - coverage:/opt/watch_edition_react/coverage
+      - jest:/opt/watch_edition_react/jest
       - watcheditionreact-sync:/opt/watch_edition_react/src
 
 volumes:
   watcheditionreact-sync:
     external: true
+  jest:
+  coverage:
