@@ -27,22 +27,14 @@ describe('WatchApp', () => {
 
     test('it should have an event handler that updates the components state', () => {
       const wrapper = shallow(<WatchApp pages={ pages } />);
-      const dummyNotificationEvent = { text: 'wowow', displayNotification: true };
+      const dummyNotificationEvent = { text: 'wowow', show: true };
       wrapper.instance().notificationHandler(dummyNotificationEvent);
-      expect(wrapper).toHaveState('notificationEvent', dummyNotificationEvent);
-    });
-
-    test('it should have the event handler set to default state if no new event is passed', () => {
-      const wrapper = shallow(<WatchApp pages={ pages } />);
-      const dummyNotificationEvent = { text: 'wowow', displayNotification: true };
-      wrapper.setState({ notificationEvent: dummyNotificationEvent });
-      wrapper.instance().notificationHandler();
-      expect(wrapper).toHaveState('notificationEvent', dummyNotificationEvent);
+      expect(wrapper.state('notificationEvent')).toMatchObject(dummyNotificationEvent);
     });
 
     test('it should pass the defaultText prop to NotificationForm', () => {
       const componentWrapper = shallow(<WatchApp pages={ pages } />);
-      const dummyState = { notificationEvent: { text: 'testText' } };
+      const dummyState = { notificationEvent: { ...componentWrapper.state('notificationEvent'), text: 'testText' } };
       componentWrapper.setState(dummyState);
       expect(componentWrapper.find('NotificationForm')).toHaveProp('defaultText', dummyState.notificationEvent.text);
     });
@@ -51,14 +43,6 @@ describe('WatchApp', () => {
       const componentWrapper = shallow(<WatchApp pages={ pages } />);
       expect(componentWrapper.find('NotificationForm'))
         .toHaveProp('handleEvent', componentWrapper.instance().notificationHandler);
-    });
-
-    test('it should default state for the notification event', () => {
-      const notificationEvent = {
-        text: 'Default notification text',
-        displayNotification: false,
-      };
-      expect(shallow(<WatchApp pages={ pages } />)).toHaveState('notificationEvent', notificationEvent);
     });
   });
 
@@ -83,5 +67,14 @@ describe('WatchApp', () => {
       expect(watchWrapper.find(DummyComponent)).toHaveProp('some', 'prop');
     });
   });
-});
 
+  describe('popupButtons.OVERRIDE', () => {
+    it('Should hide the notification popup when called', () => {
+      const wrapper = shallow(<WatchApp pages={ pages } />);
+      const dummyNotificationEvent = { text: 'wowow', show: true };
+      wrapper.instance().notificationHandler(dummyNotificationEvent);
+      wrapper.instance().popupButtons.OVERRIDE();
+      expect(wrapper.state('notificationEvent')).toMatchObject({ text: 'wowow', show: false });
+    });
+  });
+});

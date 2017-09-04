@@ -41,12 +41,12 @@ describe('NotificationForm', () => {
 
     test('it should pass the current textarea value to to the callback function', () => {
       composeFormAndSimulateSubmission();
-      expect(defaultProps.handleEvent).toBeCalledWith({ displayNotification: true, text: defaultProps.defaultText });
+      expect(defaultProps.handleEvent).toBeCalledWith({ show: true, text: defaultProps.defaultText });
     });
 
     test('it should pass displayNotification set to True to to the callback function', () => {
       composeFormAndSimulateSubmission();
-      expect(defaultProps.handleEvent).toBeCalledWith({ displayNotification: true, text: defaultProps.defaultText });
+      expect(defaultProps.handleEvent).toBeCalledWith({ show: true, text: defaultProps.defaultText });
     });
 
     test('it should not refresh the page', () => {
@@ -55,4 +55,3 @@ describe('NotificationForm', () => {
     });
   });
 });
-

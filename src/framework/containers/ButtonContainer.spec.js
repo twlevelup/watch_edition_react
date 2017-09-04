@@ -13,12 +13,16 @@ describe('ButtonContainer', () => {
 
   let buttonWrapper;
 
-  beforeEach(() => {
-    buttonWrapper = mount(
-      <Provider store={ store }>
+  const setStore = (newStore) => {
+    return mount(
+      <Provider store={ newStore }>
         <ButtonContainer id={ wrapperId } type={ wrapperType } />
       </Provider>
     );
+  };
+
+  beforeEach(() => {
+    buttonWrapper = setStore(store);
   });
 
   it('should carry the props to the child button component', () => {
@@ -30,6 +34,11 @@ describe('ButtonContainer', () => {
     expect(buttonWrapper.find('Button').props().onClick).toEqual(state.ButtonActionsReducer.TOP);
   });
 
-  xit('it should dispatch remap action onClick');
-});
+  it('should set all buttons to the OVERRIDE function when given', () => {
+    const testFunc = jest.fn();
+    const newStore = configureMockStore()({ ButtonActionsReducer: { OVERRIDE: testFunc } });
+    const overrideWrapper = setStore(newStore);
 
+    expect(overrideWrapper.find('Button').props().onClick).toBe(testFunc);
+  });
+});

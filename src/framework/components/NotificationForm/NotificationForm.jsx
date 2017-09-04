@@ -8,33 +8,30 @@ export default class NotificationForm extends React.Component {
     super(props);
 
     this.state = {
-      input: this.props.defaultText,
-      showPopup: false,
+      input: props.defaultText,
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
   }
 
-  handleTextChange(e) {
+  handleTextChange = (e) => {
     this.setState({
       input: e.target.value,
     });
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
+    e.preventDefault();
     this.props.handleEvent({
       text: this.state.input,
-      displayNotification: true,
+      show: true,
     });
-    e.preventDefault();
   }
 
   render() {
     return (
-      <form id='notification-form' onSubmit={ this.handleSubmit }>
+      <form id='notification-form' onSubmit={ event => this.handleSubmit(event) }>
         <textarea
           className='notification-input'
-          onChange={ this.handleTextChange }
+          onChange={ event => this.handleTextChange(event) }
           placeholder='Type something and hit Send!'
           rows='10'
           cols='50'
@@ -46,7 +43,10 @@ export default class NotificationForm extends React.Component {
 }
 
 NotificationForm.propTypes = {
-  defaultText: PropTypes.string.isRequired,
   handleEvent: PropTypes.func.isRequired,
+  defaultText: PropTypes.string,
 };
 
+NotificationForm.defaultProps = {
+  defaultText: 'defaultText',
+};

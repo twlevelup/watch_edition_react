@@ -10,29 +10,35 @@ export default class WatchApp extends React.Component {
     this.state = {
       notificationEvent: {
         text: 'Default notification text',
-        displayNotification: false,
+        show: false,
+        buttonConfigs: this.popupButtons,
       },
     };
   }
 
-  notificationHandler = (newEvent = this.state.notificationEvent) => {
-    this.setState({ notificationEvent: newEvent });
+  popupButtons = {
+    OVERRIDE: () => this.setState({ notificationEvent: { ...this.state.notificationEvent, show: false } }),
+  }
+
+  notificationHandler = (newEvent) => {
+    this.setState({ notificationEvent: { ...newEvent, buttonConfigs: this.popupButtons } });
   };
 
   render() {
     const { pages } = this.props;
+    const { notificationEvent } = this.state;
     return (
       <div id='home-container'>
         <div id='left'>
           <h1>LevelUp Watch Edition</h1>
           <p>This is LevelUp Watch Edition sample app.</p>
           <NotificationForm
-            defaultText={ this.state.notificationEvent.text }
             handleEvent={ this.notificationHandler }
+            defaultText={ notificationEvent.text }
           />
         </div>
         <div id='right'>
-          <Watch notificationEvent={ this.state.notificationEvent }>
+          <Watch notificationEvent={ notificationEvent }>
             {
               pages.map(({ path, Component, props = {} }) => (
                 <Component key={ `route-${ path }` } path={ path } { ...props } />

@@ -8,6 +8,7 @@ const initialState = {
   TOP: doNothing,
   RIGHT: doNothing,
   LEFT: doNothing,
+  OVERRIDE: false,
 };
 
 

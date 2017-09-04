@@ -13,8 +13,9 @@ const Watch = ({ children, notificationEvent }) => {
       <div className='strap strap-top' />
       <div id='watch-face' className='case'>
         <NotificationPopup
-          show={ notificationEvent.displayNotification }
+          show={ notificationEvent.show }
           text={ notificationEvent.text }
+          buttonConfigs={ notificationEvent.buttonConfigs }
         />
         <ButtonContainer id='button-right' type='RIGHT' />
         <ButtonContainer id='button-left' type='LEFT' />
@@ -22,7 +23,7 @@ const Watch = ({ children, notificationEvent }) => {
         <ButtonContainer id='button-top' type='TOP' />
         <ViewRouter>
           <ScreenLayout>
-            {children}
+            { children }
           </ScreenLayout>
         </ViewRouter>
       </div>
@@ -33,8 +34,11 @@ const Watch = ({ children, notificationEvent }) => {
 
 Watch.propTypes = {
   notificationEvent: PropTypes.shape({
-    displayNotification: PropTypes.bool,
-    text: PropTypes.string,
+    show: PropTypes.bool,
+    text: PropTypes.string.isRequired,
+    buttonConfigs: PropTypes.shape({
+      OVERRIDE: PropTypes.func.isRequired,
+    }).isRequired,
   }).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
