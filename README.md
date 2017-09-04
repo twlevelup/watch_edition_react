@@ -8,7 +8,7 @@ The [wiki](https://github.com/twlevelup/watch_edition_react/wiki) contains lots 
 
 # Installation
 
-See the [Installation Instructions](https://github.com/twlevelup/watch_edition_react/wiki/Installation)
+See the [Installation Instructions](https://github.com/twlevelup/watch_edition_react/wiki/Setup)
 
 ## Continuous Integration
 
