@@ -37,9 +37,30 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: npm run lint
+  deploy:
+    docker:
+      - image: circleci/node:7.10.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: bash .circleci/setup-heroku.sh
+				- add_ssh_keys:
+            fingerprints:
+              - "8f:95:30:a9:c5:a5:f7:dc:85:aa:e7:5f:45:52:91:11"
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              git push heroku master
+              heroku run python manage.py deploy
+              heroku restart
+            fi
 workflows:
   version: 2
-  build-test:
+  build-test-deploy:
     jobs:
       - build
       - test:
@@ -48,3 +69,7 @@ workflows:
       - lint:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
+            - lint
