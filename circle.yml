@@ -8,7 +8,7 @@ dependencies:
     - npm install
 test:
   override:
-    - npm precommit
+    - npm run precommit
 deployment:
   staging:
     branch: master
