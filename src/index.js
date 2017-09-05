@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 import browserHistory from './framework/Router/BrowserHistory';
@@ -23,8 +23,10 @@ const reducers = combineReducers({
   NotificationReducer,
 });
 
+// eslint-disable-next-line no-underscore-dangle
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(reducers, composeEnhancers(applyMiddleware(middleware)));
 
-export const store = createStore(reducers, applyMiddleware(middleware));
 const pages = [
   { path: '/', Component: HomeScreen },
   { path: '/contacts', Component: ContactScreen, props: { contacts } },
