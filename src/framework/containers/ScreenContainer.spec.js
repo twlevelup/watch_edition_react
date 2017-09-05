@@ -9,10 +9,8 @@ const state = { ButtonActionsReducer: { SCREEN: jest.fn() } };
 const store = configureMockStore()(state);
 
 describe('ButtonContainer', () => {
-  let curriedFunction;
   beforeEach(() => {
-    curriedFunction = jest.fn();
-    buttonSelector.getActionByType = jest.fn(() => curriedFunction);
+    buttonSelector.getActionByType = jest.fn(() => () => {});
   });
   it('should set the onClick action for the screen layout', () => {
     shallow(
@@ -20,7 +18,6 @@ describe('ButtonContainer', () => {
         Hello
       </ScreenContainer>
     );
-    expect(buttonSelector.getActionByType).toHaveBeenCalledWith('SCREEN');
-    expect(curriedFunction).toHaveBeenCalledWith(store.getState());
+    expect(buttonSelector.getActionByType).toHaveBeenCalledWith('SCREEN', state);
   });
 });

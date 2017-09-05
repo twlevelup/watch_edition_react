@@ -9,7 +9,7 @@ describe('buttonActionSelectors', () => {
         },
       };
 
-      expect(getActionByType('TOP')(state)).toBe('top function');
+      expect(getActionByType('TOP', state)).toBe('top function');
     });
 
     it('it should return the override function if it\'s present', () => {
@@ -20,7 +20,7 @@ describe('buttonActionSelectors', () => {
         },
       };
 
-      expect(getActionByType('TOP')(state)).toBe('override function');
+      expect(getActionByType('TOP', state)).toBe('override function');
     });
   });
 });

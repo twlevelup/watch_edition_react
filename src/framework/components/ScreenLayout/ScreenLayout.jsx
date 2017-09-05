@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router';
 import './screen_layout.css';
 
-const ScreenLayout = ({ children, className }) => {
+const ScreenLayout = ({ children, className, onClick }) => {
   const wrapChild = (child) => {
     if (child.props.path) {
       return (<Route
@@ -18,7 +18,13 @@ const ScreenLayout = ({ children, className }) => {
   return (
     <div>
       <div id='watch-screen' className={ className } >
-        {React.Children.map(children, wrapChild)}
+        <div
+          role='button'
+          tabIndex={ 0 }
+          onClick={ onClick }
+        >
+          {React.Children.map(children, wrapChild)}
+        </div>
       </div>
     </div>
   );
@@ -30,10 +36,12 @@ ScreenLayout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  onClick: PropTypes.func,
 };
 
 ScreenLayout.defaultProps = {
   className: 'screen-layout',
+  onClick: () => {},
 };
 
 export default ScreenLayout;
