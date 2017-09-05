@@ -10,6 +10,7 @@ describe('ButtonsRemapReducer', () => {
     expect(result).toMatchObject({ RIGHT: ButtonAction.doNothing });
     expect(result).toMatchObject({ TOP: ButtonAction.doNothing });
     expect(result).toMatchObject({ BOTTOM: ButtonAction.doNothing });
+    expect(result).toMatchObject({ SCREEN: ButtonAction.doNothing });
     expect(result).toMatchObject({ OVERRIDE: false });
   });
 

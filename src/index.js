@@ -6,6 +6,7 @@ import { routerMiddleware, routerReducer } from 'react-router-redux';
 import browserHistory from './framework/Router/BrowserHistory';
 
 import ButtonActionsReducer from './framework/reducers/ButtonsRemapReducer';
+import NotificationReducer from './framework/reducers/NotificationReducer';
 
 import HomeScreen from './app/pages/HomeScreen/HomeScreen';
 import CounterScreen from './app/pages/CounterScreen/CounterScreen';
@@ -19,6 +20,7 @@ const middleware = routerMiddleware(browserHistory);
 const reducers = combineReducers({
   ButtonActionsReducer,
   router: routerReducer,
+  NotificationReducer,
 });
 
 
@@ -34,4 +36,3 @@ ReactDOM.render(
   <Provider store={ store }>
     <WatchApp pages={ pages } />
   </Provider>, document.getElementById('root'));
-

@@ -4,3 +4,5 @@ build/
 jest*/
 coverage/
 package-lock.json
+.DS_Store
+**/.DS_Store

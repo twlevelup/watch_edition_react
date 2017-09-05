@@ -5,7 +5,7 @@ import { remapButtons } from '../actions/ButtonAction';
 
 const ButtonConfigsHOC = (WrappedComponent) => {
   class Wrapper extends Component {
-    componentWillMount() {
+    componentDidMount() {
       this.props.remapButtons();
     }
 

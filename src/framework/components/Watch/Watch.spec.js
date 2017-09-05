@@ -1,47 +1,57 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Watch from './Watch';
+import { WatchComponent } from './Watch';
 
 describe('Watch component', () => {
-  let WatchComponent;
-  const fakeFunc = jest.fn();
-  const dummyNotificationEvent = {
-    show: true,
-    text: 'test',
-    buttonConfigs: { OVERRIDE: fakeFunc },
+  let wrappedWatch;
+  const buttonConfigs = {
+    TOP: jest.fn(),
+    BOTTOM: jest.fn(),
+    LEFT: jest.fn(),
+    RIGHT: jest.fn(),
+    SCREEN: jest.fn(),
+    OVERRIDE: false,
   };
+
   beforeEach(() => {
-    WatchComponent = shallow(
-      <Watch notificationEvent={ dummyNotificationEvent }>
+    wrappedWatch = shallow(
+      <WatchComponent buttonConfigs={ buttonConfigs }>
         <div>Mock</div>
-      </Watch>);
+      </WatchComponent>);
   });
 
-  test('it should display the straps', () => {
-    const result = WatchComponent.find('.strap');
+  it('it should display the straps', () => {
+    const result = wrappedWatch.find('.strap');
     expect(result).toBePresent();
     expect(result.length).toBe(2);
   });
 
-  test('it should display the watch case', () => {
-    expect(WatchComponent.find('.case')).toBePresent();
+  it('it should display the watch case', () => {
+    expect(wrappedWatch.find('.case')).toBePresent();
   });
 
-  test('it should have four buttonContainers', () => {
-    expect(WatchComponent.find('Connect(Button)')).toHaveLength(4);
+  it('should have a left button', () => {
+    expect(wrappedWatch.find({ type: 'LEFT' }).length).toBe(1);
   });
 
-  test('it should have a ViewRouter component', () => {
-    expect(WatchComponent.find('ViewRouter')).toBePresent();
+  it('should have a right button', () => {
+    expect(wrappedWatch.find({ type: 'RIGHT' }).length).toBe(1);
   });
 
-  xtest('it should pass the notificationEvent props to the NotificationPopup component', () => {
-    const result = WatchComponent.find('NotificationPopup');
-    expect(result.props()).toMatchObject(dummyNotificationEvent);
+  it('should have a TOP button', () => {
+    expect(wrappedWatch.find({ type: 'TOP' }).length).toBe(1);
   });
 
-  test('it should contain screen layout component', () => {
-    const result = WatchComponent.find('ScreenLayout');
+  it('should have a bottom button', () => {
+    expect(wrappedWatch.find({ type: 'BOTTOM' }).length).toBe(1);
+  });
+
+  it('it should have a ViewRouter component', () => {
+    expect(wrappedWatch.find('ViewRouter')).toBePresent();
+  });
+
+  it('it should contain screen layout component', () => {
+    const result = wrappedWatch.find('ScreenLayout');
     expect(result).toHaveLength(1);
   });
 });

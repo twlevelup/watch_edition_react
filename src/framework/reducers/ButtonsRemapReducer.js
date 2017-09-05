@@ -8,6 +8,7 @@ const initialState = {
   TOP: doNothing,
   RIGHT: doNothing,
   LEFT: doNothing,
+  SCREEN: doNothing,
   OVERRIDE: false,
 };
 
@@ -17,7 +18,7 @@ const ButtonActionReducer = (state = initialState, action) => {
   case ACTION_TYPES.BUTTON_REMAP:
     return { ...state, ...action.remapedButtons };
   default:
-    return initialState;
+    return state;
   }
 };
 

@@ -4,52 +4,26 @@ import Watch from '../../../framework/components/Watch/Watch';
 import './WatchApp.css';
 import NotificationForm from '../NotificationForm/NotificationForm';
 
-export default class WatchApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      notificationEvent: {
-        text: 'Default notification text',
-        show: false,
-        buttonConfigs: this.popupButtons,
-      },
-    };
-  }
-
-  popupButtons = {
-    OVERRIDE: () => this.setState({ notificationEvent: { ...this.state.notificationEvent, show: false } }),
-  }
-
-  notificationHandler = (newEvent) => {
-    this.setState({ notificationEvent: { ...newEvent, buttonConfigs: this.popupButtons } });
-  };
-
-  render() {
-    const { pages } = this.props;
-    const { notificationEvent } = this.state;
-    return (
-      <div id='home-container'>
-        <div id='left'>
-          <h1>LevelUp Watch Edition</h1>
-          <p>This is LevelUp Watch Edition sample app.</p>
-          <NotificationForm
-            handleEvent={ this.notificationHandler }
-            defaultText={ notificationEvent.text }
-          />
-        </div>
-        <div id='right'>
-          <Watch notificationEvent={ notificationEvent }>
-            {
-              pages.map(({ path, Component, props = {} }) => (
-                <Component key={ `route-${ path }` } path={ path } { ...props } />
-              ))
-            }
-          </Watch>
-        </div>
+const WatchApp = ({ pages }) => {
+  return (
+    <div id='home-container'>
+      <div id='left'>
+        <h1>LevelUp Watch Edition</h1>
+        <p>This is LevelUp Watch Edition sample app.</p>
+        <NotificationForm />
       </div>
-    );
-  }
-}
+      <div id='right'>
+        <Watch>
+          {
+            pages.map(({ path, Component, props = {} }) => (
+              <Component key={ `route-${ path }` } path={ path } { ...props } />
+            ))
+          }
+        </Watch>
+      </div>
+    </div>
+  );
+};
 
 WatchApp.propTypes = {
   pages: PropTypes.arrayOf(PropTypes.shape({
@@ -57,3 +31,5 @@ WatchApp.propTypes = {
     Component: PropTypes.func,
   })).isRequired,
 };
+
+export default WatchApp;

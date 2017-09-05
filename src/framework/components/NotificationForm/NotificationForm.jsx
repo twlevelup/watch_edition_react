@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NotificationContainer from '../../containers/NotificationContainer';
 
 import './notification_form.css';
 
-export default class NotificationForm extends React.Component {
+export class NotificationFormComponent extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      input: props.defaultText,
+      input: props.text,
     };
   }
 
@@ -18,12 +19,17 @@ export default class NotificationForm extends React.Component {
     });
   }
 
+  buttonConfigs = {
+    OVERRIDE: () => {
+      this.props.hideNotification();
+      this.props.remapButtons({ OVERRIDE: false });
+    },
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleEvent({
-      text: this.state.input,
-      show: true,
-    });
+    this.props.pushNotification(this.state.input);
+    this.props.remapButtons(this.buttonConfigs);
   }
 
   render() {
@@ -42,11 +48,11 @@ export default class NotificationForm extends React.Component {
   }
 }
 
-NotificationForm.propTypes = {
-  handleEvent: PropTypes.func.isRequired,
-  defaultText: PropTypes.string,
+NotificationFormComponent.propTypes = {
+  pushNotification: PropTypes.func.isRequired,
+  hideNotification: PropTypes.func.isRequired,
+  remapButtons: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
-NotificationForm.defaultProps = {
-  defaultText: 'defaultText',
-};
+export default NotificationContainer(NotificationFormComponent);

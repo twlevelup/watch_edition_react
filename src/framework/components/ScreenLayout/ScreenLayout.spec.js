@@ -14,7 +14,11 @@ describe('ScreenLayout component', () => {
 
     beforeEach(() => {
       renderedScreen = mount(
-        <StaticRouter context={ {} }><ScreenLayout><Mock path='/' /><Mock /></ScreenLayout></StaticRouter>);
+        <StaticRouter context={ {} }>
+          <ScreenLayout onClick={ jest.fn() }>
+            <Mock path='/' /><Mock />
+          </ScreenLayout>
+        </StaticRouter>);
     });
 
     test("It places children with a defined 'path' prop inside a Route element", () => {

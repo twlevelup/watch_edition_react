@@ -10,6 +10,7 @@
   z-index: 100;
   font-size: 1.2em;
   padding: 20px;
+  font-family: OpenSans, Helvetica, Arial, sans-serif;
 }
 
 .notification-popup.hidden {

@@ -17,7 +17,7 @@ const ScreenLayout = ({ children, className }) => {
 
   return (
     <div>
-      <div id='watch-screen' className={ className }>
+      <div id='watch-screen' className={ className } >
         {React.Children.map(children, wrapChild)}
       </div>
     </div>
