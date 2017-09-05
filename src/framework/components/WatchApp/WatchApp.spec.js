@@ -41,7 +41,7 @@ describe('WatchApp', () => {
   });
 
   test('it should display the Watch component', () => {
-    expect(wrappedApp.find('WatchComponent')).toBePresent();
+    expect(wrappedApp.find('Watch')).toBePresent();
   });
 
   test('it should display the LevelUp title', () => {

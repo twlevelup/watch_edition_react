@@ -7,7 +7,7 @@ import ScreenLayout from '../ScreenLayout/ScreenLayout';
 import NotificationPopup from './NotificationPopup/NotificationPopup';
 import ButtonContainer from '../../containers/ButtonContainer';
 
-export const WatchComponent = ({ children }) => {
+const Watch = ({ children }) => {
   return (
     <div id='watch' className='watch'>
       <div className='strap strap-top' />
@@ -28,11 +28,11 @@ export const WatchComponent = ({ children }) => {
   );
 };
 
-WatchComponent.propTypes = {
+Watch.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
 };
 
-export default WatchComponent;
+export default Watch;

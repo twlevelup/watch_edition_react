@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { WatchComponent } from './Watch';
+import Watch from './Watch';
 
 describe('Watch component', () => {
   let wrappedWatch;
@@ -15,9 +15,9 @@ describe('Watch component', () => {
 
   beforeEach(() => {
     wrappedWatch = shallow(
-      <WatchComponent buttonConfigs={ buttonConfigs }>
+      <Watch buttonConfigs={ buttonConfigs }>
         <div>Mock</div>
-      </WatchComponent>);
+      </Watch>);
   });
 
   it('it should display the straps', () => {
