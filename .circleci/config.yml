@@ -45,9 +45,8 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
       - run: bash .circleci/setup-heroku.sh
-				- add_ssh_keys:
+        - add_ssh_keys:
             fingerprints:
               - "8f:95:30:a9:c5:a5:f7:dc:85:aa:e7:5f:45:52:91:11"
       - deploy:
