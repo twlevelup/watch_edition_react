@@ -37,4 +37,11 @@ describe('<CounterScreenComponent />', () => {
     componentWrapper.instance().buttonActions.RIGHT();
     expect(ButtonAction.goToPage).toHaveBeenCalledWith('/');
   });
+
+  it('it should have a SCREEN button config reseting to 0', () => {
+    componentWrapper.instance().buttonActions.BOTTOM();
+    componentWrapper.instance().buttonActions.BOTTOM();
+    componentWrapper.instance().buttonActions.SCREEN();
+    expect(componentWrapper).toHaveText('0');
+  });
 });
