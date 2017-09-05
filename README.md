@@ -14,6 +14,8 @@ See the [Installation Instructions](https://github.com/twlevelup/watch_edition_r
 
 This project is continuously deployed to heroku by [Circle CI](https://circleci.com).
 
+The project is continuously deployed to heroku by Travis CI
+
 
 ## Setup
 Tested with node 8.x
