@@ -5,9 +5,7 @@ import {
   shape,
 } from 'prop-types';
 
-import GenericList from '../../../framework/components/GenericList/GenericList';
-import WithButtonConfigs from '../../../framework/containers/WithButtonConfigs';
-import ButtonAction from '../../../framework/util/ButtonAction';
+import { GenericList, WithButtonConfigs, ButtonAction } from 'watch-framework-react';
 import Contact from './components/Contact/Contact';
 import './contact_list.css';
 

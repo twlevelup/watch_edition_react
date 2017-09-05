@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Watch from 'watch-framework-react';
 
 import HomeScreen from './app/pages/HomeScreen/HomeScreen';
 import CounterScreen from './app/pages/CounterScreen/CounterScreen';
 import ContactScreen from './app/pages/ContactListScreen/ContactListScreen';
 import NotFoundScreen from './app/pages/NotFoundScreen/NotFoundScreen';
 import contacts from './app/data/contacts.json';
-import WatchApp from './framework';
+
 
 const pages = [
   { path: '/', Component: HomeScreen },
@@ -16,5 +17,5 @@ const pages = [
 ];
 
 ReactDOM.render(
-  <WatchApp pages={ pages } />,
+  <Watch pages={ pages } />,
   document.getElementById('root'));

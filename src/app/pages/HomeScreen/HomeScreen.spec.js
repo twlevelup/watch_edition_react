@@ -1,11 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { Date, Time, ButtonAction } from 'watch-framework-react';
 import { HomeScreenComponent, HomeScreenButtons } from './HomeScreen';
-import Date from '../../../framework/components/Date/Date';
-import Time from '../../../framework/components/Time/Time';
-import ButtonAction from '../../../framework/util/ButtonAction';
 
-jest.mock('../../../framework/util/ButtonAction');
+jest.mock(ButtonAction);
 
 describe('HomeScreenComponent component', () => {
   let homeScreenComponent;

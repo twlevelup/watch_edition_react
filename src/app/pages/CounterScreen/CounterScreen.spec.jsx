@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { ButtonAction } from 'watch-framework-react';
 import { CounterScreenComponent } from './CounterScreen';
-import ButtonAction from '../../../framework/util/ButtonAction';
 
-jest.mock('../../../framework/util/ButtonAction');
+jest.mock(ButtonAction);
 
 describe('<CounterScreenComponent />', () => {
   let componentWrapper;

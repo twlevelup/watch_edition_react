@@ -1,8 +1,5 @@
 import React from 'react';
-import Date from '../../../framework/components/Date/Date';
-import Time from '../../../framework/components/Time/Time';
-import ButtonAction from '../../../framework/util/ButtonAction';
-import WithButtonConfigs from '../../../framework/containers/WithButtonConfigs';
+import { Date, Time, ButtonAction, WithButtonConfigs } from 'watch-framework-react';
 
 export const HomeScreenComponent = () => {
   return (

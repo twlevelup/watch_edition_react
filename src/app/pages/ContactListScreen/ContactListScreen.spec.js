@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { ButtonAction } from 'watch-framework-react';
 import { ContactListScreen, ContactScreenButtons } from './ContactListScreen';
-import ButtonAction from '../../../framework/util/ButtonAction';
 
-jest.mock('../../../framework/util/ButtonAction');
+jest.mock(ButtonAction);
 
 describe('ContactListScreen component', () => {
   let componentWrapper;

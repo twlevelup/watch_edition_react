@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import WithButtonConfigs from '../../../framework/containers/WithButtonConfigs';
-import ButtonAction from '../../../framework/util/ButtonAction';
+import { WithButtonConfigs, ButtonAction } from 'watch-framework-react';
 
 export class CounterScreenComponent extends Component {
   constructor(props) {
