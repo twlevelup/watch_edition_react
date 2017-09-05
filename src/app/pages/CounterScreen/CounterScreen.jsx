@@ -13,10 +13,15 @@ export class CounterScreenComponent extends Component {
     this.props.remapButtons(this.buttonActions);
   }
 
+  componentDidUpdate() {
+    this.props.remapButtons(this.buttonActions);
+  }
+
   buttonActions = {
     RIGHT: () => ButtonAction.goToPage('/'),
     BOTTOM: () => this.setState({ number: this.state.number - 1 }),
     TOP: () => this.setState({ number: this.state.number + 1 }),
+    SCREEN: () => this.setState({ number: 0 }),
   };
 
   render() {

@@ -86,4 +86,20 @@
   transform: rotateZ(90deg) rotateY(180deg);
 }
 
+#watch #button-screen {
+  background: transparent;
+  border: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /*position: absolute;*/
+  /*right: -2.3em;*/
+  /*top: 10.3em;*/
+  /*height: 6.5em;*/
+  /*width: 0.8em;*/
+  /*border-left: 0px;*/
+  /*background: #e4e4e4;*/
+}
+
 

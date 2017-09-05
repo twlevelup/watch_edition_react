@@ -6,7 +6,6 @@ import ViewRouter from '../../Router/ViewRouter';
 import ScreenLayout from '../ScreenLayout/ScreenLayout';
 import NotificationPopup from './NotificationPopup/NotificationPopup';
 import ButtonContainer from '../../containers/ButtonContainer';
-import ScreenContainer from '../../containers/ScreenContainer';
 
 const Watch = ({ children }) => {
   return (
@@ -18,13 +17,12 @@ const Watch = ({ children }) => {
         <ButtonContainer id='button-left' type='LEFT' />
         <ButtonContainer id='button-bottom' type='BOTTOM' />
         <ButtonContainer id='button-top' type='TOP' />
-        <ScreenContainer>
-          <ViewRouter>
-            <ScreenLayout>
-              { children }
-            </ScreenLayout>
-          </ViewRouter>
-        </ScreenContainer>
+        <ViewRouter>
+          <ScreenLayout>
+            { children }
+          </ScreenLayout>
+        </ViewRouter>
+        <ButtonContainer id='button-screen' type='SCREEN' />
       </div>
       <div className='strap strap-bottom' />
     </div>
