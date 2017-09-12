@@ -4,6 +4,8 @@ import Time from '../../../framework/components/Time/Time';
 import ButtonAction from '../../../framework/util/ButtonAction';
 import WithButtonConfigs from '../../../framework/containers/WithButtonConfigs';
 
+import logo from './logo.png';
+
 export const HomeScreenComponent = () => {
   return (
     <div id='watch-home-page'>
@@ -11,7 +13,7 @@ export const HomeScreenComponent = () => {
       <Time />
 
       <div id='home-page-content'>
-        <img src='../../../logo.png' alt='' />
+        <img src={ logo } alt='logo' />
 
         <div>Hello, World!</div>
 
