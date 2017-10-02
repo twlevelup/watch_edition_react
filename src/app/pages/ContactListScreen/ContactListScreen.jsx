@@ -17,10 +17,6 @@ export class ContactListComponent extends Component {
     this.props.remapButtons(this.buttonActions);
   }
 
-  componentDidUpdate() {
-    this.props.remapButtons(this.buttonActions);
-  }
-
   selectNextContact() {
     if (this.props.selectedIndex < this.props.contacts.length - 1) {
       ButtonAction.goToPage({ state: { selectedIndex: this.props.selectedIndex + 1 } });
