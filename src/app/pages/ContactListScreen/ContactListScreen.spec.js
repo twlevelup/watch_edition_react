@@ -31,6 +31,26 @@ describe('ContactListScreen component', () => {
     expect(componentWrapper.find('ScrollList')).toBePresent();
   });
 
+  describe('getNextIndex', () => {
+    describe('when the result is between 0 and contacts.length', () => {
+      beforeEach(() => {
+        componentWrapper = mount(
+          <ContactListScreen
+            contacts={ [{ name: 'bleh' }, { name: 'bloh' }, { name: 'blah' }] }
+            remapButtons={ onLoadRemapButtons }
+            selectedIndex={ 1 }
+          />);
+      });
+      test('it returns the new index when increased by 1', () => {
+        expect(componentWrapper.instance().getNextIndex(1)).toBe(2);
+      });
+
+      test('it returns the new index when decreased by 1', () => {
+        expect(componentWrapper.instance().getNextIndex(-1)).toBe(0);
+      });
+    });
+  });
+
   it('should have a LEFT button config of going to Home Page', () => {
     componentWrapper.instance().buttonActions.LEFT();
     expect(ButtonAction.goToPage).toHaveBeenCalledWith('/');
@@ -71,7 +91,7 @@ describe('ContactListScreen component', () => {
       expect(ButtonAction.goToPage).toHaveBeenCalledWith({ state: { selectedIndex: 0 } });
     });
 
-    it('should set the selected contact index in negative', () => {
+    it('should set the selected contact to the greatest possible index when index would be negative', () => {
       componentWrapper = mount(
         <ContactListScreen
           contacts={ [{ name: 'bleh' }, { name: 'bloh' }] }
@@ -80,7 +100,7 @@ describe('ContactListScreen component', () => {
         />
       );
       componentWrapper.instance().buttonActions.TOP();
-      expect(ButtonAction.goToPage).not.toHaveBeenCalled();
+      expect(ButtonAction.goToPage).toHaveBeenCalledWith({ state: { selectedIndex: 1 } });
     });
   });
 
@@ -97,7 +117,7 @@ describe('ContactListScreen component', () => {
       expect(ButtonAction.goToPage).toHaveBeenCalledWith({ state: { selectedIndex: 1 } });
     });
 
-    it('should set selected contact index to be more than the contact list length', () => {
+    it('should set selected contact index to 0 when it would be more than the contact list length', () => {
       componentWrapper = mount(
         <ContactListScreen
           contacts={ [{ name: 'bleh' }, { name: 'bloh' }] }
@@ -108,7 +128,7 @@ describe('ContactListScreen component', () => {
 
       componentWrapper.instance().buttonActions.BOTTOM();
 
-      expect(ButtonAction.goToPage).not.toHaveBeenCalled();
+      expect(ButtonAction.goToPage).toHaveBeenCalledWith({ state: { selectedIndex: 0 } });
     });
   });
 });

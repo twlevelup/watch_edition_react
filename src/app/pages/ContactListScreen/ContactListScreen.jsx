@@ -17,16 +17,18 @@ export class ContactListComponent extends Component {
     this.props.remapButtons(this.buttonActions);
   }
 
+  getNextIndex = (indexChange) => {
+    const { selectedIndex, contacts } = this.props;
+    const newIndex = selectedIndex + indexChange;
+    return Math.abs(newIndex % contacts.length);
+  }
+
   selectNextContact() {
-    if (this.props.selectedIndex < this.props.contacts.length - 1) {
-      ButtonAction.goToPage({ state: { selectedIndex: this.props.selectedIndex + 1 } });
-    }
+    ButtonAction.goToPage({ state: { selectedIndex: this.getNextIndex(1) } });
   }
 
   selectPreviousContact() {
-    if (this.props.selectedIndex > 0) {
-      ButtonAction.goToPage({ state: { selectedIndex: this.props.selectedIndex - 1 } });
-    }
+    ButtonAction.goToPage({ state: { selectedIndex: this.getNextIndex(-1) } });
   }
 
   buttonActions = {
