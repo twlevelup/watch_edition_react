@@ -7,18 +7,12 @@ import {
   shape,
 } from 'prop-types';
 
-import GenericList from '../../../framework/components/GenericList/GenericList';
+import ScrollList from '../../../framework/components/ScrollList/ScrollList';
 import WithButtonConfigs from '../../../framework/containers/WithButtonConfigs';
 import ButtonAction from '../../../framework/util/ButtonAction';
-import Contact from './components/Contact/Contact';
 import './contact_list.css';
 
 export class ContactListComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { selectedContactIndex: props.selectedContactIndex };
-  }
-
   componentDidMount() {
     this.props.remapButtons(this.buttonActions);
   }
@@ -28,34 +22,35 @@ export class ContactListComponent extends Component {
   }
 
   selectNextContact() {
-    if (this.state.selectedContactIndex < this.props.contacts.length - 1) {
-      this.setState({ selectedContactIndex: ++this.state.selectedContactIndex });
+    if (this.props.selectedIndex < this.props.contacts.length - 1) {
+      ButtonAction.goToPage({ state: { selectedIndex: this.props.selectedIndex + 1 } });
     }
   }
 
   selectPreviousContact() {
-    if (this.state.selectedContactIndex > 0) {
-      this.setState({ selectedContactIndex: --this.state.selectedContactIndex });
+    if (this.props.selectedIndex > 0) {
+      ButtonAction.goToPage({ state: { selectedIndex: this.props.selectedIndex - 1 } });
     }
   }
 
   buttonActions = {
     RIGHT: () => ButtonAction.goToPage('/counter'),
     LEFT: () => ButtonAction.goToPage('/'),
-    BOTTOM: () => { ButtonAction.scrollDown(); this.selectNextContact(); },
-    TOP: () => { ButtonAction.scrollUp(); this.selectPreviousContact(); },
-    SCREEN: () => ButtonAction.goToPage(`/contact/${ this.state.selectedContactIndex }`),
+    BOTTOM: () => { this.selectNextContact(); },
+    TOP: () => { this.selectPreviousContact(); },
+    SCREEN: () => ButtonAction.goToPage({
+      pathname: '/contact-view',
+      state: { contact: this.props.contacts[this.props.selectedIndex] },
+    }),
   };
 
   render() {
     return (
       <div id='contact-screen' className='contact-screen'>
         <h1 className='title'>Contacts</h1>
-        <GenericList
-          className='contacts-list'
-          items={ this.props.contacts }
-          selectedItemIndex={ this.state.selectedContactIndex }
-          listItem={ Contact }
+        <ScrollList
+          labels={ this.props.contacts.map(c => c.name) }
+          selectedIndex={ this.props.selectedIndex }
         />
       </div>
     );
@@ -63,7 +58,7 @@ export class ContactListComponent extends Component {
 }
 
 ContactListComponent.propTypes = {
-  selectedContactIndex: number.isRequired,
+  selectedIndex: number,
   remapButtons: func.isRequired,
   contacts: arrayOf(shape({
     name: string,
@@ -73,7 +68,7 @@ ContactListComponent.propTypes = {
 };
 
 ContactListComponent.defaultProps = {
-  selectedContactIndex: 0,
+  selectedIndex: 0,
 };
 
 

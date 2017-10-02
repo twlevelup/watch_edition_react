@@ -7,12 +7,11 @@ jest.mock('../../../framework/util/ButtonAction');
 
 describe('ContactViewScreen ', () => {
   let componentWrapper;
-  const mockContacts = [{ name: 'contact 0' }, { name: 'MeMeMEEE' }];
-  const mockRouterMatchObj = { params: { selectedContactIndex: 1 } };
+  const mockContact = { name: 'MeMeMEEE' };
 
   beforeEach(() => {
     componentWrapper = shallow(
-      <ContactViewScreen contacts={ mockContacts } match={ mockRouterMatchObj } />
+      <ContactViewScreen contact={ mockContact } />
     );
   });
 

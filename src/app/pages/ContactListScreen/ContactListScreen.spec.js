@@ -9,9 +9,13 @@ describe('ContactListScreen component', () => {
   let componentWrapper;
   let onLoadRemapButtons;
   beforeEach(() => {
+    jest.resetAllMocks();
     onLoadRemapButtons = jest.fn();
     componentWrapper = mount(
-      <ContactListScreen contacts={ [{ name: 'bleh' }, { name: 'bloh' }] } remapButtons={ onLoadRemapButtons } />
+      <ContactListScreen
+        contacts={ [{ name: 'bleh' }, { name: 'bloh' }] }
+        remapButtons={ onLoadRemapButtons }
+      />
     );
   });
 
@@ -24,7 +28,7 @@ describe('ContactListScreen component', () => {
   });
 
   it('should contain a GenericList component', () => {
-    expect(componentWrapper.find('GenericList')).toBePresent();
+    expect(componentWrapper.find('ScrollList')).toBePresent();
   });
 
   it('should have a LEFT button config of going to Home Page', () => {
@@ -38,48 +42,73 @@ describe('ContactListScreen component', () => {
   });
 
   it('should have on SCREEN button config of going to contact view page with the selected contact', () => {
-    componentWrapper.instance().setState({ selectedContactIndex: 2 });
+    componentWrapper = mount(
+      <ContactListScreen
+        contacts={ [{ name: 'bleh' }, { name: 'bloh' }] }
+        remapButtons={ onLoadRemapButtons }
+        selectedIndex={ 1 }
+      />
+    );
+
     componentWrapper.instance().buttonActions.SCREEN();
-    expect(ButtonAction.goToPage).toHaveBeenCalledWith('/contact/2');
+
+    expect(ButtonAction.goToPage).toHaveBeenCalledWith({
+      pathname: '/contact-view',
+      state: { contact: { name: 'bloh' } },
+    });
   });
 
   describe('TOP button', () => {
-    it('should scrolling up', () => {
-      componentWrapper.instance().buttonActions.TOP();
-      expect(ButtonAction.scrollUp).toHaveBeenCalled();
-    });
-
     it('should set previous contact in state', () => {
-      componentWrapper.instance().setState({ selectedContactIndex: 2 });
+      componentWrapper = mount(
+        <ContactListScreen
+          contacts={ [{ name: 'bleh' }, { name: 'bloh' }] }
+          remapButtons={ onLoadRemapButtons }
+          selectedIndex={ 1 }
+        />
+      );
       componentWrapper.instance().buttonActions.TOP();
-      expect(componentWrapper.instance().state.selectedContactIndex).toBe(1);
+      expect(ButtonAction.goToPage).toHaveBeenCalledWith({ state: { selectedIndex: 0 } });
     });
 
     it('should set the selected contact index in negative', () => {
-      componentWrapper.instance().setState({ selectedContactIndex: 1 });
+      componentWrapper = mount(
+        <ContactListScreen
+          contacts={ [{ name: 'bleh' }, { name: 'bloh' }] }
+          remapButtons={ onLoadRemapButtons }
+          selectedIndex={ 0 }
+        />
+      );
       componentWrapper.instance().buttonActions.TOP();
-      componentWrapper.instance().buttonActions.TOP();
-      componentWrapper.instance().buttonActions.TOP();
-      expect(componentWrapper.instance().state.selectedContactIndex).toBe(0);
+      expect(ButtonAction.goToPage).not.toHaveBeenCalled();
     });
   });
 
   describe('BOTTOM button', () => {
-    it('should  scrolling down', () => {
-      componentWrapper.instance().buttonActions.BOTTOM();
-      expect(ButtonAction.goToPage).toHaveBeenCalled();
-    });
-
     it('should set next contact in state', () => {
+      componentWrapper = mount(
+        <ContactListScreen
+          contacts={ [{ name: 'bleh' }, { name: 'bloh' }] }
+          remapButtons={ onLoadRemapButtons }
+          selectedIndex={ 0 }
+        />
+      );
       componentWrapper.instance().buttonActions.BOTTOM();
-      expect(componentWrapper.instance().state.selectedContactIndex).toBe(1);
+      expect(ButtonAction.goToPage).toHaveBeenCalledWith({ state: { selectedIndex: 1 } });
     });
 
     it('should set selected contact index to be more than the contact list length', () => {
+      componentWrapper = mount(
+        <ContactListScreen
+          contacts={ [{ name: 'bleh' }, { name: 'bloh' }] }
+          remapButtons={ onLoadRemapButtons }
+          selectedIndex={ 1 }
+        />
+      );
+
       componentWrapper.instance().buttonActions.BOTTOM();
-      componentWrapper.instance().buttonActions.BOTTOM();
-      componentWrapper.instance().buttonActions.BOTTOM();
-      expect(componentWrapper.instance().state.selectedContactIndex).toBe(1);
+
+      expect(ButtonAction.goToPage).not.toHaveBeenCalled();
     });
   });
 });

@@ -12,7 +12,7 @@ import WatchApp from './framework';
 const pages = [
   { path: '/', Component: HomeScreen },
   { path: '/contacts', Component: ContactScreen, props: { contacts } },
-  { path: '/contact/:selectedContactIndex', Component: ContactViewScreen, props: { contacts } },
+  { path: '/contact-view', Component: ContactViewScreen },
   { path: '/counter', Component: CounterScreen },
   { path: '/notfound', Component: NotFoundScreen },
 ];
