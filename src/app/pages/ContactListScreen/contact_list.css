@@ -4,6 +4,8 @@
 
 .contact-screen .contacts-list ul {
   padding-bottom: 5px;
-
 }
 
+.contact-screen li.selected {
+  background-color: rgba(153, 153, 153, 0.21);
+}

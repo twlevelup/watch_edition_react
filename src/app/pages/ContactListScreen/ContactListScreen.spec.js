@@ -1,25 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { ContactListScreen, ContactScreenButtons } from './ContactListScreen';
+import { mount } from 'enzyme';
+import { ContactListComponent as ContactListScreen } from './ContactListScreen';
 import ButtonAction from '../../../framework/util/ButtonAction';
 
 jest.mock('../../../framework/util/ButtonAction');
 
 describe('ContactListScreen component', () => {
   let componentWrapper;
+  let onLoadRemapButtons;
   beforeEach(() => {
-    jest.spyOn(ButtonAction, 'goToPage');
-    componentWrapper = shallow(
-      <ContactListScreen contacts={ [] } />
+    onLoadRemapButtons = jest.fn();
+    componentWrapper = mount(
+      <ContactListScreen contacts={ [{ name: 'bleh' }, { name: 'bloh' }] } remapButtons={ onLoadRemapButtons } />
     );
+  });
+
+  it('should call onLoadRemapButtons on componentDidMount', () => {
+    expect(onLoadRemapButtons).toHaveBeenCalled();
   });
 
   it('should have a title', () => {
     expect(componentWrapper.find('.title')).toBePresent();
-  });
-
-  it('should have class[contact-screen]', () => {
-    expect(componentWrapper).toHaveClassName('contact-screen');
   });
 
   it('should contain a GenericList component', () => {
@@ -27,22 +28,58 @@ describe('ContactListScreen component', () => {
   });
 
   it('should have a LEFT button config of going to Home Page', () => {
-    ContactScreenButtons.LEFT();
+    componentWrapper.instance().buttonActions.LEFT();
     expect(ButtonAction.goToPage).toHaveBeenCalledWith('/');
   });
 
   it('should have a RIGHT button config of going to Counter page', () => {
-    ContactScreenButtons.RIGHT();
+    componentWrapper.instance().buttonActions.RIGHT();
     expect(ButtonAction.goToPage).toHaveBeenCalledWith('/counter');
   });
 
-  it('should have a TOP button config of scrolling up', () => {
-    ContactScreenButtons.TOP();
-    expect(ButtonAction.scrollUp).toHaveBeenCalled();
+  it('should have on SCREEN button config of going to contact view page with the selected contact', () => {
+    componentWrapper.instance().setState({ selectedContactIndex: 2 });
+    componentWrapper.instance().buttonActions.SCREEN();
+    expect(ButtonAction.goToPage).toHaveBeenCalledWith('/contact/2');
   });
 
-  it('should have a BOTTOM button config of scrolling down', () => {
-    ContactScreenButtons.BOTTOM();
-    expect(ButtonAction.goToPage).toHaveBeenCalled();
+  describe('TOP button', () => {
+    it('should scrolling up', () => {
+      componentWrapper.instance().buttonActions.TOP();
+      expect(ButtonAction.scrollUp).toHaveBeenCalled();
+    });
+
+    it('should set previous contact in state', () => {
+      componentWrapper.instance().setState({ selectedContactIndex: 2 });
+      componentWrapper.instance().buttonActions.TOP();
+      expect(componentWrapper.instance().state.selectedContactIndex).toBe(1);
+    });
+
+    it('should set the selected contact index in negative', () => {
+      componentWrapper.instance().setState({ selectedContactIndex: 1 });
+      componentWrapper.instance().buttonActions.TOP();
+      componentWrapper.instance().buttonActions.TOP();
+      componentWrapper.instance().buttonActions.TOP();
+      expect(componentWrapper.instance().state.selectedContactIndex).toBe(0);
+    });
+  });
+
+  describe('BOTTOM button', () => {
+    it('should  scrolling down', () => {
+      componentWrapper.instance().buttonActions.BOTTOM();
+      expect(ButtonAction.goToPage).toHaveBeenCalled();
+    });
+
+    it('should set next contact in state', () => {
+      componentWrapper.instance().buttonActions.BOTTOM();
+      expect(componentWrapper.instance().state.selectedContactIndex).toBe(1);
+    });
+
+    it('should set selected contact index to be more than the contact list length', () => {
+      componentWrapper.instance().buttonActions.BOTTOM();
+      componentWrapper.instance().buttonActions.BOTTOM();
+      componentWrapper.instance().buttonActions.BOTTOM();
+      expect(componentWrapper.instance().state.selectedContactIndex).toBe(1);
+    });
   });
 });
