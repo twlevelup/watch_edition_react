@@ -23,7 +23,7 @@ export const ContactListComponent = ({ contacts, selectedIndex }) => (
 
 const getNextIndex = (indexChange, selectedIndex, contacts) => {
   const newIndex = selectedIndex + indexChange;
-  return Math.abs(newIndex % contacts.length);
+  return Math.abs((newIndex + contacts.length) % contacts.length);
 };
 
 export const buttonActions = ({ contacts, selectedIndex = 0 }) => ({

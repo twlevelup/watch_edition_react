@@ -11,7 +11,7 @@ describe('ContactListScreen component', () => {
     jest.resetAllMocks();
 
     defaultProps = {
-      contacts: [{ name: 'contact 1' }, { name: 'contact 2' }],
+      contacts: [{ name: 'contact 1' }, { name: 'contact 2' }, { name: 'contact 3' }],
       selectedIndex: 0,
     };
   });
@@ -48,17 +48,17 @@ describe('ContactListScreen component', () => {
 
     describe('TOP button', () => {
       it('should set previous contact', () => {
-        buttonActions({ ...defaultProps, selectedIndex: 1 }).TOP();
+        buttonActions({ ...defaultProps, selectedIndex: 2 }).TOP();
 
         expect(ButtonAction.goToPage).toHaveBeenCalledWith({
-          state: { selectedIndex: 0 },
+          state: { selectedIndex: 1 },
         });
       });
       it('should roll back to the bottom', () => {
         buttonActions({ ...defaultProps, selectedIndex: 0 }).TOP();
 
         expect(ButtonAction.goToPage).toHaveBeenCalledWith({
-          state: { selectedIndex: 1 },
+          state: { selectedIndex: 2 },
         });
       });
     });
@@ -73,7 +73,7 @@ describe('ContactListScreen component', () => {
       });
 
       it('should roll back to the top', () => {
-        buttonActions({ ...defaultProps, selectedIndex: 1 }).BOTTOM();
+        buttonActions({ ...defaultProps, selectedIndex: 2 }).BOTTOM();
 
         expect(ButtonAction.goToPage).toHaveBeenCalledWith({
           state: { selectedIndex: 0 },
