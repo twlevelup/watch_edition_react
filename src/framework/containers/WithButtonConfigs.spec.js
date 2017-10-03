@@ -45,6 +45,24 @@ describe('WithButtonConfigs', () => {
     expect(store.dispatch).toHaveBeenCalledWith(expectedDispatchAction);
   });
 
+  it('should call the buttonMappings as a function if it is a isFunction', () => {
+    const buttonMappingFunction = jest.fn();
+    buttonMappingFunction.mockReturnValue(buttonMappings);
+    ConnectedComponent = WithButtonConfigs(mockedComponent, buttonMappingFunction);
+    buttonWrapper = mount(
+      <Provider store={ store }>
+        <ConnectedComponent someProp />
+      </Provider>
+    );
+
+    const expectedDispatchAction = {
+      type: ACTION_TYPES.BUTTON_REMAP,
+      remapedButtons: buttonMappings,
+    };
+    expect(buttonMappingFunction).toHaveBeenCalledWith({ someProp: true });
+    expect(store.dispatch).toHaveBeenCalledWith(expectedDispatchAction);
+  });
+
   it('should assign any values in the components location object to props', () => {
     const fakeNav = {
       router: {

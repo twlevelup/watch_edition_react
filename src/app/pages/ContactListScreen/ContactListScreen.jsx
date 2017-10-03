@@ -2,41 +2,55 @@ import React from 'react';
 import {
   string,
   arrayOf,
+  number,
   shape,
 } from 'prop-types';
 
-import GenericList from '../../../framework/components/GenericList/GenericList';
+import ScrollList from '../../../framework/components/ScrollList/ScrollList';
 import WithButtonConfigs from '../../../framework/containers/WithButtonConfigs';
 import ButtonAction from '../../../framework/util/ButtonAction';
-import Contact from './components/Contact/Contact';
 import './contact_list.css';
 
-export const ContactListScreen = ({ contacts }) => {
-  return (
-    <div id='contact-screen' className='contact-screen'>
-      <h1 className='title'>Contacts</h1>
-      <GenericList
-        className='contacts-list'
-        items={ contacts }
-        listItem={ Contact }
-      />
-    </div>
-  );
+export const ContactListComponent = ({ contacts, selectedIndex }) => (
+  <div id='contact-screen' className='contact-screen'>
+    <h1 className='title'>Contacts</h1>
+    <ScrollList
+      labels={ contacts.map(c => c.name) }
+      selectedIndex={ selectedIndex }
+    />
+  </div>
+);
+
+const getNextIndex = (indexChange, selectedIndex, contacts) => {
+  const newIndex = selectedIndex + indexChange;
+  return Math.abs((newIndex + contacts.length) % contacts.length);
 };
 
-ContactListScreen.propTypes = {
+export const buttonActions = ({ contacts, selectedIndex = 0 }) => ({
+  RIGHT: () => ButtonAction.goToPage('/counter'),
+  LEFT: () => ButtonAction.goToPage('/'),
+  BOTTOM: () => {
+    ButtonAction.goToPage({ state: { selectedIndex: getNextIndex(1, selectedIndex, contacts) } });
+  },
+  TOP: () => {
+    ButtonAction.goToPage({ state: { selectedIndex: getNextIndex(-1, selectedIndex, contacts) } });
+  },
+  SCREEN: () => ButtonAction.goToPage({
+    pathname: '/contact-view',
+    state: { contact: contacts[selectedIndex] },
+  }),
+});
+
+ContactListComponent.propTypes = {
+  selectedIndex: number,
   contacts: arrayOf(shape({
     name: string,
-    phone: string,
-    address: string,
   })).isRequired,
 };
 
-export const ContactScreenButtons = {
-  LEFT: () => ButtonAction.goToPage('/'),
-  RIGHT: () => ButtonAction.goToPage('/counter'),
-  TOP: () => ButtonAction.scrollUp(),
-  BOTTOM: () => ButtonAction.scrollDown(),
+ContactListComponent.defaultProps = {
+  selectedIndex: 0,
 };
 
-export default WithButtonConfigs(ContactListScreen, ContactScreenButtons);
+
+export default WithButtonConfigs(ContactListComponent, buttonActions);
