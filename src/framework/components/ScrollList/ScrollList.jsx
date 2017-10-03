@@ -10,7 +10,11 @@ const ScrollList = ({ labels, selectedIndex, itemHeight }) => {
     } }
     >
       {
-      ['', '', ...labels, '', '']
+        [
+          ...labels.slice(-2),
+          ...labels,
+          ...labels.slice(0, 2),
+        ]
         .slice(selectedIndex, selectedIndex + 5)
         .map((label, index) => (
           <li
