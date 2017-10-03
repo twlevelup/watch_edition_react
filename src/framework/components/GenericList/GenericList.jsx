@@ -7,7 +7,6 @@ const GenericList = (props) => {
     liClassName,
     items,
     listItem,
-    selectedItemIndex,
   } = props;
 
   return (
@@ -15,7 +14,7 @@ const GenericList = (props) => {
       {items.map((item, index) => (
         <li
           key={ `generic-list-${ index + 1 }` }
-          className={ `${ liClassName } ${ index === selectedItemIndex ? 'selected' : '' }` }
+          className={ liClassName }
         >
           {listItem(item)}
         </li>
@@ -27,7 +26,6 @@ const GenericList = (props) => {
 GenericList.propTypes = {
   className: PropTypes.string,
   liClassName: PropTypes.string,
-  selectedItemIndex: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
   listItem: PropTypes.func.isRequired,
 };
@@ -35,7 +33,6 @@ GenericList.propTypes = {
 GenericList.defaultProps = {
   className: 'generic-list',
   liClassName: '',
-  selectedItemIndex: 0,
   items: [],
 };
 

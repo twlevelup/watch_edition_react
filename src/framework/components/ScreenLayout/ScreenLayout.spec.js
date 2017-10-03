@@ -32,14 +32,5 @@ describe('ScreenLayout component', () => {
     test("Components with and without a 'path' prop are still rendered at some point", () => {
       expect(renderedScreen.find(Mock).length).toBe(2);
     });
-
-    test('the test coverage goes to 100% when rendered with the default onClick', () => {
-      renderedScreen = mount(
-        <ScreenLayout>
-          <Mock /><Mock />
-        </ScreenLayout>);
-
-      expect(renderedScreen.props().onClick());
-    });
   });
 });
